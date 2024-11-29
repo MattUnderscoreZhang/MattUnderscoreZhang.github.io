@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Matt Zhang's Portfolio Website</title>
+    <meta name="author" content="Matt Zhang">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        .skills-grid{
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+            padding: 16px;
+        }
+
+        .skill-card {
+            --color-primary: red;
+            --color-secondary: beige;
+            --color-shadow: rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-size: 14px;
+            color: var(--color-primary);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 32px 16px;
+	    background-color: var(--color-secondary);
+            box-shadow: 0 2px 4px var(--color-shadow);
+            max-width: 200px;
+        }
+
+        .skill-card img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .skill-card h3 {
+            margin: 10px;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 10px var(--color-shadow);
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <nav id="floating_navbar">
+        Matt Zhang
+        <ul>
+            <li><a href=".html">About</a></li>
+            <li><a href=".html">Skills</a></li>
+            <li><a href=".html">Timeline</a></li>
+            <li><a href=".html">Projects</a></li>
+            <li><a href=".html">Papers</a></li>
+            <li><a href=".html">Contact</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="about">
+            <img src="images/me.jpg" alt="Matt Zhang photo">
+            <ul id="social_links">
+                <li><a href=".html">LinkedIn</a></li>
+                <li><a href=".html">GitHub</a></li>
+                <li><a href=".html">Resume</a></li>
+            </ul>
+            <h1>Matt Zhang</h1>
+            <p>ML researcher, physicist, and full-stack programmer</p>
+            <p>my bio</p>
+        </section>
+        <section id="skills">
+            <h2>Skills</h2>
+            <p>My skills include:</p>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <img src="images/skills/python-logo.png" alt="Python Logo">
+                    <h3>Python</h3>
+                    With over 13 years of experience, I’ve used Python in machine learning, backend development, data analysis, and more. Python is my strongest language.
+                </div>
+                <div class="skill-card">
+                    <img src="images/ml-logo.png" alt="Machine Learning Logo" class="skill-logo">
+                    <h3>Machine Learning</h3>
+                    <p>My expertise covers a wide range of ML techniques, including **reinforcement learning**, **image analysis**, and **unsupervised learning**. I have worked with **time-series data**, **text & sentiment analysis**, and **point cloud data**, applying algorithms like **DQN**, **DRQN**, and **RNNs** in projects such as the **Autonomous Cyberattack Agent** and **Lepton Identification**.</p>
+                </div>
+                <div class="skill-card">
+                    <img src="images/data-science-logo.png" alt="Data Science Logo" class="skill-logo">
+                    <h3>Data Science</h3>
+                    <p>Skilled in **data cleaning**, **data augmentation**, and **statistical analysis**, I’ve used **Python** and **MATLAB** for large-scale data processing. Projects like the **Lepton Identification** and **Supersymmetry Search** have allowed me to work on terabytes of data, optimizing classification algorithms and applying **batch computing** for model training.</p>
+                </div>
+                <div class="skill-card">
+                    <img src="images/backend-logo.png" alt="Backend Development Logo" class="skill-logo">
+                    <h3>Backend Development</h3>
+                    <p>Experienced in **Python** frameworks like **Flask** and **FastAPI**, as well as **Docker**, **CI/CD** pipelines, and **API development**. I’ve built robust backend systems that integrate with cloud services such as **AWS** (RDS, Lambda, API Gateway), supporting AI-driven applications and real-time data processing in secure environments.</p>
+                </div>
+                <div class="skill-card">
+                    <img src="images/cybersecurity-logo.png" alt="Cybersecurity Logo" class="skill-logo">
+                    <h3>Cybersecurity</h3>
+                    <p>Led teams to develop an **autonomous cyberattack agent**, employing reinforcement learning techniques for **penetration testing**. My work includes building security-focused systems with **VM network management**, **malware creation**, and **attack actuator development**. I also applied **Bayesian methods** and **behavior trees** for defense strategies.</p>
+                </div>
+                <div class="skill-card">
+                    <img src="images/cloud-computing-logo.png" alt="Cloud Computing Logo" class="skill-logo">
+                    <h3>Cloud Computing & DevOps</h3>
+                    <p>Proficient in **AWS** services including **RDS**, **IAM**, **Lambda**, and **API Gateway**. I have extensive experience in setting up **CI/CD pipelines**, using **Docker** for containerization, and automating cloud deployments. I also managed large-scale machine learning model training using **AWS** cloud infrastructure.</p>
+                </div>
+                <div class="skill-card">
+                    <img src="images/programming-logo.png" alt="Programming Languages Logo" class="skill-logo">
+                    <h3>Programming Languages</h3>
+                    <p>In addition to **Python**, I am proficient in **C++**, **Java**, **MATLAB**, and **SQL/PostgreSQL**. My experience spans across **frontend technologies** like **JavaScript (SolidJS, TypeScript)**, and **Flutter** for mobile app development. This versatility allows me to adapt to various programming paradigms and project requirements.</p>
+                </div>
+            </div>
+        </section>
+        <section id="timeline">
+            <h2>Timeline</h2>
+            <!--timelinejs-->
+            <!--https://freefrontend.com/css-timelines/-->
+            <p>My education and work experience:</p>
+            <ul>
+                <li>blah</li>
+                <li>vertical scrolling timeline</li>
+            </ul>
+        </section>
+        <section id="projects">
+            <h2>Projects</h2>
+            <p>This section showcases some of my personal projects, as well as projects from research teams I've been part of. Work projects are confidential and are not included in this section.</p>
+            <ul>
+                <li>Project 1 card</li>
+                <li>Project 2 card</li>
+                <li>etc.</li>
+            </ul>
+        </section>
+        <section id="papers">
+            <h2>Papers</h2>
+            <p>My research papers:</p>
+            <ul>
+                <li>Paper 1 title and link</li>
+                <li>etc.</li>
+            </ul>
+            <p>Google Scholar citations</p>
+        </section>
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <p>Email: set.stun@gmail.com</p>
+            <form>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message"></textarea>
+                <input type="submit" value="Send">
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Matt Zhang</p>
+    </footer>
+</body>
+
+</html>
