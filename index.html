@@ -8,44 +8,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <style>
+        body {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
         .skills-grid{
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 16px;
             padding: 16px;
+            margin: 0 auto;
         }
 
         .skill-card {
-            --color-primary: red;
-            --color-secondary: beige;
+            --color-text: red;
+            --color-background: beige;
             --color-shadow: rgba(0, 0, 0, 0.2);
+            position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
             font-size: 14px;
-            color: var(--color-primary);
+            color: var(--color-text);
             border: 1px solid #ddd;
             border-radius: 8px;
             padding: 32px 16px;
-	    background-color: var(--color-secondary);
+            box-sizing: border-box;
+	    background-color: var(--color-background);
             box-shadow: 0 2px 4px var(--color-shadow);
-            max-width: 200px;
+            width: 200px;
+            overflow: hidden;
         }
 
-        .skill-card img {
-            width: 50px;
-            height: 50px;
+        .skill-card .card-front {
+            transition: all 0.3s;
         }
 
-        .skill-card h3 {
-            margin: 10px;
+        .skill-card .card-front img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
         }
 
-        .skill-card:hover {
+        .skill-card .card-front h3 {
+            margin: 16px 0 0 0;
+        }
+
+        .skill-card .card-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            display: flex;
+            padding: 32px 16px;
+            box-sizing: border-box;
+            opacity: 0;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .skill-card .card-back .attribution {
+            margin: 16px 0 0 0;
+            font-size: 10px;
+            color: #666;
+        }
+
+        .skill-card:hover .card-front {
             transform: translateY(-5px);
-            box-shadow: 0 6px 10px var(--color-shadow);
             transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        .skill-card:hover .card-back {
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+            opacity: 1;
         }
     </style>
 </head>
@@ -54,12 +95,12 @@
     <nav id="floating_navbar">
         Matt Zhang
         <ul>
-            <li><a href=".html">About</a></li>
-            <li><a href=".html">Skills</a></li>
-            <li><a href=".html">Timeline</a></li>
-            <li><a href=".html">Projects</a></li>
-            <li><a href=".html">Papers</a></li>
-            <li><a href=".html">Contact</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#timeline">Timeline</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#papers">Papers</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
     <main>
@@ -78,40 +119,163 @@
             <h2>Skills</h2>
             <p>My skills include:</p>
             <div class="skills-grid">
+                <!-- programming languages -->
                 <div class="skill-card">
-                    <img src="images/skills/python-logo.png" alt="Python Logo">
-                    <h3>Python</h3>
-                    With over 13 years of experience, I’ve used Python in machine learning, backend development, data analysis, and more. Python is my strongest language.
+                    <div class="card-front">
+                        <img src="images/skills/python.svg" alt="Python Logo">
+                        <h3>Python</h3>
+                    </div>
+                    <div class="card-back">
+                        I've had over 13 years of experience in Python, using it in machine learning, backend development, data analysis, and more.
+                    </div>
                 </div>
                 <div class="skill-card">
-                    <img src="images/ml-logo.png" alt="Machine Learning Logo" class="skill-logo">
-                    <h3>Machine Learning</h3>
-                    <p>My expertise covers a wide range of ML techniques, including **reinforcement learning**, **image analysis**, and **unsupervised learning**. I have worked with **time-series data**, **text & sentiment analysis**, and **point cloud data**, applying algorithms like **DQN**, **DRQN**, and **RNNs** in projects such as the **Autonomous Cyberattack Agent** and **Lepton Identification**.</p>
+                    <div class="card-front">
+                        <img src="images/skills/cpp.svg" alt="C++ Logo">
+                        <h3>C++</h3>
+                    </div>
+                    <div class="card-back">
+                        I used C++ extensively in my high-energy physics research at CERN.
+                    </div>
                 </div>
                 <div class="skill-card">
-                    <img src="images/data-science-logo.png" alt="Data Science Logo" class="skill-logo">
-                    <h3>Data Science</h3>
-                    <p>Skilled in **data cleaning**, **data augmentation**, and **statistical analysis**, I’ve used **Python** and **MATLAB** for large-scale data processing. Projects like the **Lepton Identification** and **Supersymmetry Search** have allowed me to work on terabytes of data, optimizing classification algorithms and applying **batch computing** for model training.</p>
+                    <div class="card-front">
+                        <img src="images/skills/java.svg" alt="Java Logo">
+                        <h3>Java</h3>
+                    </div>
+                    <div class="card-back">
+                        Java was my first programming language, and I used it to create a bunch of games which are now lost to time.
+                    </div>
                 </div>
                 <div class="skill-card">
-                    <img src="images/backend-logo.png" alt="Backend Development Logo" class="skill-logo">
-                    <h3>Backend Development</h3>
-                    <p>Experienced in **Python** frameworks like **Flask** and **FastAPI**, as well as **Docker**, **CI/CD** pipelines, and **API development**. I’ve built robust backend systems that integrate with cloud services such as **AWS** (RDS, Lambda, API Gateway), supporting AI-driven applications and real-time data processing in secure environments.</p>
+                    <div class="card-front">
+                        <img src="images/skills/postgres.svg" alt="SQL Logo">
+                        <h3>SQL/PostgreSQL</h3>
+                    </div>
+                    <div class="card-back">
+                        I'm experienced with database design, and have used PostgreSQL with Supabase in personal projects, including an AI-driven batch delivery app.
+                    </div>
                 </div>
                 <div class="skill-card">
-                    <img src="images/cybersecurity-logo.png" alt="Cybersecurity Logo" class="skill-logo">
-                    <h3>Cybersecurity</h3>
-                    <p>Led teams to develop an **autonomous cyberattack agent**, employing reinforcement learning techniques for **penetration testing**. My work includes building security-focused systems with **VM network management**, **malware creation**, and **attack actuator development**. I also applied **Bayesian methods** and **behavior trees** for defense strategies.</p>
+                    <div class="card-front">
+                        <img src="images/skills/flutter.svg" alt="Flutter Logo">
+                        <h3>Dart/Flutter</h3>
+                    </div>
+                    <div class="card-back">
+                        I’ve done some cross-platform mobile and web development using Flutter, but can't say I'm an expert.
+                    </div>
                 </div>
                 <div class="skill-card">
-                    <img src="images/cloud-computing-logo.png" alt="Cloud Computing Logo" class="skill-logo">
-                    <h3>Cloud Computing & DevOps</h3>
-                    <p>Proficient in **AWS** services including **RDS**, **IAM**, **Lambda**, and **API Gateway**. I have extensive experience in setting up **CI/CD pipelines**, using **Docker** for containerization, and automating cloud deployments. I also managed large-scale machine learning model training using **AWS** cloud infrastructure.</p>
+                    <div class="card-front">
+                        <img src="images/skills/htmx.svg" alt="HTMX Logo">
+                        <h3>HTMX</h3>
+                    </div>
+                    <div class="card-back">
+                        HTMX is super cool, and I first used it to build a multiplayer web game where you can play against your friends or AI's.
+                    </div>
                 </div>
                 <div class="skill-card">
-                    <img src="images/programming-logo.png" alt="Programming Languages Logo" class="skill-logo">
-                    <h3>Programming Languages</h3>
-                    <p>In addition to **Python**, I am proficient in **C++**, **Java**, **MATLAB**, and **SQL/PostgreSQL**. My experience spans across **frontend technologies** like **JavaScript (SolidJS, TypeScript)**, and **Flutter** for mobile app development. This versatility allows me to adapt to various programming paradigms and project requirements.</p>
+                    <div class="card-front">
+                        <img src="images/skills/tailwind.svg" alt="Tailwind Logo">
+                        <h3>Tailwind</h3>
+                    </div>
+                    <div class="card-back">
+                        Most of my web projects are styled with Tailwind CSS, which just continues to get more powerful with each release.
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="card-front">
+                        <img src="images/skills/javascript.svg" alt="JavaScript Logo">
+                        <h3>JavaScript</h3>
+                    </div>
+                    <div class="card-back">
+                        I have some experience with JavaScript, but I tend to offlift most heavy lifting to Python servers via HTMX.
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="card-front">
+                        <img src="images/skills/verilog.svg" alt="Verilog Logo">
+                        <h3>Verilog/VHDL</h3>
+                    </div>
+                    <div class="card-back">
+                        I spent several years working with Verilog while designing an FPGA chip for a detector upgrade at CERN.
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="card-front">
+                        <img src="images/skills/matlab.svg" alt="MATLAB Logo">
+                        <h3>MATLAB</h3>
+                    </div>
+                    <div class="card-back">
+                        Back in my previous life as a mechanical engineer, I used MATLAB quite extensively. The last time I used it was to design a control mechanism for a small satellite.
+                    </div>
+                </div>
+                <!-- other skills -->
+                <div class="skill-card">
+                    <div class="card-front">
+                        <img src="images/skills/pytorch.svg" alt="PyTorch Logo">
+                        <h3>Machine Learning</h3>
+                    </div>
+                    <div class="card-back">
+                        I have extensive experience with many areas of machine learning, including reinforcement learning, data classification and regression, and image and video generation.
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="card-front">
+                        <img src="images/skills/pandas.svg" alt="Pandas Logo">
+                        <h3>Data Analysis</h3>
+                    </div>
+                    <div class="card-back">
+                        I'm experienced in statistical data analysis methods from my time as a computational physicist working on the ATLAS experiment at CERN.
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="card-front">
+                        <img src="images/skills/docker.svg" alt="Docker Logo">
+                        <h3>Docker</h3>
+                    </div>
+                    <div class="card-back">
+                        My first industry job involved airgapped cyber ranges, so all development had to be containerized. I gained a lot of experience with Docker and Docker Compose from this.
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="card-front">
+                        <img src="images/skills/aws.svg" alt="AWS Logo">
+                        <h3>Cloud Computing</h3>
+                    </div>
+                    <div class="card-back">
+                        I've used AWS services like EC2, RDS, Lambda, and S3 to deploy web applications. I've also used other services like Railway and Vercel.
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="card-front">
+                        <img src="images/skills/github-actions.svg" alt="GitHub Actions Logo">
+                        <h3>DevOps</h3>
+                    </div>
+                    <div class="card-back">
+                        I'm experienced in setting up DevOps pipelines with CI/CD, GitHub Actions, test runners, and deployment scripts. I work with this stuff every day.
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="card-front">
+                        <img src="images/skills/cyber-security.png" alt="Cybersecurity Logo">
+                        <h3>Cybersecurity</h3>
+                    </div>
+                    <div class="card-back">
+                        My first industry job was for a cybersecurity company, where I trained automated attackers and developed the infrastructure to enable penetration testing scenarios.
+                        <div class="attribution">
+                            <a href="https://www.flaticon.com/free-icons/cyber-security" title="cyber security icons">Icon by srip - Flaticon</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="card-front">
+                        <img src="images/skills/gpt.svg" alt="ChatGPT Logo">
+                        <h3>Language Models</h3>
+                    </div>
+                    <div class="card-back">
+                        I've used LLMs extensively, building my own communication tools, applications, and agents. Some non-proprietory projects are showcased on my website.
+                    </div>
                 </div>
             </div>
         </section>
@@ -127,7 +291,7 @@
         </section>
         <section id="projects">
             <h2>Projects</h2>
-            <p>This section showcases some of my personal projects, as well as projects from research teams I've been part of. Work projects are confidential and are not included in this section.</p>
+            <p>This section showcases some of my personal and academic projects. Confidential work projects are not included.</p>
             <ul>
                 <li>Project 1 card</li>
                 <li>Project 2 card</li>
