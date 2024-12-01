@@ -5,90 +5,109 @@
     <meta charset="utf-8">
     <title>Matt Zhang's Portfolio Website</title>
     <meta name="author" content="Matt Zhang">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-<link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital@1&family=Lato:wght@400;700&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        .lato-regular {
+            font-family: "Lato", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+        .lato-bold {
+            font-family: "Lato", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+        }
+    </style>
 
     <style>
         body {
-            --primary-hue: 148;
+            --primary-hue: 48;
             --color-bg: oklch(67% 0.06 var(--primary-hue));
+            --color-dark: oklch(25% 0.36 var(--primary-hue));
+            --color-bright: oklch(95% 0.06 var(--primary-hue));
+            --color-card: oklch(75% 0.06 var(--primary-hue));
             max-width: 600px;
             margin: 0 auto;
             background-color: var(--color-bg);
+            font-family: 'Lato', sans-serif;
+            color: var(--color-dark);
+            font-weight: 400;
+            text-align: center;
         }
-
-        .skills-grid{
+        .skills-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 16px;
             padding: 16px;
             margin: 0 auto;
         }
-
         .skill-card {
-            --color-card: oklch(100% 0 0 / 20%);  /* just a transparent overlay */
-            --color-shadow: oklch(25% 0.36 var(--primary-hue));
-            --card-transition-dy: -35px;
+            --card-transition-dy: -32px;
             position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
             font-size: 14px;
-            color: var(--color-shadow);
-            border: 1px solid var(--color-shadow);
+            border: 1px solid var(--color-dark);
             border-radius: 8px;
             padding: 32px 16px;
             box-sizing: border-box;
 	    background-color: var(--color-card);
-            box-shadow: 4px 4px 8px var(--color-shadow);
+            box-shadow: 4px 4px 8px var(--color-dark);
             width: 200px;
             overflow: hidden;
         }
-
         .skill-card .card-front {
             transition: all 0.3s;
         }
-
         .skill-card .card-front img {
             width: 100px;
             height: 100px;
             object-fit: contain;
         }
-
         .skill-card .card-front h3 {
             margin: 16px 0 0 0;
+            font-weight: 700;
         }
-
         .skill-card .card-back {
+            --card-back-transition-dy: calc(var(--card-transition-dy) * 0.5);
             position: absolute;
             top: 0;
             left: 0;
-            height: 100%;
+            height: calc(100% - var(--card-transition-dy));
             display: flex;
-            padding: calc(32px - var(--card-transition-dy)) 16px calc(32px + var(--card-transition-dy)) 16px;
+            padding: calc(32px - var(--card-back-transition-dy)) 16px calc(32px + var(--card-back-transition-dy)) 16px;
             box-sizing: border-box;
             opacity: 0;
             transition: all 0.3s;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            font-weight: 400;
+            background-color: var(--color-dark);
+            color: var(--color-bright);
         }
-
+        .skill-card .card-back a {
+            color: lightblue;
+        }
         .skill-card .card-back .attribution {
             margin: 16px 0 0 0;
             font-size: 10px;
             color: #666;
         }
-
         .skill-card:hover .card-front {
             transform: translateY(var(--card-transition-dy));
-            transition: all 0.3s ease;
+            transition: all 0.5s ease-out;
             opacity: 0;
         }
-
         .skill-card:hover .card-back {
             transform: translateY(var(--card-transition-dy));
-            transition: all 0.3s ease;
+            transition: all 0.5s ease-out;
             opacity: 1;
         }
     </style>
@@ -119,8 +138,7 @@
             <p>my bio</p>
         </section>
         <section id="skills">
-            <h2>Skills</h2>
-            <p>My skills include:</p>
+            <h2>My Skills</h2>
             <div class="skills-grid">
                 <!-- programming languages -->
                 <div class="skill-card">
