@@ -9,8 +9,11 @@
 
     <style>
         body {
+            --primary-hue: 148;
+            --color-bg: oklch(67% 0.06 var(--primary-hue));
             max-width: 600px;
             margin: 0 auto;
+            background-color: var(--color-bg);
         }
 
         .skills-grid{
@@ -22,22 +25,22 @@
         }
 
         .skill-card {
-            --color-text: red;
-            --color-background: beige;
-            --color-shadow: rgba(0, 0, 0, 0.2);
+            --color-card: oklch(100% 0 0 / 20%);  /* just a transparent overlay */
+            --color-shadow: oklch(25% 0.36 var(--primary-hue));
+            --card-transition-dy: -35px;
             position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
             font-size: 14px;
-            color: var(--color-text);
-            border: 1px solid #ddd;
+            color: var(--color-shadow);
+            border: 1px solid var(--color-shadow);
             border-radius: 8px;
             padding: 32px 16px;
             box-sizing: border-box;
-	    background-color: var(--color-background);
-            box-shadow: 0 2px 4px var(--color-shadow);
+	    background-color: var(--color-card);
+            box-shadow: 4px 4px 8px var(--color-shadow);
             width: 200px;
             overflow: hidden;
         }
@@ -62,7 +65,7 @@
             left: 0;
             height: 100%;
             display: flex;
-            padding: 32px 16px;
+            padding: calc(32px - var(--card-transition-dy)) 16px calc(32px + var(--card-transition-dy)) 16px;
             box-sizing: border-box;
             opacity: 0;
             transition: all 0.3s;
@@ -78,13 +81,13 @@
         }
 
         .skill-card:hover .card-front {
-            transform: translateY(-5px);
+            transform: translateY(var(--card-transition-dy));
             transition: all 0.3s ease;
             opacity: 0;
         }
 
         .skill-card:hover .card-back {
-            transform: translateY(-5px);
+            transform: translateY(var(--card-transition-dy));
             transition: all 0.3s ease;
             opacity: 1;
         }
