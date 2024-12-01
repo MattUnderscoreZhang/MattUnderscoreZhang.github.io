@@ -10,18 +10,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital@1&family=Lato:wght@400;700&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
-    <style>
-        .lato-regular {
-            font-family: "Lato", sans-serif;
-            font-weight: 400;
-            font-style: normal;
-        }
-        .lato-bold {
-            font-family: "Lato", sans-serif;
-            font-weight: 700;
-            font-style: normal;
-        }
-    </style>
 
     <style>
         body {
@@ -30,7 +18,7 @@
             --color-dark: oklch(25% 0.36 var(--primary-hue));
             --color-bright: oklch(95% 0.06 var(--primary-hue));
             --color-card: oklch(75% 0.06 var(--primary-hue));
-            max-width: 600px;
+            max-width: 1200px;
             margin: 0 auto;
             background-color: var(--color-bg);
             font-family: 'Lato', sans-serif;
@@ -40,7 +28,7 @@
         }
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(6, 1fr);
             gap: 16px;
             padding: 16px;
             margin: 0 auto;
@@ -59,7 +47,6 @@
             box-sizing: border-box;
 	    background-color: var(--color-card);
             box-shadow: 4px 4px 8px var(--color-dark);
-            width: 200px;
             overflow: hidden;
         }
         .skill-card .card-front {
@@ -100,6 +87,10 @@
             font-size: 10px;
             color: #666;
         }
+        .skill-card:hover {
+            box-shadow: 4px 4px 8px var(--color-bright);
+            transition: all 0.5s ease-out;
+        }
         .skill-card:hover .card-front {
             transform: translateY(var(--card-transition-dy));
             transition: all 0.5s ease-out;
@@ -114,9 +105,9 @@
 </head>
 
 <body>
-    <nav id="floating_navbar">
-        Matt Zhang
-        <ul>
+    <nav id="floating-navbar">
+        <div id="navbar-name">Matt Zhang</div>
+        <ul id="navbar-sections">
             <li><a href="#about">About</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#timeline">Timeline</a></li>
@@ -124,11 +115,12 @@
             <li><a href="#papers">Papers</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
+        <img src="images/color-wheel.svg" alt="settings" id="navbar-settings'>
     </nav>
     <main>
         <section id="about">
             <img src="images/me.jpg" alt="Matt Zhang photo">
-            <ul id="social_links">
+            <ul id="social-links">
                 <li><a href=".html">LinkedIn</a></li>
                 <li><a href=".html">GitHub</a></li>
                 <li><a href=".html">Resume</a></li>
@@ -143,7 +135,7 @@
                 <!-- programming languages -->
                 <div class="skill-card">
                     <div class="card-front">
-                        <img src="images/skills/python.svg" alt="Python Logo">
+                        <img src="images/skills/python.svg" alt="Python logo">
                         <h3>Python</h3>
                     </div>
                     <div class="card-back">
@@ -152,7 +144,7 @@
                 </div>
                 <div class="skill-card">
                     <div class="card-front">
-                        <img src="images/skills/cpp.svg" alt="C++ Logo">
+                        <img src="images/skills/cpp.svg" alt="C++ logo">
                         <h3>C++</h3>
                     </div>
                     <div class="card-back">
@@ -161,7 +153,7 @@
                 </div>
                 <div class="skill-card">
                     <div class="card-front">
-                        <img src="images/skills/java.svg" alt="Java Logo">
+                        <img src="images/skills/java.svg" alt="Java logo">
                         <h3>Java</h3>
                     </div>
                     <div class="card-back">
@@ -170,7 +162,7 @@
                 </div>
                 <div class="skill-card">
                     <div class="card-front">
-                        <img src="images/skills/postgres.svg" alt="SQL Logo">
+                        <img src="images/skills/postgres.svg" alt="SQL logo">
                         <h3>SQL/PostgreSQL</h3>
                     </div>
                     <div class="card-back">
@@ -179,7 +171,7 @@
                 </div>
                 <div class="skill-card">
                     <div class="card-front">
-                        <img src="images/skills/flutter.svg" alt="Flutter Logo">
+                        <img src="images/skills/flutter.svg" alt="Flutter logo">
                         <h3>Dart/Flutter</h3>
                     </div>
                     <div class="card-back">
@@ -188,7 +180,7 @@
                 </div>
                 <div class="skill-card">
                     <div class="card-front">
-                        <img src="images/skills/htmx.svg" alt="HTMX Logo">
+                        <img src="images/skills/htmx.svg" alt="HTMX logo">
                         <h3>HTMX</h3>
                     </div>
                     <div class="card-back">
@@ -197,7 +189,7 @@
                 </div>
                 <div class="skill-card">
                     <div class="card-front">
-                        <img src="images/skills/tailwind.svg" alt="Tailwind Logo">
+                        <img src="images/skills/tailwind.svg" alt="Tailwind logo">
                         <h3>Tailwind</h3>
                     </div>
                     <div class="card-back">
@@ -206,7 +198,7 @@
                 </div>
                 <div class="skill-card">
                     <div class="card-front">
-                        <img src="images/skills/javascript.svg" alt="JavaScript Logo">
+                        <img src="images/skills/javascript.svg" alt="JavaScript logo">
                         <h3>JavaScript</h3>
                     </div>
                     <div class="card-back">
@@ -215,7 +207,7 @@
                 </div>
                 <div class="skill-card">
                     <div class="card-front">
-                        <img src="images/skills/verilog.svg" alt="Verilog Logo">
+                        <img src="images/skills/verilog.svg" alt="Verilog logo">
                         <h3>Verilog/VHDL</h3>
                     </div>
                     <div class="card-back">
@@ -224,7 +216,7 @@
                 </div>
                 <div class="skill-card">
                     <div class="card-front">
-                        <img src="images/skills/matlab.svg" alt="MATLAB Logo">
+                        <img src="images/skills/matlab.svg" alt="MATLAB logo">
                         <h3>MATLAB</h3>
                     </div>
                     <div class="card-back">
@@ -234,7 +226,7 @@
                 <!-- other skills -->
                 <div class="skill-card">
                     <div class="card-front">
-                        <img src="images/skills/pytorch.svg" alt="PyTorch Logo">
+                        <img src="images/skills/pytorch.svg" alt="PyTorch logo">
                         <h3>Machine Learning</h3>
                     </div>
                     <div class="card-back">
@@ -243,7 +235,7 @@
                 </div>
                 <div class="skill-card">
                     <div class="card-front">
-                        <img src="images/skills/pandas.svg" alt="Pandas Logo">
+                        <img src="images/skills/pandas.svg" alt="Pandas logo">
                         <h3>Data Analysis</h3>
                     </div>
                     <div class="card-back">
@@ -252,7 +244,7 @@
                 </div>
                 <div class="skill-card">
                     <div class="card-front">
-                        <img src="images/skills/docker.svg" alt="Docker Logo">
+                        <img src="images/skills/docker.svg" alt="Docker logo">
                         <h3>Docker</h3>
                     </div>
                     <div class="card-back">
@@ -261,7 +253,7 @@
                 </div>
                 <div class="skill-card">
                     <div class="card-front">
-                        <img src="images/skills/aws.svg" alt="AWS Logo">
+                        <img src="images/skills/aws.svg" alt="AWS logo">
                         <h3>Cloud Computing</h3>
                     </div>
                     <div class="card-back">
@@ -270,7 +262,7 @@
                 </div>
                 <div class="skill-card">
                     <div class="card-front">
-                        <img src="images/skills/github-actions.svg" alt="GitHub Actions Logo">
+                        <img src="images/skills/github-actions.svg" alt="GitHub Actions logo">
                         <h3>DevOps</h3>
                     </div>
                     <div class="card-back">
@@ -279,11 +271,11 @@
                 </div>
                 <div class="skill-card">
                     <div class="card-front">
-                        <img src="images/skills/cyber-security.png" alt="Cybersecurity Logo">
+                        <img src="images/skills/cyber-security.png" alt="cybersecurity logo">
                         <h3>Cybersecurity</h3>
                     </div>
                     <div class="card-back">
-                        My first industry job was for a cybersecurity company, where I trained automated attackers and developed the infrastructure to enable penetration testing scenarios.
+                        I currently work at a cybersecurity startup, where I've trained penetration testing bots and developed the infrastructure to simulate virtual cyber ranges.
                         <div class="attribution">
                             <a href="https://www.flaticon.com/free-icons/cyber-security" title="cyber security icons">Icon by srip - Flaticon</a>
                         </div>
@@ -291,7 +283,7 @@
                 </div>
                 <div class="skill-card">
                     <div class="card-front">
-                        <img src="images/skills/gpt.svg" alt="ChatGPT Logo">
+                        <img src="images/skills/gpt.svg" alt="ChatGPT logo">
                         <h3>Language Models</h3>
                     </div>
                     <div class="card-back">
