@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>Matt Zhang's Portfolio Website</title>
     <meta name="author" content="Matt Zhang">
-    <meta name="viewport" content="width=device-<link rel="preconnect" href="https://fonts.googleapis.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!--Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,24 +16,44 @@
     <style>
         html {
             --primary-hue: 48;
-            --color-bg: oklch(67% 0.06 var(--primary-hue));
-            --color-dark: oklch(25% 0.3 var(--primary-hue));
-            --color-bright: oklch(95% 0.06 var(--primary-hue));
-            --color-glow: oklch(95% 0.3 var(--primary-hue));
+            --color-bg: oklch(60% 0.06 var(--primary-hue));
+            --color-dark: oklch(25% 0.06 var(--primary-hue));
+            --color-light: oklch(95% 0.06 var(--primary-hue));
+            --color-glow: oklch(100% 0.3 var(--primary-hue));
             --color-card: oklch(75% 0.06 var(--primary-hue));
             --max-width: 1200px;
+            --navbar-height: 72px;
             max-width: var(--max-width);
-            margin: 0 auto;
+            margin: var(--navbar-height) auto 0 auto;
             background-color: var(--color-bg);
             font-family: 'Lato', sans-serif;
             color: var(--color-dark);
             font-weight: 400;
             text-align: center;
-            margin-top: 100px;
+            scroll-behavior: smooth;
         }
         h1 {
             font-family: 'Outfit', sans-serif;
             font-weight: 700;
+        }
+    </style>
+
+    <!--Sections-->
+    <style>
+        .section {
+            min-height: calc(100vh - var(--navbar-height));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: var(--navbar-height);
+            margin-top: calc(-1 * var(--navbar-height));
+        }
+        .section h1 {
+            margin: 0;
+            padding-bottom: 32px;
+            font-size: 32px;
+            color: var(--color-light);
+            text-shadow: 0 0 8px var(--color-dark);
         }
     </style>
 
@@ -43,7 +63,6 @@
             display: grid;
             grid-template-columns: repeat(6, 1fr);
             gap: 16px;
-            margin: 0 auto;
         }
         .skill-card {
             --card-transition-dy: -32px;
@@ -89,7 +108,7 @@
             justify-content: center;
             font-weight: 400;
             background-color: var(--color-dark);
-            color: var(--color-bright);
+            color: var(--color-light);
         }
         .skill-card .card-back a {
             color: lightblue;
@@ -97,8 +116,7 @@
             font-size: 10px;
         }
         .skill-card:hover {
-            box-shadow:
-                4px 4px 8px var(--color-glow);
+            box-shadow: 4px 4px 8px var(--color-glow);
             transition: all 0.5s ease-out;
         }
         .skill-card:hover .card-front {
@@ -120,6 +138,7 @@
             top: 0;
             left: 0;
             width: 100%;
+            height: var(--navbar-height);
             display: flex;
             justify-content: center;
             background-color: var(--color-dark);
@@ -127,11 +146,12 @@
             z-index: 1000;
         }
         #navbar-content {
-            width: var(--max-width);
+            width: calc(var(--max-width) - 16px);
+            padding: 0 8px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: var(--color-bright);
+            color: var(--color-light);
         }
         #navbar-sections {
             display: flex;
@@ -141,14 +161,18 @@
             list-style-type: none;
         }
         #navbar-sections a {
-            color: var(--color-bright);
+            color: var(--color-bg);
             text-decoration: none;
             transition: all 0.3s;
         }
+        #navbar-sections a.active {
+            color: var(--color-glow);
+        }
         #navbar-sections a:hover {
+            color: var(--color-glow);
             text-shadow: 
-                0 0 5px var(--color-bright),  /* Inner glow */
-                0 0 10px var(--color-bright), /* First outer glow */
+                0 0 5px var(--color-light),  /* Inner glow */
+                0 0 10px var(--color-light), /* First outer glow */
                 0 0 20px var(--color-glow), /* Second outer glow in a color */
                 0 0 30px var(--color-glow), /* Intensify the glow */
                 0 0 40px var(--color-glow),
@@ -216,12 +240,12 @@
         <div id="navbar-content">
             <h1>Matt Zhang</h1>
             <ul id="navbar-sections">
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#timeline">Timeline</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#papers">Papers</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#timeline" class="nav-link">Timeline</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#papers" class="nav-link">Papers</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
             <div id="navbar-color-slider">
                 <div id="hue-bar"></div>
@@ -230,7 +254,7 @@
         </div>
     </nav>
     <main>
-        <section id="about">
+        <section class="section" id="about">
             <h1>Matt Zhang</h1>
             <img src="images/me.jpg" alt="Matt Zhang photo">
             <ul id="social-links">
@@ -241,7 +265,7 @@
             <p>ML researcher, physicist, and full-stack programmer</p>
             <p>my bio</p>
         </section>
-        <section id="skills">
+        <section class="section" id="skills">
             <h1>My Skills</h1>
             <div class="skills-grid">
                 <!-- programming languages -->
@@ -402,7 +426,7 @@
                 </div>
             </div>
         </section>
-        <section id="timeline">
+        <section class="section" id="timeline">
             <h1>Timeline</h1>
             <!--timelinejs-->
             <!--https://freefrontend.com/css-timelines/-->
@@ -412,7 +436,7 @@
                 <li>vertical scrolling timeline</li>
             </ul>
         </section>
-        <section id="projects">
+        <section class="section" id="projects">
             <h1>Projects</h1>
             <p>This section showcases some of my personal and academic projects. Confidential work projects are not included.</p>
             <ul>
@@ -421,7 +445,7 @@
                 <li>etc.</li>
             </ul>
         </section>
-        <section id="papers">
+        <section class="section" id="papers">
             <h1>Papers</h1>
             <p>My research papers:</p>
             <ul>
@@ -430,7 +454,7 @@
             </ul>
             <p>Google Scholar citations</p>
         </section>
-        <section id="contact">
+        <section class="section" id="contact">
             <h1>Contact Me</h1>
             <p>Email: set.stun@gmail.com</p>
             <form>
@@ -444,9 +468,34 @@
             </form>
         </section>
     </main>
-    <footer>
-        <p>&copy; 2024 Matt Zhang</p>
-    </footer>
+
+    <!--Navbar-->
+    <script>
+        let nav_index = 0;
+        let screen_mid_height = window.innerHeight / 2;
+        function setActiveSectionInNavbar() {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            let found = false;
+            sections.forEach((section, index) => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= screen_mid_height && rect.bottom >= screen_mid_height) {
+                    navLinks[nav_index].classList.remove('active');
+                    nav_index = index;
+                    navLinks[nav_index].classList.add('active');
+                    found = true;
+                }
+            });
+            if (!found) {
+                navLinks[nav_index].classList.remove('active');
+                nav_index = 0;
+                navLinks[nav_index].classList.add('active');
+            }
+        }
+        window.addEventListener('scroll', setActiveSectionInNavbar);
+        window.addEventListener('load', setActiveSectionInNavbar);
+    </script>
 
     <!--Color Slider-->
     <script>
