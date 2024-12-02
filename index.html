@@ -7,30 +7,42 @@
     <meta name="author" content="Matt Zhang">
     <meta name="viewport" content="width=device-<link rel="preconnect" href="https://fonts.googleapis.com">
 
+    <!--Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital@1&family=Lato:wght@400;700&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Outfit:wght@700&display=swap" rel="stylesheet">
 
+    <!--Overall Settings-->
     <style>
-        body {
+        html {
             --primary-hue: 48;
             --color-bg: oklch(67% 0.06 var(--primary-hue));
-            --color-dark: oklch(25% 0.36 var(--primary-hue));
+            --color-dark: oklch(25% 0.3 var(--primary-hue));
             --color-bright: oklch(95% 0.06 var(--primary-hue));
+            --color-glow: oklch(95% 0.3 var(--primary-hue));
             --color-card: oklch(75% 0.06 var(--primary-hue));
-            max-width: 1200px;
+            --max-width: 1200px;
+            max-width: var(--max-width);
             margin: 0 auto;
             background-color: var(--color-bg);
             font-family: 'Lato', sans-serif;
             color: var(--color-dark);
             font-weight: 400;
             text-align: center;
+            margin-top: 100px;
         }
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+        }
+    </style>
+
+    <!--Skills-->
+    <style>
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
             gap: 16px;
-            padding: 16px;
             margin: 0 auto;
         }
         .skill-card {
@@ -81,14 +93,12 @@
         }
         .skill-card .card-back a {
             color: lightblue;
-        }
-        .skill-card .card-back .attribution {
             margin: 16px 0 0 0;
             font-size: 10px;
-            color: #666;
         }
         .skill-card:hover {
-            box-shadow: 4px 4px 8px var(--color-bright);
+            box-shadow:
+                4px 4px 8px var(--color-glow);
             transition: all 0.5s ease-out;
         }
         .skill-card:hover .card-front {
@@ -102,35 +112,137 @@
             opacity: 1;
         }
     </style>
+
+    <!--Navbar-->
+    <style>
+        #floating-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            background-color: var(--color-dark);
+            box-shadow: 0 4px 8px var(--color-dark);
+            z-index: 1000;
+        }
+        #navbar-content {
+            width: var(--max-width);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--color-bright);
+        }
+        #navbar-sections {
+            display: flex;
+            gap: 16px;
+        }
+        #navbar-sections li {
+            list-style-type: none;
+        }
+        #navbar-sections a {
+            color: var(--color-bright);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        #navbar-sections a:hover {
+            text-shadow: 
+                0 0 5px var(--color-bright),  /* Inner glow */
+                0 0 10px var(--color-bright), /* First outer glow */
+                0 0 20px var(--color-glow), /* Second outer glow in a color */
+                0 0 30px var(--color-glow), /* Intensify the glow */
+                0 0 40px var(--color-glow),
+                0 0 50px var(--color-glow);
+        }
+        #navbar-color-slider {
+            position: relative;
+            width: 128px;
+            height: 24px;
+        }
+        #navbar-color-slider #hue-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to right, 
+                oklch(67% 0.1 0),
+                oklch(67% 0.1 30),
+                oklch(67% 0.1 60),
+                oklch(67% 0.1 90),
+                oklch(67% 0.1 120),
+                oklch(67% 0.1 150),
+                oklch(67% 0.1 180),
+                oklch(67% 0.1 210),
+                oklch(67% 0.1 240),
+                oklch(67% 0.1 270),
+                oklch(67% 0.1 300),
+                oklch(67% 0.1 330),
+                oklch(67% 0.1 360)
+            );
+            box-sizing: border-box;
+            border-radius: 4px;
+        }
+        #navbar-color-slider #hue-slider {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            -webkit-appearance: none; /* Remove default styling */
+            appearance: none;
+            background: transparent;
+            outline: none;
+            margin: 0;
+            pointer-events: auto;
+            z-index: 1;
+        }
+        #navbar-color-slider #hue-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 12px;
+            height: 24px;
+            background: var(--color-dark);
+            border: 2px solid var(--color-glow);
+            border-radius: 4px;
+            cursor: pointer;
+        }
+   </style>
 </head>
 
 <body>
     <nav id="floating-navbar">
-        <div id="navbar-name">Matt Zhang</div>
-        <ul id="navbar-sections">
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#timeline">Timeline</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#papers">Papers</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <img src="images/color-wheel.svg" alt="settings" id="navbar-settings'>
+        <div id="navbar-content">
+            <h1>Matt Zhang</h1>
+            <ul id="navbar-sections">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#timeline">Timeline</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#papers">Papers</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div id="navbar-color-slider">
+                <div id="hue-bar"></div>
+                <input id="hue-slider" type="range" min="0" max="360" value="0" />
+            </div>
+        </div>
     </nav>
     <main>
         <section id="about">
+            <h1>Matt Zhang</h1>
             <img src="images/me.jpg" alt="Matt Zhang photo">
             <ul id="social-links">
                 <li><a href=".html">LinkedIn</a></li>
                 <li><a href=".html">GitHub</a></li>
                 <li><a href=".html">Resume</a></li>
             </ul>
-            <h1>Matt Zhang</h1>
             <p>ML researcher, physicist, and full-stack programmer</p>
             <p>my bio</p>
         </section>
         <section id="skills">
-            <h2>My Skills</h2>
+            <h1>My Skills</h1>
             <div class="skills-grid">
                 <!-- programming languages -->
                 <div class="skill-card">
@@ -276,9 +388,7 @@
                     </div>
                     <div class="card-back">
                         I currently work at a cybersecurity startup, where I've trained penetration testing bots and developed the infrastructure to simulate virtual cyber ranges.
-                        <div class="attribution">
-                            <a href="https://www.flaticon.com/free-icons/cyber-security" title="cyber security icons">Icon by srip - Flaticon</a>
-                        </div>
+                        <a href="https://www.flaticon.com/free-icons/cyber-security" title="cyber security icons">Icon by srip - Flaticon</a>
                     </div>
                 </div>
                 <div class="skill-card">
@@ -293,7 +403,7 @@
             </div>
         </section>
         <section id="timeline">
-            <h2>Timeline</h2>
+            <h1>Timeline</h1>
             <!--timelinejs-->
             <!--https://freefrontend.com/css-timelines/-->
             <p>My education and work experience:</p>
@@ -303,7 +413,7 @@
             </ul>
         </section>
         <section id="projects">
-            <h2>Projects</h2>
+            <h1>Projects</h1>
             <p>This section showcases some of my personal and academic projects. Confidential work projects are not included.</p>
             <ul>
                 <li>Project 1 card</li>
@@ -312,7 +422,7 @@
             </ul>
         </section>
         <section id="papers">
-            <h2>Papers</h2>
+            <h1>Papers</h1>
             <p>My research papers:</p>
             <ul>
                 <li>Paper 1 title and link</li>
@@ -321,7 +431,7 @@
             <p>Google Scholar citations</p>
         </section>
         <section id="contact">
-            <h2>Contact Me</h2>
+            <h1>Contact Me</h1>
             <p>Email: set.stun@gmail.com</p>
             <form>
                 <label for="name">Name:</label>
@@ -337,6 +447,17 @@
     <footer>
         <p>&copy; 2024 Matt Zhang</p>
     </footer>
+
+    <!--Color Slider-->
+    <script>
+        const hueSlider = document.getElementById('hue-slider');
+        const initialHue = getComputedStyle(document.documentElement).getPropertyValue('--primary-hue').trim();
+        hueSlider.value = initialHue;
+        hueSlider.addEventListener('input', function () {
+            const hue = hueSlider.value;
+            document.documentElement.style.setProperty('--primary-hue', hue);
+        });
+    </script>
 </body>
 
 </html>
