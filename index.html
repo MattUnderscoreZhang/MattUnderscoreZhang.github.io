@@ -6,11 +6,16 @@
     <title>Matt Zhang's Portfolio Website</title>
     <meta name="author" content="Matt Zhang">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content=white>
 
     <!--Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Outfit:wght@700&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Outfit:wght@700&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Outfit:wght@700&display=swap" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Outfit:wght@700&display=swap">
+    </noscript>
 
     <!--Overall Settings-->
     <style>
@@ -25,10 +30,12 @@
             --navbar-height: 72px;
             max-width: var(--max-width);
             margin: var(--navbar-height) auto 0 auto;
-            background-color: var(--color-bg);
+            background-image: radial-gradient(var(--color-card) 0.5px, transparent 0.5px), radial-gradient(var(--color-card) 0.5px, var(--color-bg) 0.5px);
+            background-size: 10px 10px;
+            background-position: 0 0, 5px 5px;
             font-family: 'Lato', sans-serif;
             color: var(--color-dark);
-            font-weight: 400;
+            font-weight: 700;
             text-align: center;
             scroll-behavior: smooth;
         }
@@ -41,12 +48,11 @@
     <!--Sections-->
     <style>
         .section {
-            min-height: calc(100vh - var(--navbar-height));
+            height: calc(100vh - var(--navbar-height));
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding-top: var(--navbar-height);
-            margin-top: calc(-1 * var(--navbar-height));
+            box-sizing: border-box;
         }
         .section h1 {
             margin: 0;
@@ -87,6 +93,7 @@
             width: 100px;
             height: 100px;
             object-fit: contain;
+            filter: drop-shadow(2px 2px 2px var(--color-bg));
         }
         .skill-card .card-front h3 {
             margin: 16px 0 0 0;
@@ -233,6 +240,78 @@
             cursor: pointer;
         }
    </style>
+
+   <!--About Me-->
+   <style>
+        #about {
+            display: grid;
+            grid-template-columns: 2fr 3fr;
+            padding: 128px;
+        }
+        #about #about-left {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        #about #about-left #circle-image {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow:
+                0 0 5px var(--color-light),
+                0 0 10px var(--color-light),
+                0 0 20px var(--color-glow),
+                0 0 30px var(--color-glow),
+                0 0 40px var(--color-glow),
+                0 0 50px var(--color-glow);
+        }
+        #about #about-left #circle-image img {
+            width: 100%;
+            object-fit: cover;
+        }
+        #about #about-left #social-links {
+            display: flex;
+            flex-direction: row;
+            gap: 32px;
+            padding-top: 32px;
+            padding-left: 0;
+        }
+        #about #about-left #social-links li {
+            list-style-type: none;
+        }
+        #about #about-left #social-links li a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            text-decoration: none;
+            font-weight: 400;
+            color: var(--color-light);
+            text-shadow: 0 0 8px var(--color-dark);
+        }
+        #about #about-right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        #about #about-right h1 {
+            margin: 0;
+            padding-bottom: 8px;
+            font-size: 64px;
+            color: var(--color-light);
+            text-shadow: 0 0 8px var(--color-dark);
+        }
+        #about #about-right h2 {
+            margin: 0;
+            padding-bottom: 32px;
+            font-size: 16px;
+            color: var(--color-light);
+            text-shadow: 0 0 8px var(--color-dark);
+        }
+   </style>
 </head>
 
 <body>
@@ -255,15 +334,36 @@
     </nav>
     <main>
         <section class="section" id="about">
-            <h1>Matt Zhang</h1>
-            <img src="images/me.jpg" alt="Matt Zhang photo">
-            <ul id="social-links">
-                <li><a href=".html">LinkedIn</a></li>
-                <li><a href=".html">GitHub</a></li>
-                <li><a href=".html">Resume</a></li>
-            </ul>
-            <p>ML researcher, physicist, and full-stack programmer</p>
-            <p>my bio</p>
+            <div id="about-left">
+                <div id="circle-image">
+                    <img src="images/about/me.jpg" alt="Matt Zhang photo">
+                </div>
+                <ul id="social-links">
+                    <li>
+                        <a href="https://www.linkedin.com/in/matt-zh/">
+                            <img src="images/about/linkedin.svg" alt="LinkedIn" style="width: 32px; height: 32px;">
+                            LinkedIn
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/MattUnderscoreZhang">
+                            <img src="images/about/github.svg" alt="GitHub" style="width: 32px; height: 32px;">
+                            GitHub
+                        </a>
+                    </li>
+                    <li>
+                        <a href=".html">
+                            <img src="images/about/pdf.svg" alt="Resume" style="width: 32px; height: 32px;">
+                            Resume
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div id="about-right">
+                <h1>About Me</h1>
+                <h2>ML researcher, physicist, full-stack programmer</h2>
+                my bio
+            </div>
         </section>
         <section class="section" id="skills">
             <h1>My Skills</h1>
@@ -412,7 +512,7 @@
                     </div>
                     <div class="card-back">
                         I currently work at a cybersecurity startup, where I've trained penetration testing bots and developed the infrastructure to simulate virtual cyber ranges.
-                        <a href="https://www.flaticon.com/free-icons/cyber-security" title="cyber security icons">Icon by srip - Flaticon</a>
+                        <a href="https://www.flaticon.com/free-icons/cyber-security" title="cyber security icons">Icon by Freepik - Flaticon</a>
                     </div>
                 </div>
                 <div class="skill-card">
@@ -505,6 +605,9 @@
         hueSlider.addEventListener('input', function () {
             const hue = hueSlider.value;
             document.documentElement.style.setProperty('--primary-hue', hue);
+            const color_dark = getComputedStyle(document.documentElement).getPropertyValue('--color-dark').trim();
+            <!--document.querySelector('meta[name=theme-color]').setAttribute('content', '#fff');  // change top bar color - only works for Chrome on Android-->
+            <!--location.reload();  // refresh page to get theme color to change-->
         });
     </script>
 </body>
