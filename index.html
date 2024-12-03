@@ -350,7 +350,9 @@
     <nav id="floating-navbar">
         <div id="navbar-content">
             <a href=".">
-                <h1 id="navbar-name">Matt Zhang</h1>
+                <h1 id="navbar-name">
+                    <span class="navbar-name-letter">M</span><span class="navbar-name-letter">a</span><span class="navbar-name-letter">t</span><span class="navbar-name-letter">t</span> <span class="navbar-name-letter">Z</span><span class="navbar-name-letter">h</span><span class="navbar-name-letter">a</span><span class="navbar-name-letter">n</span><span class="navbar-name-letter">g</span>
+                </h1>
             </a>
             <ul id="navbar-sections">
                 <li><a href="#about" class="nav-link">About</a></li>
@@ -649,19 +651,27 @@
     <!--Navbar Name Hover Effect-->
     <script>
         const navbarName = document.getElementById('navbar-name');
+        const navbarNameLetters = document.querySelectorAll('.navbar-name-letter');
         let mouseOnName = false;
-        let nameStyles = [
+        let nameColors = [
             ['var(--color-glow)', '0 0 8px var(--color-light)'],
             ['var(--color-light)', '0 0 8px var(--color-glow)'],
             ['var(--color-card)', '0 0 8px var(--color-glow)'],
+            ['var(--color-light)', '0 0 8px var(--color-dark)'],
         ];
-        let currentNameStyle = 0;
+        function getRandomInt(min, max) {
+            // Random integer between min (inclusive) and max (exclusive)
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
         function scheduleNameChange() {
             if (!mouseOnName) return;
-            currentNameStyle = (currentNameStyle + 1) % 3;
-            navbarName.style.color = nameStyles[currentNameStyle][0];
-            navbarName.style.textShadow = nameStyles[currentNameStyle][1];
-            setTimeout(scheduleNameChange, 50);
+            navbarNameLetters.forEach((letter, index) => {
+                letter.style.color = nameColors[getRandomInt(0, nameColors.length)][0];
+                letter.style.textShadow = nameColors[getRandomInt(0, nameColors.length)][1];
+            });
+            setTimeout(scheduleNameChange, 220);
         }
         navbarName.addEventListener('mouseover', () => {
             mouseOnName = true;
@@ -669,8 +679,10 @@
         });
         navbarName.addEventListener('mouseout', () => {
             mouseOnName = false;
-            navbarName.style.color = 'var(--color-light)';
-            navbarName.style.textShadow = '0 0 8px var(--color-dark)';
+            navbarNameLetters.forEach((letter, index) => {
+                letter.style.color = 'var(--color-light)';
+                letter.style.textShadow = '0 0 8px var(--color-dark)';
+            });
         });
     </script>
 
