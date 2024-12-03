@@ -172,33 +172,14 @@
 
     <!--Section Divider-->
     <style>
-        #section-divider-dark { 
-            border: 0; 
-            height: 2px;
-            opacity: 0.5;
-            background-image: linear-gradient(
-                to right,
-                var(--color-bg),
-                var(--color-dark) 30%,
-                var(--color-dark) 70%,
-                var(--color-bg)
-            );
+        .section-divider-glow { 
+            border-color: var(--color-glow);
+            box-shadow: 0 0 16px var(--color-glow);
+            margin: 0;
         }
         .section-divider-dark { 
-            border-top: 1px dotted var(--color-dark);
-            border-bottom: 1px dotted var(--color-dark);
-        }
-        .section-divider-glow { 
-            border: 0; 
-            height: 2px; 
-            opacity: 0.5;
-            background-image: linear-gradient(
-                to right,
-                var(--color-bg),
-                var(--color-glow) 30%,
-                var(--color-glow) 70%,
-                var(--color-bg)
-            );
+            border-color: var(--color-dark);
+            margin: 0;
         }
     </style>
 
@@ -410,9 +391,9 @@
                 my bio
             </div>
         </section>
-        <hr class="section-divider-dark">
         <hr class="section-divider-glow">
         <hr class="section-divider-dark">
+        <hr class="section-divider-glow">
         <section class="section" id="skills">
             <h1>My Skills</h1>
             <div class="skills-grid">
@@ -574,9 +555,9 @@
                 </div>
             </div>
         </section>
-        <hr class="section-divider-dark">
         <hr class="section-divider-glow">
         <hr class="section-divider-dark">
+        <hr class="section-divider-glow">
         <section class="section" id="timeline">
             <h1>Timeline</h1>
             <!--timelinejs-->
@@ -587,9 +568,9 @@
                 <li>vertical scrolling timeline</li>
             </ul>
         </section>
-        <hr class="section-divider-dark">
         <hr class="section-divider-glow">
         <hr class="section-divider-dark">
+        <hr class="section-divider-glow">
         <section class="section" id="projects">
             <h1>Projects</h1>
             <p>This section showcases some of my personal and academic projects. Confidential work projects are not included.</p>
@@ -599,9 +580,9 @@
                 <li>etc.</li>
             </ul>
         </section>
-        <hr class="section-divider-dark">
         <hr class="section-divider-glow">
         <hr class="section-divider-dark">
+        <hr class="section-divider-glow">
         <section class="section" id="papers">
             <h1>Papers</h1>
             <p>My research papers:</p>
@@ -611,9 +592,9 @@
             </ul>
             <p>Google Scholar citations</p>
         </section>
-        <hr class="section-divider-dark">
         <hr class="section-divider-glow">
         <hr class="section-divider-dark">
+        <hr class="section-divider-glow">
         <section class="section" id="contact">
             <h1>Contact Me</h1>
             <p>Email: set.stun@gmail.com</p>
@@ -663,10 +644,10 @@
         const navbarNameLetters = document.querySelectorAll('.navbar-name-letter');
         let mouseOnName = false;
         let nameColors = [
-            ['var(--color-glow)', '0 0 8px var(--color-light)'],
+            ['var(--color-glow)', '0 0 8px var(--color-glow)'],
             ['var(--color-light)', '0 0 8px var(--color-glow)'],
             ['var(--color-card)', '0 0 8px var(--color-glow)'],
-            ['var(--color-light)', '0 0 8px var(--color-dark)'],
+            ['var(--color-light)', '0 0 8px var(--color-glow)'],
         ];
         function getRandomInt(min, max) {
             // Random integer between min (inclusive) and max (exclusive)
