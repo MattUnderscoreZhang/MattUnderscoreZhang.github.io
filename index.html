@@ -163,6 +163,16 @@
         }
     </style>
 
+    <!--Navigation Anchors-->
+    <style>
+        .anchor {
+            position: relative;
+            top: calc(-1 * var(--navbar-height));
+            display: block;
+            visibility: hidden;
+        }
+    </style>
+
     <!--Sections-->
     <style>
         .section {
@@ -415,12 +425,12 @@
                 </h1>
             </a>
             <ul id="navbar-sections">
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#timeline" class="nav-link">Timeline</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#papers" class="nav-link">Papers</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="#about-anchor" class="nav-link">About</a></li>
+                <li><a href="#skills-anchor" class="nav-link">Skills</a></li>
+                <!--<li><a href="#timeline-anchor" class="nav-link">Timeline</a></li>-->
+                <!--<li><a href="#projects-anchor" class="nav-link">Projects</a></li>-->
+                <!--<li><a href="#papers-anchor" class="nav-link">Papers</a></li>-->
+                <li><a href="#contact-anchor" class="nav-link">Contact</a></li>
             </ul>
             <div id="navbar-color-slider">
                 <div id="hue-bar"></div>
@@ -429,6 +439,7 @@
         </div>
     </nav>
     <main>
+        <a class="anchor" id="about-anchor"></a>
         <section class="section" id="about">
             <div id="about-left">
                 <div id="circle-image">
@@ -450,7 +461,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href=".html">
+                        <a href="assets/resume.pdf">
                             <img src="images/about/pdf.svg" alt="Resume">
                             Resume
                         </a>
@@ -474,8 +485,9 @@
         <hr class="section-divider-glow">
         <hr class="section-divider-dark">
         <hr class="section-divider-glow">
+        <a class="anchor" id="skills-anchor"></a>
         <section class="section" id="skills">
-            <h1>My Skills</h1>
+            <h1>Behold, My Skills!</h1>
             <div class="skills-grid">
                 <!-- programming languages -->
                 <div class="skill-card">
@@ -664,9 +676,12 @@
                 </div>
             </div>
         </section>
+        <script type="text/plain">
+        /* work in progress */
         <hr class="section-divider-glow">
         <hr class="section-divider-dark">
         <hr class="section-divider-glow">
+        <a class="anchor" id="timeline-anchor"></a>
         <section class="section" id="timeline">
             <h1>Timeline</h1>
             <!--timelinejs-->
@@ -680,6 +695,7 @@
         <hr class="section-divider-glow">
         <hr class="section-divider-dark">
         <hr class="section-divider-glow">
+        <a class="anchor" id="projects-anchor"></a>
         <section class="section" id="projects">
             <h1>Projects</h1>
             <p>This section showcases some of my personal and academic projects. Confidential work projects are not included.</p>
@@ -692,6 +708,7 @@
         <hr class="section-divider-glow">
         <hr class="section-divider-dark">
         <hr class="section-divider-glow">
+        <a class="anchor" id="papers-anchor"></a>
         <section class="section" id="papers">
             <h1>Papers</h1>
             <p>My research papers:</p>
@@ -701,9 +718,11 @@
             </ul>
             <p>Google Scholar citations</p>
         </section>
+        </script>
         <hr class="section-divider-glow">
         <hr class="section-divider-dark">
         <hr class="section-divider-glow">
+        <a class="anchor" id="contact-anchor"></a>
         <section class="section" id="contact">
             <h1>Contact Me</h1>
             <form>
@@ -770,10 +789,11 @@
             setTimeout(scheduleNameChange, 220);
         }
         navbarName.addEventListener('mouseover', () => {
+            if (mouseOnName) return;
             mouseOnName = true;
             scheduleNameChange();
         });
-        navbarName.addEventListener('mouseout', () => {
+        navbarName.addEventListener('mouseleave', (event) => {
             mouseOnName = false;
             navbarNameLetters.forEach((letter, index) => {
                 letter.style.color = 'var(--color-light)';
@@ -790,8 +810,7 @@
             const hue = hueSlider.value;
             document.documentElement.style.setProperty('--primary-hue', hue);
             const color_dark = getComputedStyle(document.documentElement).getPropertyValue('--color-dark').trim();
-            <!--document.querySelector('meta[name=theme-color]').setAttribute('content', '#fff');  // change top bar color - only works for Chrome on Android-->
-            <!--location.reload();  // refresh page to get theme color to change-->
+            document.querySelector('meta[name=theme-color]').setAttribute('content', '#fff');  // change top bar color - only works for Chrome on Android
         });
     </script>
 
