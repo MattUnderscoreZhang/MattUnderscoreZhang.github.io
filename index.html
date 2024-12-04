@@ -11,10 +11,10 @@
     <!--Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Outfit:wght@700&display=swap" as="style">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Outfit:wght@700&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Kalam:wght@300&Lato:wght@400;700&family=Outfit:wght@700&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kalam:wght@300&Lato:wght@400;700&family=Outfit:wght@700&display=swap" media="print" onload="this.media='all'">
     <noscript>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Outfit:wght@700&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kalam:wght@300&Lato:wght@400;700&family=Outfit:wght@700&display=swap">
     </noscript>
 
     <!--Overall Settings-->
@@ -403,15 +403,67 @@
     <style>
         #contact {
             min-height: var(--display-screen-height);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+        #contact-left {
+            border: 1px solid var(--color-dark);
+            border-radius: 16px;
+            padding: 64px;
+        }
+        #contact-right {
             display: flex;
             flex-direction: column;
             justify-content: center;
+            /* background-image: repeating-radial-gradient(circle at 0 0, transparent 0, var(--color-light) 6px), repeating-linear-gradient(var(--color-card), var(--color-card));
+            background-size: 28px 28px;
+            background-image:  repeating-linear-gradient(0deg, var(--color-card), var(--color-card), 0.6px, var(--color-light) 0.6px, var(--color-light));
+            background-size: 12px 12px; */
+            background-image: repeating-linear-gradient(45deg, var(--color-light) 0, var(--color-light) 0.8px, var(--color-card) 0, var(--color-card) 25%);
+            background-size: 12px 12px;
+            border-radius: 16px;
+            padding: 64px;
+            box-shadow: 4px 4px 8px var(--color-dark);
         }
-        #contact form {
+        #contact-right h1 {
+            font-family: 'Kalam', serif;
+            font-size: 48px;
+            text-shadow: none;
+            padding-bottom: 32px;
+        }
+        #contact-right form {
             display: flex;
             flex-direction: column;
             gap: 16px;
-            margin-top: 32px;
+        }
+        #contact-right form input {
+            font-family: 'Kalam', serif;
+            background-color: var(--color-light);
+            border-radius: 16px;
+            border: 1px solid var(--color-dark);
+            padding: 8px 16px;
+        }
+        #contact-right form textarea {
+            font-family: 'Kalam', serif;
+            background-color: var(--color-light);
+            border-radius: 16px;
+            border: 1px solid var(--color-dark);
+            padding: 16px;
+            height: 16em;
+        }
+        #contact-right form #contact-form-button {
+            font-family: 'Lato', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            background-color: var(--color-dark);
+            color: var(--color-light);
+            margin-top: 16px;
+        }
+        #contact-right form #contact-form-button:hover {
+            box-shadow: 0 4px 8px var(--color-glow);
+            color: var(--color-glow);
+            transform: translateY(-2px);
         }
     </style>
 </head>
@@ -724,16 +776,18 @@
         <hr class="section-divider-glow">
         <a class="anchor" id="contact-anchor"></a>
         <section class="section" id="contact">
-            <h1>Contact Me</h1>
-            <form>
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email">
-                <label for="message">Message:</label>
-                <textarea id="message" name="message"></textarea>
-                <input type="submit" value="Send">
-            </form>
+            <div id="contact-left">
+                Mook says "No hate mail, please!"
+            </div>
+            <div id="contact-right">
+                <h1>Contact Me</h1>
+                <form>
+                    <input type="text" id="name" name="name" placeholder="Name">
+                    <input type="email" id="email" name="email" placeholder="Email">
+                    <textarea id="message" name="message" placeholder="Dear Matt, please come to my birthday party."></textarea>
+                    <input type="submit" value="Send" id="contact-form-button">
+                </form>
+            </div>
         </section>
     </main>
 
