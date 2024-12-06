@@ -22,6 +22,7 @@
         html {
             --primary-hue: 48;
             --color-bg: oklch(60% 0.06 var(--primary-hue));
+            --color-bg-dots: oklch(55% 0.06 var(--primary-hue));
             --color-dark: oklch(25% 0.06 var(--primary-hue));
             --color-light: oklch(95% 0.06 var(--primary-hue));
             --color-glow: oklch(100% 0.3 var(--primary-hue));
@@ -30,8 +31,8 @@
             --navbar-height: 72px;
             max-width: var(--max-width);
             margin: var(--navbar-height) auto 0 auto;
-            background-color: var(--color-bg);
-            background-image: radial-gradient(var(--color-card) 0.5px, transparent 0.5px), radial-gradient(var(--color-card) 0.5px, var(--color-bg) 0.5px);
+            background-color: var(--color-bg);  /* needed if user scrolls above or below content */
+            background-image: radial-gradient(var(--color-bg) 2px, transparent 2px), radial-gradient(var(--color-bg) 2px, var(--color-bg-dots) 2px);
             background-size: 10px 10px;
             background-position: 0 0, 5px 5px;
             font-family: 'Lato', sans-serif;
@@ -404,16 +405,46 @@
 
     <!--Contact Me-->
     <style>
-        #contact-form {
+        #contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 32px;
+            gap: 16px;
             padding: 0 32px;
+            height: 768px;
         }
         #contact-left {
-            border: 1px solid var(--color-dark);
+            position: relative;
             border-radius: 16px;
-            padding: 64px 0;
+            margin: 8px;
+            box-sizing: border-box;
+            background-color: var(--color-dark);
+            box-shadow:
+                0px 0px 1px var(--color-dark),
+                0px 0px 2px var(--color-dark),
+                0px 0px 3px var(--color-dark),
+                0px 0px 4px var(--color-dark),
+                0px 0px 5px var(--color-dark),
+                0px 0px 6px var(--color-dark),
+                0px 0px 7px var(--color-dark),
+                0px 0px 8px var(--color-dark),
+                0px 0px 10px var(--color-dark),
+                0px 0px 12px var(--color-dark),
+                0px 0px 14px var(--color-dark),
+                0px 0px 16px var(--color-dark),
+                0px 0px 20px var(--color-dark),
+                0px 0px 24px var(--color-dark),
+                0px 0px 28px var(--color-dark),
+                0px 0px 32px var(--color-dark);
+        }
+        #contact-left .star {
+            font-size: 0px;
+            position: absolute;
+            color: var(--color-glow);
+            text-shadow:
+                0 0 5px var(--color-light),
+                0 0 10px var(--color-light),
+                0 0 20px var(--color-glow);
+            transition: all 5s ease;
         }
         #contact-right {
             display: flex;
@@ -423,32 +454,36 @@
             background-size: 28px 28px;
             background-image:  repeating-linear-gradient(0deg, var(--color-card), var(--color-card), 0.6px, var(--color-light) 0.6px, var(--color-light));
             background-size: 12px 12px; */
-            background-image: repeating-linear-gradient(45deg, var(--color-glow) 0, var(--color-glow) 0.8px, var(--color-card) 0, var(--color-card) 25%);
+            background-image: repeating-linear-gradient(45deg, var(--color-bg) 0, var(--color-bg) 0.8px, var(--color-card) 0, var(--color-card) 25%);
             background-size: 12px 12px;
             border-radius: 16px;
-            border: 4px solid var(--color-glow);
+            border: 4px solid var(--color-bg);
             padding: 64px 48px;
             box-shadow: 4px 4px 8px var(--color-dark);
         }
         #contact-right h1 {
             font-family: 'Kalam', serif;
             font-size: 48px;
-            text-shadow: none;
+            color: var(--color-light);
+            text-shadow:
+                0 0 4px var(--color-dark),
+                0 0 8px var(--color-glow),
+                0 0 12px var(--color-glow);
             padding-bottom: 32px;
         }
-        #contact-right form {
+        #contact-form {
             display: flex;
             flex-direction: column;
             gap: 16px;
         }
-        #contact-right form input {
+        #contact-form input {
             font-family: 'Kalam', serif;
             background-color: var(--color-light);
             border-radius: 16px;
             border: 1px solid var(--color-dark);
             padding: 8px 16px;
         }
-        #contact-right form textarea {
+        #contact-form textarea {
             font-family: 'Kalam', serif;
             background-color: var(--color-light);
             border-radius: 16px;
@@ -456,7 +491,7 @@
             padding: 16px;
             height: 16em;
         }
-        #contact-right form #contact-form-button {
+        #contact-form #contact-form-button {
             font-family: 'Lato', sans-serif;
             font-size: 16px;
             font-weight: 700;
@@ -464,7 +499,7 @@
             color: var(--color-light);
             margin-top: 16px;
         }
-        #contact-right form #contact-form-button:hover {
+        #contact-form #contact-form-button:hover {
             box-shadow: 0 4px 8px var(--color-glow);
             color: var(--color-glow);
             transform: translateY(-2px);
@@ -780,16 +815,18 @@
         <hr class="section-divider-glow">
         <a class="anchor" id="contact-anchor"></a>
         <section class="section" id="contact">
-            <div id="contact-form">
+            <div id="contact-grid">
                 <div id="contact-left">
-                    Mook says "No hate mail, please!"
                 </div>
                 <div id="contact-right">
                     <h1>Contact Me</h1>
-                    <form>
-                        <input type="text" id="name" name="name" placeholder="Name">
-                        <input type="email" id="email" name="email" placeholder="Email">
-                        <textarea id="message" name="message" placeholder="Dear Matt, please come to my birthday party."></textarea>
+                    <form id="contact-form" method="POST">
+                        <input type="hidden" name="access_key" value="fe5f8e1d-77e4-4a87-8613-2e4309d47c15">
+                        <input type="hidden" name="from_name" value="Personal Website">
+                        <input type="text" name="subject" placeholder="Subject" aria-label="subject" required>
+                        <input type="email" name="email" placeholder="Email" aria-label="email" required>
+                        <textarea id="message" name="message" placeholder="Dear Matt, please come to my birthday party." aria-label="message" required></textarea>
+                        <input type="hidden" name="redirect" value="https://web3forms.com/success">
                         <input type="submit" value="Send" id="contact-form-button">
                     </form>
                 </div>
@@ -864,13 +901,14 @@
     <!--Navbar Color Slider-->
     <script>
         const hueSlider = document.getElementById('hue-slider');
-        const initialHue = getComputedStyle(document.documentElement).getPropertyValue('--primary-hue').trim();
+        const style = getComputedStyle(document.documentElement);
+        const initialHue = style.getPropertyValue('--primary-hue').trim();
         hueSlider.value = initialHue;
         hueSlider.addEventListener('input', function () {
             const hue = hueSlider.value;
             document.documentElement.style.setProperty('--primary-hue', hue);
-            const color_dark = getComputedStyle(document.documentElement).getPropertyValue('--color-dark').trim();
-            document.querySelector('meta[name=theme-color]').setAttribute('content', '#fff');  // change top bar color - only works for Chrome on Android
+            const color_dark = style.getPropertyValue('--color-dark').trim();
+            document.querySelector('meta[name=theme-color]').setAttribute('content', style.getPropertyValue('--color-bg'));  // change top bar color - only works for Chrome on Android
         });
     </script>
 
@@ -907,6 +945,133 @@
         }
         window.addEventListener('load', glowDrift);
         window.addEventListener('load', addTransition);
+    </script>
+
+    <!--Contact Form Submit-->
+    <script>
+        const form = document.getElementById('contact-form');
+        const button = document.getElementById('contact-form-button');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+            button.value = "Please wait..."
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
+            })
+                .then(async (response) => {
+                    let json = await response.json();
+                    if (response.status == 200) {
+                        button.value = json.message;
+                    } else {
+                        console.log(response);
+                        button.value = json.message;
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                    button.value = "Something went wrong!";
+                })
+                .then(function() {
+                    form.reset();
+                    setTimeout(() => {
+                        button.value = "Send";
+                    }, 3000);
+                });
+        });
+    </script>
+
+    <!--Contact Form Reload-->
+    <script>
+        window.onload = function() {
+            // Reset the form fields when the page loads
+            document.getElementById("contact-form").reset();
+        };
+    </script>
+
+    <!--Contact Section Twinkling Stars-->
+    <script>
+        const starHtml = '<span class="star" id="STAR_ID">★</span>';
+        const nStars = 20;
+        const starsContainer = document.getElementById('contact-left');
+        for (let i = 0; i < nStars; i++) {
+            starsContainer.innerHTML += starHtml.replace('STAR_ID', 'star-' + i);
+        }
+        const stars = document.querySelectorAll('.star');
+        const minStarSize = 4;
+        const maxStarSize = 8;
+        const padding = 8;
+        starsContainerWidth = document.getElementById('contact-left').offsetWidth;
+        starsContainerHeight = document.getElementById('contact-left').offsetHeight;
+        console.log(starsContainerWidth, starsContainerHeight);
+        stars.forEach((star, index) => {
+            star.style.opacity = Math.random() * 2 - 1;
+            star.style.fontSize = Math.random() * (maxStarSize - minStarSize) + minStarSize + 'px';
+            star.style.left = Math.random() * (starsContainerWidth - maxStarSize - 2 * padding) + padding + maxStarSize / 2 + 'px';
+            star.style.top = Math.random() * (starsContainerHeight - maxStarSize - 2 * padding) + padding + maxStarSize / 2 + 'px';
+        })
+        function twinkle() {
+            stars.forEach((star, index) => {
+                star.style.opacity = Math.random() * 2 - 1;
+                star.style.fontSize = Math.random() * (maxStarSize - minStarSize) + minStarSize + 'px';
+                star.style.left = star.style.left - star.style.fontSize / 2 + 'px';
+                star.style.top = star.style.top - star.style.fontSize / 2 + 'px';
+            });
+            setTimeout(twinkle, 5000);
+        }
+        function shootStar() {
+            const start_x = Math.random() * starsContainerWidth;
+            const start_y = Math.random() * starsContainerHeight;
+            const end_x = Math.random() * starsContainerWidth;
+            const end_y = Math.random() * starsContainerHeight;
+            const deltaX = end_x - start_x;
+            const deltaY = end_y - start_y;
+            const length = Math.sqrt(deltaX ** 2 + deltaY ** 2);
+            const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+
+            const starsContainer = document.getElementById('contact-left');
+            const line = document.createElement('div');
+            line.style.left = start_x + 'px';
+            line.style.top = start_y + 'px';
+            line.style.position = 'absolute';
+            line.style.width = '0';
+            line.style.height = '2px';
+            line.style.borderRadius = '3px';
+            line.style.backgroundColor = 'var(--color-light)';
+            line.style.boxShadow = '0 0 5px var(--color-light), 0 0 10px var(--color-light), 0 0 20px var(--color-glow), 0 0 30px var(--color-glow)';
+            line.style.transformOrigin = '0 50%'; // Set rotation origin to the start
+            line.style.transform = `rotate(${angle}deg)`;
+            line.style.transition = 'all 1s ease';
+            starsContainer.appendChild(line);
+            setTimeout(() => {
+                line.style.width = length + 'px';
+            }, 100);
+            setTimeout(() => {
+                line.style.left = end_x + 'px';
+                line.style.top = end_y + 'px';
+                line.style.width = '0';
+            }, 300);
+
+            setTimeout(
+                () => {
+                    line.remove();
+                    shootStar();
+                },
+                Math.random() * 9000 + 1000
+            );
+        }
+        window.addEventListener('load', twinkle);
+        window.addEventListener('load', () => {
+            setTimeout(shootStar, 5000);
+        });
     </script>
 </body>
 
