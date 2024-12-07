@@ -42,7 +42,7 @@
             scroll-behavior: smooth;
         }
         h1 {
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Kalam', sans-serif;
             font-weight: 700;
         }
     </style>
@@ -73,6 +73,7 @@
             color: var(--color-light);
         }
         #navbar-name {
+            font-family: 'Outfit', sans-serif;
             transition: all 0.3s ease;
         }
         #navbar-name:hover {
@@ -246,6 +247,7 @@
             left: -30px;
         }
         #about-left h1 {
+            font-family: 'Outfit', sans-serif;
             margin: 0;
             padding: 42px 0 8px 0;
             font-size: 64px;
@@ -362,6 +364,8 @@
         .skill-card .card-front h3 {
             margin: 16px 0 0 0;
             font-weight: 700;
+            font-size: 14px;
+            overflow: hidden;
         }
         .skill-card .card-back {
             --card-back-transition-dy: calc(var(--card-transition-dy) * 0.5);
@@ -405,12 +409,10 @@
 
     <!--Contact Me-->
     <style>
-        #contact-grid {
+        #contact {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 16px;
-            padding: 0 32px;
-            height: 768px;
         }
         #contact-left {
             position: relative;
@@ -440,6 +442,7 @@
             font-size: 0px;
             position: absolute;
             color: var(--color-glow);
+            user-select: none;
             text-shadow:
                 0 0 5px var(--color-light),
                 0 0 10px var(--color-light),
@@ -475,6 +478,7 @@
             display: flex;
             flex-direction: column;
             gap: 16px;
+            height: 100%;
         }
         #contact-form input {
             font-family: 'Kalam', serif;
@@ -489,7 +493,7 @@
             border-radius: 16px;
             border: 1px solid var(--color-dark);
             padding: 16px;
-            height: 16em;
+            height: 100%;
         }
         #contact-form #contact-form-button {
             font-family: 'Lato', sans-serif;
@@ -650,7 +654,7 @@
                         <h3>UI/UX</h3>
                     </div>
                     <div class="card-back">
-                        Maybe I overdid the glow effects, but I like the design of this site!
+                        Maybe I overdid the glow effects, but I like the design of this site! Did you see the shooting stars?
                     </div>
                 </div>
                 <div class="skill-card">
@@ -693,10 +697,10 @@
                 <div class="skill-card">
                     <div class="card-front">
                         <img src="images/skills/robot.png" alt="robot">
-                        <h3>RL</h3>
+                        <h3>Reinf. Learning</h3>
                     </div>
                     <div class="card-back">
-                        Reinforcement learning deserves a special mention because it's my subarea of expertise. At SimSpace I led a project to train a penetration testing bot using RL.
+                        Reinforcement learning is my ML subarea of expertise. At SimSpace I led a project to train a penetration testing bot using RL.
                         <a href="https://www.flaticon.com/free-icons/robot" title="robot icons">Icon by Freepik - Flaticon</a>
                     </div>
                 </div>
@@ -748,6 +752,15 @@
                 </div>
                 <div class="skill-card">
                     <div class="card-front">
+                        <img src="images/skills/simspace.png" alt="SimSpace logo">
+                        <h3>Cybersecurity</h3>
+                    </div>
+                    <div class="card-back">
+                        At SimSpace I've trained penetration testing bots and developed the infrastructure to simulate virtual cyber ranges.
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="card-front">
                         <img src="images/skills/ollama.svg" alt="Ollama logo">
                         <h3>Language Models</h3>
                     </div>
@@ -757,12 +770,98 @@
                 </div>
                 <div class="skill-card">
                     <div class="card-front">
-                        <img src="images/skills/cyber-security.png" alt="cybersecurity">
-                        <h3>Cybersecurity</h3>
+                        <img src="images/skills/latex.svg" alt="LaTeX logo">
+                        <h3>Writing/Typesetting</h3>
                     </div>
                     <div class="card-back">
-                        I currently work at a cybersecurity startup, where I've trained penetration testing bots and developed the infrastructure to simulate virtual cyber ranges.
-                        <a href="https://www.flaticon.com/free-icons/cyber-attack" title="cyber security icons">Icon by Freepik - Flaticon</a>
+                        For an example of my LaTeX work, check out my PhD thesis.
+                        <a href="https://hdl.handle.net/2142/110404">My PhD thesis!</a>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="card-front">
+                        <img src="images/skills/solidworks.png" alt="SolidWorks logo">
+                        <h3>3D CAD</h3>
+                    </div>
+                    <div class="card-back">
+                        I'm decent with SolidWorks, which has come in surprisingly handy over the course of my life.
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="card-front">
+                        <img src="images/skills/lathe.png" alt="lathe">
+                        <h3>Machining</h3>
+                    </div>
+                    <div class="card-back">
+                        I can work a lathe and mill decently well, and have machined parts for research projects, cars, and particle detectors.
+                        <a href="https://www.flaticon.com/free-icons/cnc-machine" title="cnc machine icons">Icons by Muhammad Atif - Flaticon</a>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="card-front">
+                        <img src="images/skills/prism.png" alt="prism">
+                        <h3>Optics</h3>
+                    </div>
+                    <div class="card-back">
+                        I used to work in an optics lab, where we shot lasers at materials and measured phonon (not a typo) propagation.
+                        <a href="https://www.flaticon.com/free-icons/prism" title="prism icons">Icon by Freepik - Flaticon</a>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="card-front">
+                        <img src="images/skills/snowflake.png" alt="snowflake">
+                        <h3>Cryogenics</h3>
+                    </div>
+                    <div class="card-back">
+                        I've assembled and operated near-absolute-zero cryogenic systems in contexts like radiation studies and material measurements.
+                        <a href="https://www.flaticon.com/free-icons/snow" title="snow icons">Icon by Freepik - Flaticon</a>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="card-front">
+                        <img src="images/skills/vacuum.png" alt="vacuum">
+                        <h3>Vacuum Systems</h3>
+                    </div>
+                    <div class="card-back">
+                        I've assembled and operated an ultra-high-vacuum system for graphene growth, and have worked with lower vacuums for thermoforming and optics manufacturing.
+                        <a href="https://www.flaticon.com/free-icons/chemical-vapor-deposition" title="chemical vapor deposition icons">Icon by iconfield - Flaticon</a>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="card-front">
+                        <img src="images/skills/chemicals.png" alt="chemicals">
+                        <h3>Lab Work</h3>
+                    </div>
+                    <div class="card-back">
+                        I've picked up tons of odd skills from research, including vapor deposition, mass spectrometry, ellipsometry, spin deposition, using an SEM, AFM, etc.
+                        <a href="https://www.flaticon.com/free-icons/chemistry" title="chemistry icons">Icon by Freepik - Flaticon</a>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="card-front">
+                        <img src="images/skills/arduino.svg" alt="Arduino logo">
+                        <h3>Electronics</h3>
+                    </div>
+                    <div class="card-back">
+                        Though my skills are at a hobbyist level, I've built simple connector boards and control circuits for various projects, including a small satellite.
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="card-front">
+                        <img src="images/skills/uiuc.png" alt="UIUC logo">
+                        <h3>Teaching</h3>
+                    </div>
+                    <div class="card-back">
+                        I was a TA for many years and have a bunch of teaching awards. I once taught a for-credit machine learning course in a prison.
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="card-front">
+                        <img src="images/skills/chinese.svg" alt="chinese">
+                        <h3>Mandarin Fluency</h3>
+                    </div>
+                    <div class="card-back">
+                        中文是我的母语，但我说起来可能有点奇怪。
                     </div>
                 </div>
             </div>
@@ -815,21 +914,19 @@
         <hr class="section-divider-glow">
         <a class="anchor" id="contact-anchor"></a>
         <section class="section" id="contact">
-            <div id="contact-grid">
-                <div id="contact-left">
-                </div>
-                <div id="contact-right">
-                    <h1>Contact Me</h1>
-                    <form id="contact-form" method="POST">
-                        <input type="hidden" name="access_key" value="fe5f8e1d-77e4-4a87-8613-2e4309d47c15">
-                        <input type="hidden" name="from_name" value="Personal Website">
-                        <input type="text" name="subject" placeholder="Subject" aria-label="subject" required>
-                        <input type="email" name="email" placeholder="Email" aria-label="email" required>
-                        <textarea id="message" name="message" placeholder="Dear Matt, please come to my birthday party." aria-label="message" required></textarea>
-                        <input type="hidden" name="redirect" value="https://web3forms.com/success">
-                        <input type="submit" value="Send" id="contact-form-button">
-                    </form>
-                </div>
+            <div id="contact-left">
+            </div>
+            <div id="contact-right">
+                <h1>Contact Me</h1>
+                <form id="contact-form" method="POST">
+                    <input type="hidden" name="access_key" value="fe5f8e1d-77e4-4a87-8613-2e4309d47c15">
+                    <input type="hidden" name="from_name" value="Personal Website">
+                    <input type="text" name="subject" placeholder="Subject" aria-label="subject" required>
+                    <input type="email" name="email" placeholder="Email" aria-label="email" required>
+                    <textarea id="message" name="message" placeholder="Dear Matt, please come to my birthday party." aria-label="message" required></textarea>
+                    <input type="hidden" name="redirect" value="https://web3forms.com/success">
+                    <input type="submit" value="Send" id="contact-form-button">
+                </form>
             </div>
         </section>
     </main>
@@ -1000,7 +1097,7 @@
     <!--Contact Section Twinkling Stars-->
     <script>
         const starHtml = '<span class="star" id="STAR_ID">★</span>';
-        const nStars = 20;
+        const nStars = 50;
         const starsContainer = document.getElementById('contact-left');
         for (let i = 0; i < nStars; i++) {
             starsContainer.innerHTML += starHtml.replace('STAR_ID', 'star-' + i);
