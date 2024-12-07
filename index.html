@@ -437,6 +437,7 @@
                 0px 0px 24px var(--color-dark),
                 0px 0px 28px var(--color-dark),
                 0px 0px 32px var(--color-dark);
+            overflow: hidden;
         }
         #contact-left .star {
             font-size: 0px;
@@ -449,7 +450,17 @@
                 0 0 20px var(--color-glow);
             transition: all 5s ease;
         }
+        #contact-left .firework {
+            position: absolute;
+            font-size: 3px;
+        }
+        #contact-left .firework-particle {
+            position: absolute;
+            font-size: 0px;
+        }
         #contact-right {
+            position: relative;
+            z-index: 0;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -463,6 +474,43 @@
             border: 4px solid var(--color-bg);
             padding: 64px 48px;
             box-shadow: 4px 4px 8px var(--color-dark);
+        }
+        #contact-right-error-colors {
+            position: absolute;
+            z-index: -1;
+            top: -4px;
+            left: -4px;
+            width: 100%;
+            height: 100%;
+            background-image: repeating-linear-gradient(45deg, var(--color-dark) 0, var(--color-dark) 0.8px, var(--color-bg) 0, var(--color-bg) 25%);
+            background-size: 12px 12px;
+            border-radius: 16px;
+            border: 4px solid var(--color-dark);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        @keyframes jiggle {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+        }
+        .jiggle {
+            animation: jiggle 0.5s ease;
+        }
+        #contact-right-success-colors {
+            position: absolute;
+            z-index: -1;
+            top: -4px;
+            left: -4px;
+            width: 100%;
+            height: 100%;
+            background-image: repeating-linear-gradient(45deg, var(--color-glow) 0, var(--color-glow) 0.8px, var(--color-light) 0, var(--color-light) 25%);
+            background-size: 12px 12px;
+            border-radius: 16px;
+            border: 4px solid var(--color-glow);
+            opacity: 0;
+            transition: all 0.3s ease;
         }
         #contact-right h1 {
             font-family: 'Kalam', serif;
@@ -502,6 +550,7 @@
             background-color: var(--color-dark);
             color: var(--color-light);
             margin-top: 16px;
+            transition: all 1s ease;
         }
         #contact-form #contact-form-button:hover {
             box-shadow: 0 4px 8px var(--color-glow);
@@ -917,13 +966,15 @@
             <div id="contact-left">
             </div>
             <div id="contact-right">
+                <div id="contact-right-error-colors"></div>
+                <div id="contact-right-success-colors"></div>
                 <h1>Contact Me</h1>
                 <form id="contact-form" method="POST">
                     <input type="hidden" name="access_key" value="fe5f8e1d-77e4-4a87-8613-2e4309d47c15">
                     <input type="hidden" name="from_name" value="Personal Website">
                     <input type="text" name="subject" placeholder="Subject" aria-label="subject" required>
                     <input type="email" name="email" placeholder="Email" aria-label="email" required>
-                    <textarea id="message" name="message" placeholder="Dear Matt, please come to my birthday party." aria-label="message" required></textarea>
+                    <textarea name="message" placeholder="Dear Matt, please come to my birthday party." aria-label="message" required></textarea>
                     <input type="hidden" name="redirect" value="https://web3forms.com/success">
                     <input type="submit" value="Send" id="contact-form-button">
                 </form>
@@ -1044,63 +1095,13 @@
         window.addEventListener('load', addTransition);
     </script>
 
-    <!--Contact Form Submit-->
+    <!--Starfield Twinkling and Shooting Stars-->
     <script>
-        const form = document.getElementById('contact-form');
-        const button = document.getElementById('contact-form-button');
-
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const formData = new FormData(form);
-            const object = Object.fromEntries(formData);
-            const json = JSON.stringify(object);
-            button.value = "Please wait..."
-
-            fetch('https://api.web3forms.com/submit', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: json
-            })
-                .then(async (response) => {
-                    let json = await response.json();
-                    if (response.status == 200) {
-                        button.value = json.message;
-                    } else {
-                        console.log(response);
-                        button.value = json.message;
-                    }
-                })
-                .catch(error => {
-                    console.log(error);
-                    button.value = "Something went wrong!";
-                })
-                .then(function() {
-                    form.reset();
-                    setTimeout(() => {
-                        button.value = "Send";
-                    }, 3000);
-                });
-        });
-    </script>
-
-    <!--Contact Form Reload-->
-    <script>
-        window.onload = function() {
-            // Reset the form fields when the page loads
-            document.getElementById("contact-form").reset();
-        };
-    </script>
-
-    <!--Contact Section Twinkling Stars-->
-    <script>
-        const starHtml = '<span class="star" id="STAR_ID">★</span>';
+        const starHtml = '<span class="star">★</span>';
         const nStars = 50;
         const starsContainer = document.getElementById('contact-left');
         for (let i = 0; i < nStars; i++) {
-            starsContainer.innerHTML += starHtml.replace('STAR_ID', 'star-' + i);
+            starsContainer.innerHTML += starHtml;
         }
         const stars = document.querySelectorAll('.star');
         const minStarSize = 4;
@@ -1108,7 +1109,6 @@
         const padding = 8;
         starsContainerWidth = document.getElementById('contact-left').offsetWidth;
         starsContainerHeight = document.getElementById('contact-left').offsetHeight;
-        console.log(starsContainerWidth, starsContainerHeight);
         stars.forEach((star, index) => {
             star.style.opacity = Math.random() * 2 - 1;
             star.style.fontSize = Math.random() * (maxStarSize - minStarSize) + minStarSize + 'px';
@@ -1125,19 +1125,19 @@
             setTimeout(twinkle, 5000);
         }
         function shootStar() {
-            const start_x = Math.random() * starsContainerWidth;
-            const start_y = Math.random() * starsContainerHeight;
-            const end_x = Math.random() * starsContainerWidth;
-            const end_y = Math.random() * starsContainerHeight;
-            const deltaX = end_x - start_x;
-            const deltaY = end_y - start_y;
+            const startX = Math.random() * starsContainerWidth;
+            const startY = Math.random() * starsContainerHeight;
+            const endX = Math.random() * starsContainerWidth;
+            const endY = Math.random() * starsContainerHeight;
+            const deltaX = endX - startX;
+            const deltaY = endY - startY;
             const length = Math.sqrt(deltaX ** 2 + deltaY ** 2);
             const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
 
             const starsContainer = document.getElementById('contact-left');
             const line = document.createElement('div');
-            line.style.left = start_x + 'px';
-            line.style.top = start_y + 'px';
+            line.style.left = startX + 'px';
+            line.style.top = startY + 'px';
             line.style.position = 'absolute';
             line.style.width = '0';
             line.style.height = '2px';
@@ -1152,8 +1152,8 @@
                 line.style.width = length + 'px';
             }, 100);
             setTimeout(() => {
-                line.style.left = end_x + 'px';
-                line.style.top = end_y + 'px';
+                line.style.left = endX + 'px';
+                line.style.top = endY + 'px';
                 line.style.width = '0';
             }, 300);
 
@@ -1169,6 +1169,182 @@
         window.addEventListener('load', () => {
             setTimeout(shootStar, 5000);
         });
+    </script>
+
+    <!--Starfield Fireworks-->
+    <script>
+        const fireworksContainer = document.getElementById('contact-left');
+        const fireworksContainerWidth = fireworksContainer.offsetWidth;
+        const fireworksContainerHeight = fireworksContainer.offsetHeight;
+        const fireworkTexts = ['♥', '❄', '✿', '☀', '☂', '☾', '♪', '♫'];
+        const nFireworkParticles = 50;
+        const maxParticleVelocity = 100;
+        const gravity = 9.8;
+        const fireworkGlow = 'oklch(67% 0.3 hue)';
+        const deltaT = 0.3;
+        const timeBetweenFrames = 50;
+        class Particle {
+            constructor(particle, x, y, vX, vY, colorGlow, colorLight, text, isFirework) {
+                this.particle = particle;
+                this.x = x;
+                this.y = y;
+                this.vX = vX;
+                this.vY = vY;
+                this.colorGlow = colorGlow;
+                this.colorLight = colorLight;
+                this.text = text;
+                this.isFirework = isFirework;
+            }
+        }
+        let particles = [];
+        function shootFirework() {
+            const firework = document.createElement('span');
+            firework.classList.add('firework');
+            fireworkText = fireworkTexts[Math.floor(Math.random() * fireworkTexts.length)];
+            firework.textContent = fireworkText;
+            const startX = Math.random() * fireworksContainerWidth;
+            const startY = fireworksContainerHeight;
+            const maxYVelocity = Math.sqrt(2 * gravity * fireworksContainerHeight);
+            const maxTime = maxYVelocity / gravity;
+            const yVelocity = (Math.random() * 0.5 + 0.5) * maxYVelocity;
+            let xVelocity = (Math.random() * 0.2 - 0.1) * yVelocity;
+            let endX = startX + xVelocity * maxTime;
+            if (endX < 0 || endX > fireworksContainerWidth) {
+                xVelocity = -xVelocity;
+            }
+            const fireworkColorGlow = fireworkGlow.replace('hue', Math.random() * 360);
+            const fireworkColorLight = fireworkColorGlow.replace('67', '95').replace('0.3', '0.06');
+            firework.style.left = startX + 'px';
+            firework.style.top = startY + 'px';
+            firework.style.transition = `all ${timeBetweenFrames / 1000}s linear`;
+            firework.style.color = fireworkColorLight;
+            firework.style.textShadow = `0 0 2px ${fireworkColorLight}, 0 0 4px ${fireworkColorLight}, 0 0 6px ${fireworkColorGlow}, 0 0 8px ${fireworkColorGlow}`;
+            fireworksContainer.appendChild(firework);
+            particles.push(new Particle(firework, startX, startY, xVelocity, yVelocity, fireworkColorGlow, fireworkColorLight, fireworkText, true));
+        }
+        function explodeFirework(x0, y0, xVelocity, fireworkColorGlow, fireworkColorLight, fireworkText) {
+            for (let i = 0; i < nFireworkParticles; i++) {
+                const particle = document.createElement('span');
+                particle.classList.add('firework-particle');
+                particle.textContent = fireworkText;
+                particle.style.left = x0 + 'px';
+                particle.style.top = y0 + 'px';
+                particle.style.transition = `all ${timeBetweenFrames / 1000}s linear`;
+                if (Math.random() > 0.5) {
+                    fireworkColorTemp = fireworkColorGlow;
+                    fireworkColorGlow = fireworkColorLight;
+                    fireworkColorLight = fireworkColorTemp;
+                }
+                particle.style.color = `${fireworkColorLight}`;
+                particle.style.textShadow = `0 0 2px ${fireworkColorLight}, 0 0 4px ${fireworkColorGlow}`;
+                particle.style.fontSize = Math.random() * 20 + 'px';
+                const angle = Math.random() * 2 * Math.PI;
+                const velocity = Math.random() * maxParticleVelocity;
+                const vX0 = xVelocity + velocity * Math.cos(angle);
+                const vY0 = velocity * Math.sin(angle);
+                fireworksContainer.appendChild(particle);
+                particles.push(new Particle(particle, x0, y0, vX0, vY0, fireworkColorGlow, fireworkColorLight, fireworkText, false));
+            }
+        }
+        function propagateParticles() {
+            particles.forEach((particle, index) => {
+                particle.x += particle.vX * deltaT;
+                particle.y -= particle.vY * deltaT - 0.5 * gravity * deltaT ** 2;
+                particle.particle.style.left = particle.x + 'px';
+                particle.particle.style.top = particle.y + 'px';
+                particle.vY -= gravity * deltaT;
+                if (particle.isFirework && particle.vY < 0) {
+                    explodeFirework(particle.x, particle.y, particle.vX, particle.colorGlow, particle.colorLight, particle.text);
+                    particle.particle.remove();
+                    particles.splice(index, 1);
+                } else if (particle.y > fireworksContainerHeight) {
+                    particle.particle.remove();
+                    particles.splice(index, 1);
+                }
+            });
+        }
+    </script>
+
+    <!--Contact Form Submit-->
+    <script>
+        const form = document.getElementById('contact-form');
+        const button = document.getElementById('contact-form-button');
+        const contactRight = document.getElementById('contact-right');
+        const contactRightSuccessColors = document.getElementById('contact-right-success-colors');
+        const contactRightErrorColors = document.getElementById('contact-right-error-colors');
+        function resetFormStyles() {
+            button.value = "Send";
+            button.style.backgroundColor = "var(--color-dark)";
+            button.style.borderColor = "var(--color-dark)";
+            button.style.color = "var(--color-light)";
+            button.disabled = false;
+            contactRightSuccessColors.style.opacity = 0;
+            contactRightErrorColors.style.opacity = 0;
+        }
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+            button.value = "..."
+            button.style.backgroundColor = "var(--color-bg)";
+            button.style.borderColor = "var(--color-dark)";
+            button.style.color = "var(--color-dark)";
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
+            })
+                .then(response => {
+                    button.value = "Success!";
+                    button.style.backgroundColor = "var(--color-glow)";
+                    button.style.borderColor = "var(--color-glow)";
+                    button.style.color = "var(--color-dark)";
+                    button.disabled = true;
+                    contactRightSuccessColors.style.opacity = 1;
+                    setTimeout(resetFormStyles, 10000);
+                    let counter = 0;
+                    const intervalPropagate = setInterval(propagateParticles, timeBetweenFrames);
+                    const intervalShooting = setInterval(() => {
+                        shootFirework();
+                        counter++;
+                        if (counter === 10) {
+                            clearInterval(intervalShooting);
+                            setTimeout(() => {
+                                clearInterval(intervalPropagate);
+                            }, 10000);
+                        }
+                    }, 1000);
+                })
+                .catch(error => {
+                    button.value = "ERROR";
+                    button.style.backgroundColor = "var(--color-glow)";
+                    button.style.borderColor = "var(--color-glow)";
+                    button.style.color = "var(--color-dark)";
+                    button.disabled = true;
+                    contactRightErrorColors.style.opacity = 1;
+                    contactRight.classList.add('jiggle');
+                    contactRightErrorColors.classList.add('jiggle');
+                    contactRight.addEventListener('animationend', () => {
+                        contactRight.classList.remove('jiggle');
+                    }, { once: true });
+                    contactRightErrorColors.addEventListener('animationend', () => {
+                        contactRight.classList.remove('jiggle');
+                    }, { once: true });
+                    setTimeout(resetFormStyles, 1000);
+                })
+        });
+    </script>
+
+    <!--Contact Form Reload-->
+    <script>
+        window.onload = function() {
+            // Reset the form fields when the page loads
+            document.getElementById("contact-form").reset();
+        };
     </script>
 </body>
 
