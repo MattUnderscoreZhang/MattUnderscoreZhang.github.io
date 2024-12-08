@@ -27,7 +27,7 @@
             --color-light: oklch(95% 0.06 var(--primary-hue));
             --color-glow: oklch(100% 0.3 var(--primary-hue));
             --color-card: oklch(75% 0.06 var(--primary-hue));
-            --max-width: 1200px;
+            --max-width: 1000px;
             --navbar-height: 72px;
             max-width: var(--max-width);
             margin: var(--navbar-height) auto 0 auto;
@@ -64,6 +64,8 @@
         #navbar-content {
             display: flex;
             justify-content: space-between;
+            width: var(--max-width);
+            padding: 0 32px;
             align-items: center;
             gap: 96px;
             color: var(--color-light);
@@ -184,7 +186,8 @@
             flex-direction: column;
             justify-content: center;
             box-sizing: border-box;
-            padding: 128px;
+            padding: 128px 16px;
+            max-width: var(--max-width);
         }
         .section h1 {
             margin: 0;
@@ -218,7 +221,6 @@
         #about {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            padding: 64px 128px;
         }
         #about-left {
             display: flex;
@@ -244,7 +246,7 @@
             width: calc(100% * 1.1);
             position: relative;
             top: -40px;
-            left: -30px;
+            left: -10%;
         }
         #about-left h1 {
             font-family: 'Outfit', sans-serif;
@@ -452,11 +454,15 @@
         }
         #contact-left .firework {
             position: absolute;
-            font-size: 3px;
+            font-size: 5px;
+            user-select: none;
+            transition: all 0.1s ease;
         }
         #contact-left .firework-particle {
             position: absolute;
             font-size: 0px;
+            user-select: none;
+            transition: all 0.1s ease;
         }
         #contact-right {
             position: relative;
@@ -1176,15 +1182,26 @@
         const fireworksContainer = document.getElementById('contact-left');
         const fireworksContainerWidth = fireworksContainer.offsetWidth;
         const fireworksContainerHeight = fireworksContainer.offsetHeight;
-        const fireworkTexts = ['♥', '❄', '✿', '☀', '☂', '☾', '♪', '♫'];
-        const nFireworkParticles = 50;
+        const fireworkSymbols = {
+            0: '♥',
+            1: '✿',
+            2: '♪',
+            3: '☀',
+            4: '☺',
+            5: '☘',
+            6: '⛆',
+            7: '❄',
+            8: '☂',
+            9: '☾',
+            10: '☮',
+            11: '♫',
+        };
+        const nFireworkParticles = 20;
         const maxParticleVelocity = 100;
-        const gravity = 9.8;
+        const gravity = 5;
         const fireworkGlow = 'oklch(67% 0.3 hue)';
-        const deltaT = 0.3;
-        const timeBetweenFrames = 50;
         class Particle {
-            constructor(particle, x, y, vX, vY, colorGlow, colorLight, text, isFirework) {
+            constructor(particle, x, y, vX, vY, colorGlow, colorLight, symbol, isFirework) {
                 this.particle = particle;
                 this.x = x;
                 this.y = y;
@@ -1192,7 +1209,7 @@
                 this.vY = vY;
                 this.colorGlow = colorGlow;
                 this.colorLight = colorLight;
-                this.text = text;
+                this.symbol = symbol;
                 this.isFirework = isFirework;
             }
         }
@@ -1200,10 +1217,21 @@
         function shootFirework() {
             const firework = document.createElement('span');
             firework.classList.add('firework');
-            fireworkText = fireworkTexts[Math.floor(Math.random() * fireworkTexts.length)];
-            firework.textContent = fireworkText;
             const startX = Math.random() * fireworksContainerWidth;
             const startY = fireworksContainerHeight;
+            const fireworkColor = Math.random() * 360;
+            const fireworkColorGlow = fireworkGlow.replace('hue', fireworkColor);
+            const fireworkColorLight = fireworkColorGlow.replace('67', '95').replace('0.3', '0.06');
+            const fireworkSymbol = fireworkSymbols[Math.floor((fireworkColor + 15) / 30)];
+            firework.textContent = fireworkSymbol;
+            const fireworkStyle = {
+                left: startX + 'px',
+                top: startY + 'px',
+                color: fireworkColorLight,
+                textShadow: `0 0 2px ${fireworkColorLight}, 0 0 4px ${fireworkColorLight}, 0 0 6px ${fireworkColorGlow}, 0 0 8px ${fireworkColorGlow}`,
+            }
+            Object.assign(firework.style, fireworkStyle);
+            fireworksContainer.appendChild(firework);
             const maxYVelocity = Math.sqrt(2 * gravity * fireworksContainerHeight);
             const maxTime = maxYVelocity / gravity;
             const yVelocity = (Math.random() * 0.5 + 0.5) * maxYVelocity;
@@ -1212,56 +1240,73 @@
             if (endX < 0 || endX > fireworksContainerWidth) {
                 xVelocity = -xVelocity;
             }
-            const fireworkColorGlow = fireworkGlow.replace('hue', Math.random() * 360);
-            const fireworkColorLight = fireworkColorGlow.replace('67', '95').replace('0.3', '0.06');
-            firework.style.left = startX + 'px';
-            firework.style.top = startY + 'px';
-            firework.style.transition = `all ${timeBetweenFrames / 1000}s linear`;
-            firework.style.color = fireworkColorLight;
-            firework.style.textShadow = `0 0 2px ${fireworkColorLight}, 0 0 4px ${fireworkColorLight}, 0 0 6px ${fireworkColorGlow}, 0 0 8px ${fireworkColorGlow}`;
-            fireworksContainer.appendChild(firework);
-            particles.push(new Particle(firework, startX, startY, xVelocity, yVelocity, fireworkColorGlow, fireworkColorLight, fireworkText, true));
+            particles.push(new Particle(firework, startX, startY, xVelocity, yVelocity, fireworkColorGlow, fireworkColorLight, fireworkSymbol, true));
         }
-        function explodeFirework(x0, y0, xVelocity, fireworkColorGlow, fireworkColorLight, fireworkText) {
+        function explodeFirework(x0, y0, xVelocity, fireworkColorGlow, fireworkColorLight, fireworkSymbol) {
             for (let i = 0; i < nFireworkParticles; i++) {
                 const particle = document.createElement('span');
                 particle.classList.add('firework-particle');
-                particle.textContent = fireworkText;
-                particle.style.left = x0 + 'px';
-                particle.style.top = y0 + 'px';
-                particle.style.transition = `all ${timeBetweenFrames / 1000}s linear`;
-                if (Math.random() > 0.5) {
-                    fireworkColorTemp = fireworkColorGlow;
-                    fireworkColorGlow = fireworkColorLight;
-                    fireworkColorLight = fireworkColorTemp;
+                particle.textContent = fireworkSymbol;
+                const isInverted = Math.random() > 0.8;
+                const particleStyle = {
+                    left: x0 + 'px',
+                    top: y0 + 'px',
+                    color: isInverted ? fireworkColorGlow : fireworkColorLight,
+                    textShadow: isInverted
+                        ? `0 0 2px ${fireworkColorGlow}`
+                        : `0 0 2px ${fireworkColorLight}`,
+                    fontSize: Math.random() * 30 + 10 + 'px',
                 }
-                particle.style.color = `${fireworkColorLight}`;
-                particle.style.textShadow = `0 0 2px ${fireworkColorLight}, 0 0 4px ${fireworkColorGlow}`;
-                particle.style.fontSize = Math.random() * 20 + 'px';
+                Object.assign(particle.style, particleStyle);
                 const angle = Math.random() * 2 * Math.PI;
                 const velocity = Math.random() * maxParticleVelocity;
                 const vX0 = xVelocity + velocity * Math.cos(angle);
                 const vY0 = velocity * Math.sin(angle);
                 fireworksContainer.appendChild(particle);
-                particles.push(new Particle(particle, x0, y0, vX0, vY0, fireworkColorGlow, fireworkColorLight, fireworkText, false));
+                particles.push(new Particle(particle, x0, y0, vX0, vY0, fireworkColorGlow, fireworkColorLight, fireworkSymbol, false));
             }
         }
+        let lastTime = performance.now();
         function propagateParticles() {
+            const currentTime = performance.now();
+            const deltaT = (currentTime - lastTime) / 100;
+            lastTime = currentTime;
             particles.forEach((particle, index) => {
                 particle.x += particle.vX * deltaT;
-                particle.y -= particle.vY * deltaT - 0.5 * gravity * deltaT ** 2;
+                particle.y -= particle.vY * deltaT;
                 particle.particle.style.left = particle.x + 'px';
                 particle.particle.style.top = particle.y + 'px';
                 particle.vY -= gravity * deltaT;
-                if (particle.isFirework && particle.vY < 0) {
-                    explodeFirework(particle.x, particle.y, particle.vX, particle.colorGlow, particle.colorLight, particle.text);
+                if (particle.isFirework && particle.vY < 5) {
+                    explodeFirework(particle.x, particle.y, particle.vX, particle.colorGlow, particle.colorLight, particle.symbol);
                     particle.particle.remove();
                     particles.splice(index, 1);
-                } else if (particle.y > fireworksContainerHeight) {
+                } else if (particle.y > fireworksContainerHeight + 50) {
                     particle.particle.remove();
                     particles.splice(index, 1);
                 }
             });
+            requestAnimationFrame(propagateParticles);
+        }
+        requestAnimationFrame(propagateParticles);
+        function setFireworks(nFireworks, delay) {
+            let counter = 0;
+            const intervalShooting = setInterval(
+                () => {
+                    if (document.visibilityState !== 'visible') return;
+                    shootFirework();
+                    counter++;
+                    if (counter === nFireworks) {
+                        clearInterval(intervalShooting);
+                        setTimeout(() => {
+                            particles.forEach((particle, index) => {
+                                particle.particle.remove();
+                            });
+                        }, 10000);
+                    }
+                },
+                delay,
+            );
         }
     </script>
 
@@ -1306,18 +1351,7 @@
                     button.disabled = true;
                     contactRightSuccessColors.style.opacity = 1;
                     setTimeout(resetFormStyles, 10000);
-                    let counter = 0;
-                    const intervalPropagate = setInterval(propagateParticles, timeBetweenFrames);
-                    const intervalShooting = setInterval(() => {
-                        shootFirework();
-                        counter++;
-                        if (counter === 10) {
-                            clearInterval(intervalShooting);
-                            setTimeout(() => {
-                                clearInterval(intervalPropagate);
-                            }, 10000);
-                        }
-                    }, 1000);
+                    setFireworks(30, 300);
                 })
                 .catch(error => {
                     button.value = "ERROR";
