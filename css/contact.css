@@ -1,0 +1,152 @@
+#contact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+#contact-left {
+    position: relative;
+    border-radius: 16px;
+    margin: 8px;
+    box-sizing: border-box;
+    background-color: var(--color-dark);
+    box-shadow:
+        0px 0px 1px var(--color-dark),
+        0px 0px 2px var(--color-dark),
+        0px 0px 3px var(--color-dark),
+        0px 0px 4px var(--color-dark),
+        0px 0px 5px var(--color-dark),
+        0px 0px 6px var(--color-dark),
+        0px 0px 7px var(--color-dark),
+        0px 0px 8px var(--color-dark),
+        0px 0px 10px var(--color-dark),
+        0px 0px 12px var(--color-dark),
+        0px 0px 14px var(--color-dark),
+        0px 0px 16px var(--color-dark),
+        0px 0px 20px var(--color-dark),
+        0px 0px 24px var(--color-dark),
+        0px 0px 28px var(--color-dark),
+        0px 0px 32px var(--color-dark);
+    overflow: hidden;
+}
+#contact-left .star {
+    font-size: 0px;
+    position: absolute;
+    color: var(--color-glow);
+    user-select: none;
+    text-shadow:
+        0 0 5px var(--color-light),
+        0 0 10px var(--color-light),
+        0 0 20px var(--color-glow);
+    transition: all 5s ease;
+}
+#contact-left .firework {
+    position: absolute;
+    font-size: 5px;
+    user-select: none;
+    transition: all 0.1s ease;
+}
+#contact-left .firework-particle {
+    position: absolute;
+    font-size: 0px;
+    user-select: none;
+    transition: all 0.1s ease;
+}
+#contact-right {
+    position: relative;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* background-image: repeating-radial-gradient(circle at 0 0, transparent 0, var(--color-light) 6px), repeating-linear-gradient(var(--color-card), var(--color-card));
+    background-size: 28px 28px;
+    background-image:  repeating-linear-gradient(0deg, var(--color-card), var(--color-card), 0.6px, var(--color-light) 0.6px, var(--color-light));
+    background-size: 12px 12px; */
+    background-image: repeating-linear-gradient(45deg, var(--color-bg) 0, var(--color-bg) 0.8px, var(--color-card) 0, var(--color-card) 25%);
+    background-size: 12px 12px;
+    border-radius: 16px;
+    border: 4px solid var(--color-bg);
+    padding: 64px 48px;
+    box-shadow: 4px 4px 8px var(--color-dark);
+}
+#contact-right-error-colors {
+    position: absolute;
+    z-index: -1;
+    top: -4px;
+    left: -4px;
+    width: 100%;
+    height: 100%;
+    background-image: repeating-linear-gradient(45deg, var(--color-dark) 0, var(--color-dark) 0.8px, var(--color-bg) 0, var(--color-bg) 25%);
+    background-size: 12px 12px;
+    border-radius: 16px;
+    border: 4px solid var(--color-dark);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+@keyframes jiggle {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+}
+.jiggle {
+    animation: jiggle 0.5s ease;
+}
+#contact-right-success-colors {
+    position: absolute;
+    z-index: -1;
+    top: -4px;
+    left: -4px;
+    width: 100%;
+    height: 100%;
+    background-image: repeating-linear-gradient(45deg, var(--color-glow) 0, var(--color-glow) 0.8px, var(--color-light) 0, var(--color-light) 25%);
+    background-size: 12px 12px;
+    border-radius: 16px;
+    border: 4px solid var(--color-glow);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+#contact-right h1 {
+    font-family: 'Kalam', serif;
+    font-size: 48px;
+    color: var(--color-light);
+    text-shadow:
+        0 0 4px var(--color-dark),
+        0 0 8px var(--color-glow),
+        0 0 12px var(--color-glow);
+    padding-bottom: 32px;
+}
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 100%;
+}
+#contact-form input {
+    font-family: 'Kalam', serif;
+    background-color: var(--color-light);
+    border-radius: 16px;
+    border: 1px solid var(--color-dark);
+    padding: 8px 16px;
+}
+#contact-form textarea {
+    font-family: 'Kalam', serif;
+    background-color: var(--color-light);
+    border-radius: 16px;
+    border: 1px solid var(--color-dark);
+    padding: 16px;
+    height: 100%;
+}
+#contact-form #contact-form-button {
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    margin-top: 16px;
+    transition: all 1s ease;
+}
+#contact-form #contact-form-button:hover {
+    box-shadow: 0 4px 8px var(--color-glow);
+    color: var(--color-glow);
+    transform: translateY(-2px);
+}

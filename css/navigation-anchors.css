@@ -1,0 +1,6 @@
+.anchor {
+    position: relative;
+    top: calc(-1 * var(--navbar-height));
+    display: block;
+    visibility: hidden;
+}

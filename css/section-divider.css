@@ -1,0 +1,11 @@
+.section-divider-dark { 
+    width: 70%;
+    border-color: var(--color-glow);
+    box-shadow: 0 0 16px var(--color-glow);
+    margin: 0 auto;
+}
+.section-divider-glow { 
+    width: 71%;
+    border-color: var(--color-dark);
+    margin: 0 auto;
+}

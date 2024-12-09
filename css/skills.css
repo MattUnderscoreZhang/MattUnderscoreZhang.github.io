@@ -1,0 +1,74 @@
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+}
+.skill-card {
+    --card-transition-dy: -32px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 14px;
+    border: 1px solid var(--color-dark);
+    border-radius: 8px;
+    padding: 32px 16px;
+    box-sizing: border-box;
+    background-color: var(--color-card);
+    box-shadow: 4px 4px 8px var(--color-dark);
+    overflow: hidden;
+}
+.skill-card .card-front {
+    transition: all 0.3s;
+}
+.skill-card .card-front img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    filter: drop-shadow(2px 2px 2px var(--color-bg));
+}
+.skill-card .card-front h3 {
+    margin: 16px 0 0 0;
+    font-weight: 700;
+    font-size: 14px;
+    overflow: hidden;
+}
+.skill-card .card-back {
+    --card-back-transition-dy: calc(var(--card-transition-dy) * 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: calc(100% - var(--card-transition-dy));
+    width: 100%;
+    display: flex;
+    padding: calc(32px - var(--card-back-transition-dy)) 16px calc(32px + var(--card-back-transition-dy)) 16px;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-weight: 400;
+    background-color: var(--color-dark);
+    color: var(--color-light);
+}
+.skill-card .card-back a {
+    color: lightblue;
+    margin: 16px 0 0 0;
+    font-size: 10px;
+}
+.skill-card:hover {
+    box-shadow: 4px 4px 8px var(--color-glow);
+    transition: all 0.5s ease-out;
+}
+.skill-card:hover .card-front {
+    transform: translateY(var(--card-transition-dy));
+    transition: all 0.5s ease-out;
+    opacity: 0;
+}
+.skill-card:hover .card-back {
+    transform: translateY(var(--card-transition-dy));
+    transition: all 0.5s ease-out;
+    opacity: 1;
+}

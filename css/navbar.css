@@ -1,0 +1,116 @@
+#floating-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--navbar-height);
+    display: flex;
+    justify-content: center;
+    background-color: var(--color-dark);
+    box-shadow: 0 4px 8px var(--color-dark);
+    z-index: 1000;
+}
+#navbar-content {
+    display: flex;
+    justify-content: space-between;
+    width: var(--max-width);
+    padding: 0 32px;
+    align-items: center;
+    gap: 96px;
+    color: var(--color-light);
+}
+#navbar-content a {
+    text-decoration: none;
+    color: var(--color-light);
+}
+#navbar-name {
+    font-family: 'Outfit', sans-serif;
+    transition: all 0.3s ease;
+}
+#navbar-name:hover {
+    text-shadow:
+        0 0 5px var(--color-dark),
+        0 0 10px var(--color-light),
+        0 0 20px var(--color-glow),
+        0 0 30px var(--color-glow);
+}
+#navbar-sections {
+    display: flex;
+    gap: 16px;
+    padding: 0;
+}
+#navbar-sections li {
+    list-style-type: none;
+}
+#navbar-sections a {
+    color: var(--color-bg);
+    text-decoration: none;
+    transition: all 0.3s;
+}
+#navbar-sections a.active {
+    color: var(--color-glow);
+}
+#navbar-sections a:hover {
+    color: var(--color-dark);
+    text-shadow: 
+        0 0 5px var(--color-light),
+        0 0 10px var(--color-light),
+        0 0 20px var(--color-glow),
+        0 0 30px var(--color-glow),
+        0 0 40px var(--color-glow),
+        0 0 50px var(--color-glow);
+}
+#navbar-color-slider {
+    position: relative;
+    width: 128px;
+    height: 24px;
+}
+#navbar-color-slider #hue-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to right, 
+        oklch(67% 0.1 0),
+        oklch(67% 0.1 30),
+        oklch(67% 0.1 60),
+        oklch(67% 0.1 90),
+        oklch(67% 0.1 120),
+        oklch(67% 0.1 150),
+        oklch(67% 0.1 180),
+        oklch(67% 0.1 210),
+        oklch(67% 0.1 240),
+        oklch(67% 0.1 270),
+        oklch(67% 0.1 300),
+        oklch(67% 0.1 330),
+        oklch(67% 0.1 360)
+    );
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+#navbar-color-slider #hue-slider {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    -webkit-appearance: none; /* Remove default styling */
+    appearance: none;
+    background: transparent;
+    outline: none;
+    margin: 0;
+    pointer-events: auto;
+    z-index: 1;
+}
+#navbar-color-slider #hue-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 24px;
+    background: var(--color-dark);
+    border: 2px solid var(--color-glow);
+    border-radius: 4px;
+    cursor: pointer;
+}
