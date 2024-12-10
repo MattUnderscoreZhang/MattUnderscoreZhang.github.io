@@ -10,6 +10,18 @@ function createElement(docLocation, elemType, elemClass, elemId, htmlPath) {
         xhr.send(null);
         if (xhr.status === 200)
             element.innerHTML = xhr.responseText;
+        //async function injectPreloadedContent(htmlPath, docLocation) {
+            //try {
+                //const response = await fetch(htmlPath);
+                //if (!response.ok) throw new Error(`Failed to load: ${response.status}`);
+                //const htmlContent = await response.text();
+                //docLocation.innerHTML = htmlContent;
+            //} catch (error) {
+                //console.error('Error injecting content:', error);
+                //docLocation.innerHTML = "Failed to load content.";
+            //}
+        //}
+        //injectPreloadedContent(htmlPath, docLocation);
     }
     docLocation.appendChild(element);
 }

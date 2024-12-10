@@ -43,7 +43,7 @@
     list-style-type: none;
 }
 #navbar-sections a {
-    color: var(--color-bg);
+    color: var(--color-card);
     text-decoration: none;
     transition: all 0.3s;
 }

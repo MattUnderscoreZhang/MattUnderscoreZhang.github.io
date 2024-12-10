@@ -28,7 +28,7 @@
     object-fit: contain;
     filter: drop-shadow(2px 2px 2px var(--color-bg));
 }
-.skill-card .card-front h3 {
+.skill-card .card-front h2 {
     margin: 16px 0 0 0;
     font-weight: 700;
     font-size: 14px;
