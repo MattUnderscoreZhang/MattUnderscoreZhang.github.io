@@ -25,7 +25,7 @@ function glowDrift() {
 }
 function addTransition() {
     const circleImage = document.getElementById('circle-image');
-    circleImage.style.transition = 'all 2s ease-in-out';
+    circleImage.style.transition = 'box-shadow 2s ease-in-out';
 }
 window.addEventListener('load', glowDrift);
 window.addEventListener('load', addTransition);

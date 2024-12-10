@@ -1,4 +1,18 @@
-.skills-grid {
+#skills h1, #mobile-skill-card-alert {
+    margin: 0;
+    padding-bottom: 32px;
+    font-size: 64px;
+    color: var(--color-dark);
+    text-shadow:
+        0 0 5px var(--color-light),
+        0 0 10px var(--color-light),
+        0 0 20px var(--color-glow);
+}
+#mobile-skill-card-alert {
+    display: none;
+    font-size: 12px;
+}
+#skills-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 16px;
@@ -14,7 +28,6 @@
     border: 1px solid var(--color-dark);
     border-radius: 8px;
     padding: 32px 16px;
-    box-sizing: border-box;
     background-color: var(--color-card);
     box-shadow: 4px 4px 8px var(--color-dark);
     overflow: hidden;
@@ -43,7 +56,6 @@
     width: 100%;
     display: flex;
     padding: calc(32px - var(--card-back-transition-dy)) 16px calc(32px + var(--card-back-transition-dy)) 16px;
-    box-sizing: border-box;
     opacity: 0;
     transition: all 0.3s;
     display: flex;
@@ -71,4 +83,38 @@
     transform: translateY(var(--card-transition-dy));
     transition: all 0.5s ease-out;
     opacity: 1;
+}
+
+@media (hover: none) {
+    #skills h1 {
+        padding-bottom: 4px;
+    }
+    #mobile-skill-card-alert {
+        display: block;
+    }
+}
+@media (max-width: 480px) {
+    #skills h1 {
+        font-size: 36px;
+    }
+}
+@media (min-width: 481px) and (max-width: 768px) {
+    #skills h1 {
+        font-size: 48px;
+    }
+}
+@media (max-width: 560px) {
+    #skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (min-width: 561px) and (max-width: 768px) {
+    #skills-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+    #skills-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }

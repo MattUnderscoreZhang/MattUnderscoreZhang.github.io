@@ -1,6 +1,6 @@
 const fireworksContainer = document.getElementById('contact-left');
-const fireworksContainerWidth = fireworksContainer.offsetWidth;
-const fireworksContainerHeight = fireworksContainer.offsetHeight;
+let fireworksContainerWidth = fireworksContainer.offsetWidth;
+let fireworksContainerHeight = fireworksContainer.offsetHeight;
 const fireworkSymbols = {
     0: '♥',
     1: '✿',
@@ -118,7 +118,7 @@ function setFireworks(nFireworks, delay) {
             if (counter === nFireworks) {
                 clearInterval(intervalShooting);
                 setTimeout(() => {
-                    particles.forEach((particle, index) => {
+                    particles.forEach((particle) => {
                         particle.particle.remove();
                     });
                 }, 10000);
@@ -127,3 +127,7 @@ function setFireworks(nFireworks, delay) {
         delay,
     );
 }
+window.addEventListener('resize', () => {
+    fireworksContainerWidth = fireworksContainer.offsetWidth;
+    fireworksContainerHeight = fireworksContainer.offsetHeight;
+});

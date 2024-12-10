@@ -1,3 +1,8 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 html {
     --primary-hue: 48;
     --color-bg: oklch(60% 0.06 var(--primary-hue));
@@ -8,6 +13,7 @@ html {
     --color-card: oklch(75% 0.06 var(--primary-hue));
     --max-width: 1000px;
     --navbar-height: 72px;
+    --display-screen-height: calc(100vh - var(--navbar-height));
     max-width: var(--max-width);
     margin: var(--navbar-height) auto 0 auto;
     background-color: var(--color-bg);  /* needed if user scrolls above or below content */

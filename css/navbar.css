@@ -1,4 +1,8 @@
-#floating-navbar {
+#navbar {
+    --navbar-side-menu-padding: 16px;
+    --navbar-transition: width 0.3s ease-in-out, right 0.3s ease-in-out;
+    --color-slider-width: 128px;
+    --navbar-side-menu-width: calc(var(--color-slider-width) + 2 * var(--navbar-side-menu-padding));
     position: fixed;
     top: 0;
     left: 0;
@@ -10,20 +14,94 @@
     box-shadow: 0 4px 8px var(--color-dark);
     z-index: 1000;
 }
-#navbar-content {
+#navbar-hamburger-button {
+    display: none;
+}
+#navbar-hamburger-icon {
+    display: none;
+    position: relative;
+    width: 32px;
+    height: 32px;
+    border-radius: 20px;
+    background-color: var(--color-dark);
+    box-shadow: 0 0px 8px var(--color-glow);
+    border: 2px solid var(--color-light);
+    cursor: pointer;
+}
+#navbar-hamburger-icon span {
+    position: absolute;
+    width: 60%;
+    height: 2px;
+    left: 20%;
+    background-color: var(--color-light);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+#navbar-hamburger-icon span:nth-child(1) {
+    top: calc(30% - 1px);
+}
+#navbar-hamburger-icon span:nth-child(2) {
+    top: calc(50% - 1px);
+}
+#navbar-hamburger-icon span:nth-child(3) {
+    top: calc(70% - 1px);
+}
+
+#navbar-hamburger-button:checked ~ #navbar-hamburger-icon span:nth-child(1) {
+    transform: translateY(5.5px) rotate(45deg);
+}
+
+#navbar-hamburger-button:checked ~ #navbar-hamburger-icon span:nth-child(2) {
+    opacity: 0;
+}
+
+#navbar-hamburger-button:checked ~ #navbar-hamburger-icon span:nth-child(3) {
+    transform: translateY(-5.5px) rotate(-45deg);
+}
+
+#navbar-side-menu {
+    position: fixed;
+    top: var(--navbar-height);
+    right: 0;
+    width: 0;
+    height: var(--display-screen-height);
+    background-color: var(--color-dark);
+    border-top: 2px solid var(--color-glow);
+    box-shadow: 0 4px 8px var(--color-dark);
+    transition: var(--navbar-transition);
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+}
+#navbar-hamburger-button:checked ~ #navbar-side-menu {
+    width: var(--navbar-side-menu-width);
+}
+#navbar-click-blocker {
+    position: fixed;
+    top: var(--navbar-height);
+    left: 0;
+    width: 100%;
+    height: var(--display-screen-height);
+    background-color: var(--color-dark);
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+#navbar-hamburger-button:checked ~ #navbar-click-blocker {
+    opacity: 0.5;
+    pointer-events: auto;
+}
+#navbar-content {
     width: var(--max-width);
-    padding: 0 32px;
+    display: flex;
+    padding: 0 16px;
     align-items: center;
-    gap: 96px;
-    color: var(--color-light);
+    justify-content: space-between;
 }
 #navbar-content a {
     text-decoration: none;
-    color: var(--color-light);
 }
 #navbar-name {
+    color: var(--color-light);
     font-family: 'Outfit', sans-serif;
     transition: all 0.3s ease;
 }
@@ -38,6 +116,10 @@
     display: flex;
     gap: 16px;
     padding: 0;
+    transition: var(--navbar-transition);
+}
+#navbar-hamburger-button:checked ~ #navbar-sections {
+    flex-direction: column;
 }
 #navbar-sections li {
     list-style-type: none;
@@ -62,8 +144,9 @@
 }
 #navbar-color-slider {
     position: relative;
-    width: 128px;
+    width: var(--color-slider-width);
     height: 24px;
+    transition: var(--navbar-transition);
 }
 #navbar-color-slider #hue-bar {
     position: absolute;
@@ -87,7 +170,6 @@
         oklch(67% 0.1 330),
         oklch(67% 0.1 360)
     );
-    box-sizing: border-box;
     border-radius: 4px;
 }
 #navbar-color-slider #hue-slider {
@@ -113,4 +195,28 @@
     border: 2px solid var(--color-glow);
     border-radius: 4px;
     cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    #navbar-hamburger-icon {
+        display: block;
+    }
+    #navbar-color-slider {
+        position: fixed;
+        top: calc(var(--navbar-height) + 24px);
+        right: calc(-1 * var(--color-slider-width) - var(--navbar-side-menu-padding));
+    }
+    #navbar-hamburger-button:checked ~ #navbar-color-slider {
+        right: calc(var(--navbar-side-menu-padding));
+    }
+    #navbar-sections {
+        flex-direction: column;
+        align-items: end;
+        position: fixed;
+        top: calc(var(--navbar-height) + 64px);
+        right: calc(-1 * var(--navbar-side-menu-width) - var(--navbar-side-menu-padding));
+    }
+    #navbar-hamburger-button:checked ~ #navbar-sections {
+        right: var(--navbar-side-menu-padding);
+    }
 }

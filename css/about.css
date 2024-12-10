@@ -1,15 +1,25 @@
 #about {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    padding-block: 0;
 }
 #about-left {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    height: var(--display-screen-height);
+}
+#about-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 #about-left #circle-image {
-    width: 80%;
+    min-height: 100px;
+    max-height: 40%;
+    max-width: 90%;
     aspect-ratio: 1;
     border-radius: 50%;
     overflow: hidden;
@@ -26,32 +36,34 @@
     width: 100%;
     height: auto;
 }
-#about-left h1 {
+#about-links h1 {
     font-family: 'Outfit', sans-serif;
     margin: 0;
-    padding: 42px 0 8px 0;
-    font-size: 64px;
+    padding: 16px 0 8px 0;
+    font-size: 48px;
     color: var(--color-glow);
     text-shadow: 0 0 8px var(--color-dark);
 }
-#about-left h2 {
+#about-links h2 {
     margin: 0;
     font-size: 16px;
     color: var(--color-light);
     text-shadow: 0 0 8px var(--color-dark);
 }
-#about-left #social-links {
+#about-links #social-links {
     display: flex;
     flex-direction: row;
-    padding-top: 16px;
+    /*width: 100%;*/
+    /*justify-content: space-between;*/
+    gap: 24px;
+    padding-top: 20px;
     margin-bottom: 0;
-    gap: 40px;
     padding-left: 0;
 }
-#about-left #social-links li {
+#about-links #social-links li {
     list-style-type: none;
 }
-#about-left #social-links li a {
+#about-links #social-links li a {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -67,7 +79,7 @@
         drop-shadow(0px 0px 0px var(--color-bg));
     transition: all 0.3s ease;
 }
-#about-left #social-links li a:hover {
+#about-links #social-links li a:hover {
     color: var(--color-dark);
     filter:
         drop-shadow(0px 0px 5px var(--color-light))
@@ -76,9 +88,12 @@
         drop-shadow(0px 0px 30px var(--color-glow));
     text-shadow: none;
 }
-#about-left #social-links li a img {
+#about-links #social-links li a img {
     width: 48px;
     height: 48px;
+}
+#about-divider {
+    display: none;
 }
 #about-right {
     display: flex;
@@ -106,4 +121,44 @@
     text-shadow:
         0 0 5px var(--color-dark),
         0 0 20px var(--color-dark);
+}
+
+@media (max-width: 768px) {
+    #about {
+        grid-template-columns: 1fr;
+        padding: 0 16px;
+    }
+    #about-left {
+        padding: 16px 0;
+    }
+    #about-divider {
+        display: block;
+    }
+    #about-right {
+        padding-inline: 8px;
+        padding-block: 64px;
+    }
+}
+@media (max-width: 768px) and (orientation: landscape) {
+    #about-left {
+        flex-direction: row;
+        gap: 32px;
+    }
+    #about-left #circle-image {
+        max-height: 70%;
+    }
+}
+@media (max-width: 500px) {
+    #about-right h1 {
+        font-size: 36px;
+        text-align: center;
+    }
+}
+@media (min-width: 501px) and (max-width: 768px) {
+    #about-right h1 {
+        align-self: center;
+    }
+    #about-right {
+        padding-inline: 96px;
+    }
 }

@@ -8,16 +8,18 @@ const stars = document.querySelectorAll('.star');
 const minStarSize = 4;
 const maxStarSize = 8;
 const padding = 8;
-starsContainerWidth = document.getElementById('contact-left').offsetWidth;
-starsContainerHeight = document.getElementById('contact-left').offsetHeight;
-stars.forEach((star, index) => {
-    star.style.opacity = Math.random() * 2 - 1;
-    star.style.fontSize = Math.random() * (maxStarSize - minStarSize) + minStarSize + 'px';
-    star.style.left = Math.random() * (starsContainerWidth - maxStarSize - 2 * padding) + padding + maxStarSize / 2 + 'px';
-    star.style.top = Math.random() * (starsContainerHeight - maxStarSize - 2 * padding) + padding + maxStarSize / 2 + 'px';
-})
+let starsContainerWidth = document.getElementById('contact-left').offsetWidth;
+let starsContainerHeight = document.getElementById('contact-left').offsetHeight;
+function generateStars() {
+    stars.forEach((star) => {
+        star.style.opacity = Math.random() * 2 - 1;
+        star.style.fontSize = Math.random() * (maxStarSize - minStarSize) + minStarSize + 'px';
+        star.style.left = Math.random() * (starsContainerWidth - maxStarSize - 2 * padding) + padding + maxStarSize / 2 + 'px';
+        star.style.top = Math.random() * (starsContainerHeight - maxStarSize - 2 * padding) + padding + maxStarSize / 2 + 'px';
+    })
+}
 function twinkle() {
-    stars.forEach((star, index) => {
+    stars.forEach((star) => {
         star.style.opacity = Math.random() * 2 - 1;
         star.style.fontSize = Math.random() * (maxStarSize - minStarSize) + minStarSize + 'px';
         star.style.left = star.style.left - star.style.fontSize / 2 + 'px';
@@ -66,7 +68,13 @@ function shootStar() {
         Math.random() * 9000 + 1000
     );
 }
+window.addEventListener('load', generateStars);
 window.addEventListener('load', twinkle);
 window.addEventListener('load', () => {
     setTimeout(shootStar, 5000);
+});
+window.addEventListener('resize', () => {
+    starsContainerWidth = document.getElementById('contact-left').offsetWidth;
+    starsContainerHeight = document.getElementById('contact-left').offsetHeight;
+    generateStars();
 });

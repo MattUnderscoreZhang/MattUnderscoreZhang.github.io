@@ -1,0 +1,31 @@
+/* Common Breakpoints */
+@media (max-width: 480px) {
+    /* Small phones */
+    /* min-supported: 320px; */
+}
+@media (min-width: 481px) and (max-width: 768px) {
+    /* Large or portrait-mode phones */
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Tablets */
+}
+@media (min-width: 1025px) and (max-width: 1440px) {
+    /* Laptops */
+}
+@media (min-width: 1441px) {
+    /* Large monitors */
+    /* max-supported: 1920px; */
+}
+
+/* Most Common Screen Sizes (WxH) */
+/* 320px x 480px: older small phones */
+/* 375px x 667px: older small phones */
+/* 414px x 896px: newer small phones */
+/* 768px x 1024px: small tablets */
+/* 800px x 1280px: medium tablets */
+/* 1080px x 1920px: large tablets */
+/* 1366px x 768px: budget laptops */
+/* 1440px x 900px: older laptops */
+/* 1920px x 1080px: HD laptops */
+/* 2560px x 1440px: 2K monitors */
+/* 3840px x 2160px: 4K monitors */

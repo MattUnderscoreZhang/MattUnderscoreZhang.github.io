@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <title>Matt Zhang's Portfolio Website</title>
     <meta name="author" content="Matt Zhang">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon">  <!--Secular One font-->
     <meta name="description" content="Matt Zhang's Portfolio Website">
 
-    <!--Fonts-->
+    <!--fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Kalam:wght@300&Lato:wght@400;700&family=Outfit:wght@700&display=swap" as="style">
@@ -31,10 +31,12 @@
 </head>
 
 <body>
+    <!--build HTML with JS-->
     <script src="js/html-loader.js"></script>
+    <header></header>
     <script>
-        const body = document.querySelector('body');
-        createElement(body, 'nav', null, 'floating-navbar', 'html/floating-navbar.html');
+        const header = document.querySelector('header');
+        createElement(header, 'nav', null, 'navbar', 'html/navbar.html');
     </script>
     <main></main>
     <script>
@@ -52,6 +54,7 @@
     </script>
 
     <!--Javascript-->
+    <script src="js/navbar.js"></script>
     <script src="js/navbar-highlight.js"></script>
     <script src="js/navbar-name-lights.js"></script>
     <script src="js/color-slider.js"></script>
@@ -59,6 +62,8 @@
     <script src="js/stars.js"></script>
     <script src="js/fireworks.js"></script>
     <script src="js/contact-form-submit.js"></script>
+    <script src="js/mobile-hover.js"></script>
+    <script src="js/fix-rotation-zoom.js"></script>
 </body>
 
 </html>
