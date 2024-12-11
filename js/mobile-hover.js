@@ -21,10 +21,8 @@ function findHoverElements() {
     return hoverElements;
 }
 
-console.log('Hover elements:', findHoverElements());
 findHoverElements().forEach(element => {
-    element.addEventListener('click', () => {
-        document.querySelectorAll('.hover-simulate').forEach(el => el.classList.remove('hovered'));
-        element.classList.add('hovered');
-    });
+    element.addEventListener('click', () => {});
+    //element.addEventListener('touchstart', () => {});
+    //element.addEventListener('touchend', () => {element.blur();});
 });
