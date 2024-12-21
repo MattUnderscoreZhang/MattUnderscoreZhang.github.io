@@ -1,8 +1,392 @@
 <h1>Timeline</h1>
-<!--timelinejs-->
-<!--https://freefrontend.com/css-timelines/-->
-<p>My education and work experience:</p>
-<ul>
-    <li>blah</li>
-    <li>vertical scrolling timeline</li>
-</ul>
+<div id="timeline-items">
+    <div class="timeline-item">
+        <div class="timeline-item-line"></div>
+        <div class="timeline-item-dot"></div>
+        <div class="timeline-item-card">
+            <div class="timeline-item-card-left">
+                <div class="timeline-item-title">
+                    Created LLM agent for autonomous penetration testing
+                </div>
+                <div class="timeline-item-date">
+                    — Apr 2024 - Oct 2024 —
+                </div>
+                <div class="timeline-item-role">
+                    Senior Data Scientist
+                    <br>
+                    SimSpace
+                </div>
+            </div>
+            <div class="timeline-item-card-right">
+                <div class="timeline-item-description">
+                    This was a new approach to the RL agent I created from 2020-2023. Since the work involving networking and attack actuation was already done from the last agent, this project went a lot faster. The biggest lift was integrating with other company services.
+                    <br><br>
+                    I created a logic system for the LLM agent to reference attack objectives, consult a library of available actions, read dossiers on the threat actor to emulate, track range information, etc. to simulate a user-specified cyberattack.
+                    <br><br>
+                    Compared to the RL agent, this one is able to carry out new attacks without retraining. It was made specifically to go with auto-generated attack reports I worked on earlier that year.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="timeline-item">
+        <div class="timeline-item-line"></div>
+        <div class="timeline-item-dot"></div>
+        <div class="timeline-item-card">
+            <div class="timeline-item-card-left">
+                <div class="timeline-item-title">
+                    Created LLM agent for auto-generating reports on attack actors
+                </div>
+                <div class="timeline-item-date">
+                    — Dec 2023 - Feb 2024 —
+                </div>
+                <div class="timeline-item-role">
+                    Senior Data Scientist
+                    <br>
+                    SimSpace
+                </div>
+            </div>
+            <div class="timeline-item-card-right">
+                <div class="timeline-item-description">
+                    I wrote an agent to gather open-source data on cyberattacks and generate dossiers about the attackers.
+                    <br><br>
+                    This agent uses a combination of RAG on imported documents and a logic graph to answer questions and assemble a report. To do this, it also references my company's current list of available attack actions, and can suggest new ones for us to implement.
+                    <br><br>
+                    The goal of this project was to make new attacks available to emulate on-platform as soon as they were publicly known.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="timeline-item">
+        <div class="timeline-item-line"></div>
+        <div class="timeline-item-dot"></div>
+        <div class="timeline-item-card">
+            <div class="timeline-item-card-left">
+                <div class="timeline-item-title">
+                    Rewrote my company's entire penetration testing actuation backend
+                </div>
+                <div class="timeline-item-date">
+                    — Apr 2023 - Dec 2024 —
+                </div>
+                <div class="timeline-item-role">
+                    Senior Data Scientist
+                    <br>
+                    SimSpace
+                </div>
+            </div>
+            <div class="timeline-item-card-right">
+                <div class="timeline-item-description">
+                    This was a legacy system containing some of our company's core business logic, written by 20+ engineers over the past decade.
+                    <br><br>
+                    I simplified and rewrote the entire system, reducing the codebase size by 80%, increasing code quality, and adding functionality.
+                    <br><br>
+                    The new system is modular and extensible, unit and integration tested, and is currently being deployed to customers.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="timeline-item">
+        <div class="timeline-item-line"></div>
+        <div class="timeline-item-dot"></div>
+        <div class="timeline-item-card">
+            <div class="timeline-item-card-left">
+                <div class="timeline-item-title">
+                    Created penetration testing tools for cyber ranges
+                </div>
+                <div class="timeline-item-date">
+                    — Feb 2023 – Present —
+                </div>
+                <div class="timeline-item-role">
+                    Senior Data Scientist
+                    <br>
+                    SimSpace
+                </div>
+            </div>
+            <div class="timeline-item-card-right">
+                <div class="timeline-item-description">
+                    The core business of SimSpace is to develop tools for VM ranges used by militaries, national governments, and large companies for cyber defense training.
+                    <br><br>
+                    Some of my work involved Docker swarm deployment using custom tools, integration testing, setting up proxy-tunnel communications, building attack actuators, synchronizing logging across multiple ranges, coordinating messages between services, setting up CI/CD, etc.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="timeline-item">
+        <div class="timeline-item-line"></div>
+        <div class="timeline-item-dot"></div>
+        <div class="timeline-item-card">
+            <div class="timeline-item-card-left">
+                <div class="timeline-item-title">
+                    Led a team to create an RL agent for autonomous penetration testing
+                </div>
+                <div class="timeline-item-date">
+                    — Sep 2020 – Feb 2023 —
+                </div>
+                <div class="timeline-item-role">
+                    Senior Data Scientist
+                    <br>
+                    SimSpace
+                </div>
+            </div>
+            <div class="timeline-item-card-right">
+                <div class="timeline-item-description">
+                    This was my first project at SimSpace. I was hired as an individual contributor, but was promoted to team lead within two months of starting. As team lead, I hired and led a team of seven, and was the primary contributor to our codebase.
+                    <br><br>
+                    The goal of this project was to create an ML agent that could perform penetration testing on-demand at the level of a team of humans. All parts of this project were built from scratch, including building the attack actuation tools, writing executable payloads, setting up networking and communications, building the simulated network for training, writing the RL algorithms, training the agent, tracking experiments, generating after-action reports, etc.
+                    <br><br>
+                    We used RL techniques such as DQN, DRQN, ReF-ER, and hierarchical RL, with cybersecurity-specific modifications. We also explored approaches such as behavior trees, Bayesian techniques, and heuristics based on environment state.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="timeline-item">
+        <div class="timeline-item-line"></div>
+        <div class="timeline-item-dot"></div>
+        <div class="timeline-item-card">
+            <div class="timeline-item-card-left">
+                <div class="timeline-item-title">
+                    Analyzed particle collision data in a search for evidence of the existence of supersymmetric particles
+                </div>
+                <div class="timeline-item-date">
+                    — May 2019 – Sep 2020 —
+                </div>
+                <div class="timeline-item-role">
+                    Graduate Researcher
+                    <br>
+                    UIUC, CERN
+                </div>
+            </div>
+            <div class="timeline-item-card-right">
+                <div class="timeline-item-description">
+                    This was my PhD work. It involved working with an international collaboration to search for evidence of theories beyond the Standard Model of Physics.
+                    <br><br>
+                    In this project, I analyzed data from the ATLAS detector at CERN, developing statistical techniques for estimating collision backgrounds based on correlated particle decay products.
+                    <br><br>
+                    There's a lot more to it, but for more information you can read <a href="https://hdl.handle.net/2142/110404">my PhD thesis</a>.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="timeline-item">
+        <div class="timeline-item-line"></div>
+        <div class="timeline-item-dot"></div>
+        <div class="timeline-item-card">
+            <div class="timeline-item-card-left">
+                <div class="timeline-item-title">
+                    Created an ML system to identify leptons in a detector based on reconstructed tracks
+                </div>
+                <div class="timeline-item-date">
+                    — Jan 2019 – Sep 2020 —
+                </div>
+                <div class="timeline-item-role">
+                    Graduate Researcher
+                    <br>
+                    UIUC, CERN
+                </div>
+            </div>
+            <div class="timeline-item-card-right">
+                <div class="timeline-item-description">
+                    I trained an RNN-based tool for identification of low-energy leptons based on reconstructed tracks.
+                    <br><br>
+                    This tool could identify the particle decay origin, the energy and angular trajectory of the particle, and the particle type.
+                    <br><br>
+                    I improved accuracy and background rejection over the previous best algorithm, which relied on boosted decision trees. My tool has subsequently been used in physics searches involving leptons from low-mass-difference decays.
+                    <br><br>
+                    For this project, I supervised one undergraduate researcher.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="timeline-item">
+        <div class="timeline-item-line"></div>
+        <div class="timeline-item-dot"></div>
+        <div class="timeline-item-card">
+            <div class="timeline-item-card-left">
+                <div class="timeline-item-title">
+                    Programmed track-finding firmware for an ATLAS detector upgrade
+                </div>
+                <div class="timeline-item-date">
+                    — Jan 2018 – June 2020 —
+                </div>
+                <div class="timeline-item-role">
+                    Graduate Researcher
+                    <br>
+                    UIUC, CERN
+                </div>
+            </div>
+            <div class="timeline-item-card-right">
+                <div class="timeline-item-description">
+                    CERN processes a high volume of streaming data from particle collisions (about a petabyte per second). In order to successfully deal with this data, you need several layers of reconstruction algorithms working across both hardware and software.
+                    <br><br>
+                    For this detector upgrade, we were increasing our luminosity even more, and required a new firware-level processing step. I developed FPGA algorithms to partially reconstruct ~100k collision events per second. My part of the firmware was in charge of segmenting and storing detections, flushing old detections, and performing simple pattern matching at nanosecond time scales.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="timeline-item">
+        <div class="timeline-item-line"></div>
+        <div class="timeline-item-dot"></div>
+        <div class="timeline-item-card">
+            <div class="timeline-item-card-left">
+                <div class="timeline-item-title">
+                    Created ML algorithms to identify particles from calorimeter decay showers, and generate simulated showers 
+                </div>
+                <div class="timeline-item-date">
+                    — Feb 2017 – Nov 2019 —
+                </div>
+                <div class="timeline-item-role">
+                    Graduate Researcher
+                    <br>
+                    UIUC, CERN
+                </div>
+            </div>
+            <div class="timeline-item-card-right">
+                <div class="timeline-item-description">
+                    This work was for CLIC, a proposed linear collider. We were interested in seeing how particle reconstruction and identification could be improved using CLIC's new, more-granular, calorimeter geometry.
+                    <br><br>
+                    I lead a team of nine researchers for this project, and presented results at international workshops and seminars, including NeurIPS.
+                    <br><br>
+                    The work involved training vision recognition algorithms on point-cloud data from simulated decay showers in the CLIC calorimeters. We created algorithms that could determine particle decay type, estimate particle energy, and reconstruct flight trajectory. We improved classification accuracies over existing techniques by over 40x in certain energy regimes useful for next-gen physics searches.
+                    <br><br>
+                    Furthermore, we showed that the tool could be adapted for use in existing detectors with non-uniform calorimeter geometries, like ATLAS and CMS, still outperforming existing reconstruction algorithms.
+                    <br><br>
+                    We also created another GAN-based tool that could generate simulated calorimeter showers. This was to decrease computational load for event simulation, which took up most of CERN's computing resources.
+                    <br><br>
+                    This training was performed on the Blue Waters supercomputing cluster at UIUC.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="timeline-item">
+        <div class="timeline-item-line"></div>
+        <div class="timeline-item-dot"></div>
+        <div class="timeline-item-card">
+            <div class="timeline-item-card-left">
+                <div class="timeline-item-title">
+                    Improved algorithm to reconstruct vertices in particle collision events
+                </div>
+                <div class="timeline-item-date">
+                    — Apr 2015 – Apr 2016 —
+                </div>
+                <div class="timeline-item-role">
+                    Graduate Researcher
+                    <br>
+                    UIUC, CERN
+                </div>
+            </div>
+            <div class="timeline-item-card-right">
+                <div class="timeline-item-description">
+                    With an LHC luminosity upgrade coming up, CERN needed to improve most of its reconstruction algorithms to deal with the larger volume of data. In a typical event, where two bunches of protons cross with each other, multiple collisions can occur. This problem would be greatly exacerbated by the higher luminosity, requiring better algorithms to reconstruct the separate collision vertices.
+                    <br><br>
+                    I applied unsupervised clustering and FFT-based techniques on 3D voxelated data to improve our vertex finding, improving reconstruction efficiency and computing time over the previous best algorithm. I presented this work at several international conferences.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="timeline-item">
+        <div class="timeline-item-line"></div>
+        <div class="timeline-item-dot"></div>
+        <div class="timeline-item-card">
+            <div class="timeline-item-card-left">
+                <div class="timeline-item-title">
+                    Developed photon detector lenses for the South Pole Telescope
+                </div>
+                <div class="timeline-item-date">
+                    — May 2014 – Dec 2014 —
+                </div>
+                <div class="timeline-item-role">
+                    Graduate Researcher
+                    <br>
+                    UIUC
+                </div>
+            </div>
+            <div class="timeline-item-card-right">
+                <div class="timeline-item-description">
+                    I worked on developing focusing and detection planes for the third-generation photon detector upgrade in the South Pole Telescope. This upgrade aimed to maximize light collection at three sub-millimeter wavelengths, in order to gather more data about early universe conditions.
+                    <br><br>
+                    I designed, simulated, manufactured, and tested sub-millimeter wavelength optical components including circuitry and lenses. We ended up manufacturing the lenses via thermoforming, bonding together three separate plastic layers into a single lens with optimal performance characteristics.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="timeline-item">
+        <div class="timeline-item-line"></div>
+        <div class="timeline-item-dot"></div>
+        <div class="timeline-item-card">
+            <div class="timeline-item-card-left">
+                <div class="timeline-item-title">
+                    Taught an intro ML course in a prison
+                </div>
+                <div class="timeline-item-date">
+                    — Jan 2019 – June 2019 —
+                </div>
+                <div class="timeline-item-role">
+                    Graduate Researcher
+                    <br>
+                    UIUC, Education Justice Project
+                </div>
+            </div>
+            <div class="timeline-item-card-right">
+                <div class="timeline-item-description">
+                    I taught an ML intro course for prisoners at Danville Correctional Center. This program was geared towards prisoners with upcoming release dates, to help gain applicable job skills.
+                    <br><br>
+                    These students were motivated, and had previous classes in calculus and Python. I helped students develop simple applications in image recognition, text parsing, game playing, GAN, etc. This course counted for CS credit in the U Illinois system.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="timeline-item">
+        <div class="timeline-item-line"></div>
+        <div class="timeline-item-dot"></div>
+        <div class="timeline-item-card">
+            <div class="timeline-item-card-left">
+                <div class="timeline-item-title">
+                    Measured plasmon propagation physics on metamaterials
+                </div>
+                <div class="timeline-item-date">
+                    — Jan 2012 – July 2013 —
+                </div>
+                <div class="timeline-item-role">
+                    Undergrad Researcher
+                    <br>
+                    UTexas
+                </div>
+            </div>
+            <div class="timeline-item-card-right">
+                <div class="timeline-item-description">
+                    Our lab was interested in creating and measuring the properties of metamaterials, which were materials grown in such a way that they had interesting optical properties. My project involved epitaxially grown silver, where there were very few grain boundaries in the atomic structure.
+                    <br><br>
+                    In this work, I set up and operated a laser system for launching plasmonic resonances on a target material. We tested plasmon propagation distances on epitaxial silver and thermally-deposited silver, showing longer propagation in the epitaxial material in accordance with theory.
+                    <br><br>
+                    For this project I worked with thermal vapor deposition, characterized materials with ellipsometry, set up femtosecond optics systems, worked with cryogenics, etched grooves with electron beam microscopy, and used AFM microscopy.
+                    <br><br>
+                    For more information you can read <a href="https://www.dropbox.com/scl/fi/iid91ek5e49idvl3orenu/2013-05-15-Undergrad-Thesis.pdf?rlkey=qpb5r33yasv0b2zkgzpdz9q42&dl=0">my undergrad thesis</a>.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="timeline-item">
+        <div class="timeline-item-line"></div>
+        <div class="timeline-item-dot"></div>
+        <div class="timeline-item-card">
+            <div class="timeline-item-card-left">
+                <div class="timeline-item-title">
+                    Graphene synthesis
+                </div>
+                <div class="timeline-item-date">
+                    — May 2011 – Jan 2012 —
+                </div>
+                <div class="timeline-item-role">
+                    Undergrad Researcher
+                    <br>
+                    UTexas
+                </div>
+            </div>
+            <div class="timeline-item-card-right">
+                <div class="timeline-item-description">
+                    In this project we investigated copper-catalytic growth of monolayer graphene using RF heating in a zero-flow gas environment. In other words, we flowed gas over a hot piece of copper, growing single layers of graphene with as few grain boundaries as possible.
+                    <br><br>
+                    I helped assemble the vapor deposition chamber, the RF heating system, and the ultra-high vacuum system. I ran growth tests and performed analysis using Raman spectroscopy and SEM imaging.
+                </div>
+            </div>
+    </div>
+</div>
