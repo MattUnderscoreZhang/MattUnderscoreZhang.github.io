@@ -6,7 +6,7 @@
     <title>Matt Zhang's Portfolio Website</title>
     <meta name="author" content="Matt Zhang">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">  <!--Secular One font-->
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">  <!--Secular One font-->
     <meta name="description" content="Matt Zhang's Portfolio Website">
 
     <!--fonts-->
@@ -16,16 +16,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kalam:wght@300&Lato:wght@400;700&family=Outfit:wght@700&display=swap" media="print" onload="this.media='all'">
 
     <!--CSS-->
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/css/index/main.css">
     <meta name="theme-color" content=var(--color-bg)>
-    <link rel="stylesheet" href="css/navbar.css">
-    <link rel="stylesheet" href="css/navigation-anchors.css">
-    <link rel="stylesheet" href="css/section.css">
-    <link rel="stylesheet" href="css/section-divider.css">
-    <link rel="stylesheet" href="css/about.css">
-    <link rel="stylesheet" href="css/skills.css">
-    <link rel="stylesheet" href="css/timeline.css">
-    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="/css/index/navbar.css">
+    <link rel="stylesheet" href="/css/index/navigation-anchors.css">
+    <link rel="stylesheet" href="/css/index/section.css">
+    <link rel="stylesheet" href="/css/index/section-divider.css">
+    <link rel="stylesheet" href="/css/index/about.css">
+    <link rel="stylesheet" href="/css/index/skills.css">
+    <link rel="stylesheet" href="/css/index/timeline.css">
+    <link rel="stylesheet" href="/css/index/contact.css">
 </head>
 
 <body>
@@ -33,8 +33,9 @@
     <noscript>
         <style>
             html { margin: 0; }
+            body { display: flex; justify-content: center; }
         </style>
-        <div style="display: flex; justify-content: center; align-items: center; height: 100vh; text-align: center; width: 256px; max-width: 80%; margin: 0 auto;">
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; text-align: center; max-width: 280px; margin: 0 auto;">
             <p style="color: var(--color-dark); text-shadow: 0 0 5px var(--color-light), 0 0 10px var(--color-light);">
                 Please enable JavaScript in your browser to view this site.
             </p>
@@ -42,38 +43,38 @@
     </noscript>
 
     <!--build HTML with JS-->
-    <script src="js/html-loader.js"></script>
+    <script src="/js/common/html-loader.js"></script>
     <header></header>
     <script>
         const header = document.querySelector('header');
-        createElement(header, 'nav', null, 'navbar', 'html/navbar.html');
+        createElement(header, 'nav', null, 'navbar', '/html/index/navbar.html');
     </script>
     <main></main>
     <script>
-        createSection('about');
+        createSection('index', 'about');
         createDivider();
-        createSection('skills');
+        createSection('index', 'skills');
         createDivider();
-        createSection('timeline');
+        createSection('index', 'timeline');
         <!--createDivider();-->
-        <!--createSection('projects');-->
+        <!--createSection('index', 'projects');-->
         <!--createDivider();-->
-        <!--createSection('papers');-->
+        <!--createSection('index', 'papers');-->
         createDivider();
-        createSection('contact');
+        createSection('index', 'contact');
     </script>
 
     <!--Javascript-->
-    <script src="js/navbar.js"></script>
-    <script src="js/navbar-highlight.js"></script>
-    <script src="js/navbar-name-lights.js"></script>
-    <script src="js/color-slider.js"></script>
-    <script src="js/portrait-lights.js"></script>
-    <script src="js/stars.js"></script>
-    <script src="js/fireworks.js"></script>
-    <script src="js/contact-form-submit.js"></script>
-    <script src="js/mobile-hover.js"></script>
-    <script src="js/fix-rotation-zoom.js"></script>
+    <script src="/js/index/navbar.js"></script>
+    <script src="/js/index/navbar-highlight.js"></script>
+    <script src="/js/index/navbar-name-lights.js"></script>
+    <script src="/js/index/color-slider.js"></script>
+    <script src="/js/index/portrait-lights.js"></script>
+    <script src="/js/index/stars.js"></script>
+    <script src="/js/index/fireworks.js"></script>
+    <script src="/js/index/contact-form-submit.js"></script>
+    <script src="/js/index/mobile-hover.js"></script>
+    <script src="/js/index/fix-rotation-zoom.js"></script>
 </body>
 
 </html>

@@ -25,12 +25,12 @@ function createElement(docLocation, elemType, elemClass, elemId, htmlPath) {
     }
     docLocation.appendChild(element);
 }
-function createSection(sectionId) {
+function createSection(folder, sectionId) {
     const main = document.querySelector('main');
     createElement(main, 'a', 'anchor', sectionId + '-anchor', null);
-    createElement(main, 'section', 'section', sectionId, 'html/' + sectionId + '.html');
+    createElement(main, 'section', 'section', sectionId, '/html/' + folder + '/' + sectionId + '.html');
 }
 function createDivider() {
     const main = document.querySelector('main');
-    createElement(main, 'div', 'divider', null, 'html/divider.html');
+    createElement(main, 'div', 'divider', null, '/html/index/divider.html');
 }
