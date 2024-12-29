@@ -14,7 +14,11 @@
             margin: 0;
         }
         body {
-            --color-primary: #ff83b0ff;
+            --hue: 127;
+            --color-primary: oklch(76% 0.16 var(--hue));
+            --color-pale: oklch(88% 0.07 var(--hue));
+            --color-light: oklch(95% 0.07 var(--hue));
+            --color-dark: oklch(34% 0.14 var(--hue));
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -26,7 +30,7 @@
         }
         #nav-menu {
             width: 280px;
-            height: 80%;
+            height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -37,11 +41,10 @@
         }
         .nav-menu-item a {
             text-decoration: none;
-            font-weight: 700;
             color: var(--color-primary);
         }
         .nav-menu-item.highlighted a {
-            font-weight: bold;
+            font-weight: 700;
         }
         #slides {
             width: 100%;
@@ -58,9 +61,6 @@
             align-items: center;
             font-size: 2rem;
             font-weight: bold;
-        }
-        #slide-examine-your-life {
-            background-color: var(--color-primary);
         }
     </style>
 </head>
@@ -120,7 +120,7 @@
             const slides = document.getElementById("slides");
             slides.appendChild(slide);
         }
-        createSlide("purpose", "Purpose");
+        createSlide("home", "Home");
         createSlide("examine-your-life", "Examine Your Life");
         createSlide("find-your-purpose", "Find Your Purpose");
         createSlide("change-your-habits", "Change Your Habits");
@@ -128,18 +128,14 @@
         createSlide("control-your-data", "Control Your Data");
         createSlide("join-the-waitlist", "Join the Waitlist");
     </script>
-    <script>
-        const slideshow = document.getElementById('slides');
-        const contents = document.querySelectorAll('.content');
-        let currentSlide = 0;
-        function highlightContent() {
-            contents[currentSlide].classList.remove('highlighted');
-            currentSlide = Math.round(slideshow.scrollTop / window.innerHeight);
-            contents[currentSlide].classList.add('highlighted');
-        }
-        slideshow.addEventListener('scroll', highlightContent);
-        window.onload = highlightContent;
-    </script>
+    <script src="/js/purpose/home.js"></script>
+    <script src="/js/purpose/examine-your-life.js"></script>
+    <script src="/js/purpose/find-your-purpose.js"></script>
+    <script src="/js/purpose/change-your-habits.js"></script>
+    <script src="/js/purpose/choose-your-tools.js"></script>
+    <script src="/js/purpose/control-your-data.js"></script>
+    <script src="/js/purpose/join-the-waitlist.js"></script>
+    <script src="/js/purpose/nav-menu-highlighting.js"></script>
 </body>
 
 </html>
