@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>A Snootful of Snow</title>
+    <meta name="author" content="Matt Zhang">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">  <!--Secular One font-->
+    <meta name="description" content="Matt Zhang's Portfolio Website - Bella the Dog in A Snootful of Snow">
+
+    <!--fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Kalam:wght@300&Lato:wght@400;700&family=Outfit:wght@700&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kalam:wght@300&Lato:wght@400;700&family=Outfit:wght@700&display=swap" media="print" onload="this.media='all'">
+
+    <!--CSS-->
+    <style>
+        html, body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        #canvas {
+            display: block;
+            width: 95vmin;
+            aspect-ratio: 1;
+            background-color: lightgray;
+        }
+    </style>
+</head>
+
+<body>
+    <!--require JS-->
+    <noscript>
+        <style>
+        </style>
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; text-align: center; max-width: 280px; margin: 0 auto;">
+            <p style="color: var(--color-dark); text-shadow: 0 0 5px var(--color-light), 0 0 10px var(--color-light);">
+                Please enable JavaScript in your browser to view this site.
+            </p>
+        </div>
+    </noscript>
+
+    <!--game-->
+    <canvas id="canvas"></canvas>
+
+    <!--Javascript-->
+    <script>
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+
+        // canvas info
+        function updateGameSize() {
+            const rect = canvas.getBoundingClientRect();  // rect is in screen display coordinates
+            canvas.width = 500;  // game coordinates
+            canvas.height = 500;  // game coordinates
+            canvas.scaleX = canvas.width / rect.width;  // how much you have to scale screen coordinates to get game coordinates
+            canvas.scaleY = canvas.height / rect.height;  // how much you have to scale screen coordinates to get game coordinates
+            canvas.screenLeft = rect.left;  // screen coordinates
+            canvas.screenTop = rect.top;  // screen coordinates
+        }
+        window.addEventListener('resize', updateGameSize);
+        updateGameSize();
+
+        // map
+        const map = {
+            width: 1024,
+            height: 1024,
+            bellaStartX: 512,
+            bellaStartY: 512,
+        };
+
+        // buried items
+        const buriedItems = [];
+        ["bone", "turkey", "pizza", "wizard", "treasure", "apple", "hamburger", "mouse"].forEach(item => {
+            buriedItems.push({
+                name: item,
+                x: Math.floor(Math.random() * map.width),
+                y: Math.floor(Math.random() * map.width),
+            });
+        })
+        const foundItems = [];
+
+        // Bella
+        const BellaAction = Object.freeze({
+            STANDING: 'standing',
+            WALKING: 'walking',
+            RUNNING: 'running',
+            DIGGING: 'digging',
+        });
+        const Direction = Object.freeze({
+            N: 'N',
+            NE: 'NE',
+            E: 'E',
+            SE: 'SE',
+            S: 'S',
+            SW: 'SW',
+            W: 'W',
+            NW: 'NW',
+        })
+        const bellaSize = 50;
+        const bella = {
+            color: "oklch(62% 0.13 85)",
+            x: map.bellaStartX,
+            y: map.bellaStartY,
+            targetOffsetX: 0,
+            targetOffsetY: 0,
+            size: bellaSize,  // game coordinates
+            displayX: canvas.width / 2 - bellaSize / 2,  // subtracting Bella's size
+            displayY: canvas.height / 2 - bellaSize / 2,  // subtracting Bella's size
+            walkingSpeed: 0.1,
+            runningSpeed: 0.5,
+            action: BellaAction.STANDING,
+            direction: Direction.S,
+            lastActionTime: Date.now(),
+            sniffMeter: 0,
+        };
+
+        // user interaction
+        let lastX = canvas.width / 2;
+        let lastY = canvas.height / 2;
+        let mouseDown = false;
+
+        function setNewTarget(e) {
+            e.preventDefault();  // prevent default scrolling behavior for touchscreens
+            const canvasX = (e.clientX - canvas.screenLeft) * canvas.scaleX;  // convert to game coordinates
+            const canvasY = (e.clientY - canvas.screenTop) * canvas.scaleY;  // convert to game coordinates
+            bella.targetOffsetX = canvasX - canvas.width / 2;
+            bella.targetOffsetY = canvasY - canvas.height / 2;
+        }
+        ['mousedown', 'touchstart'].forEach(event => {
+            canvas.addEventListener(event, (e) => {
+                mouseDown = true;
+                setNewTarget(e);
+            });
+        });
+        ['mousemove', 'touchmove'].forEach(event => {
+            canvas.addEventListener(event, setNewTarget);
+        });
+
+        function removeTarget() {
+            bella.targetOffsetX = 0;
+            bella.targetOffsetY = 0;
+        }
+        ['mouseup', 'touchend'].forEach(event => {
+            canvas.addEventListener(event, (e) => {
+                mouseDown = false;
+                removeTarget(e);
+            });
+        });
+
+        // animation settings
+        const animation = {
+            nFrames: 6,
+            frameTime: 0.2,
+        }
+
+        function changeBellaAction(action) {
+            if (action !== bella.action) {
+                bella.lastActionTime = Date.now();
+                bella.action = action;
+            }
+        }
+
+        // game loop
+        function gameLoop() {
+            // move Bella
+            const actionTime = (Date.now() - bella.lastActionTime) / 1000;  // in seconds
+            const frameN = Math.floor(actionTime / animation.frameTime) % animation.nFrames;
+            if (!mouseDown) {
+                changeBellaAction(BellaAction.STANDING);
+                bella.direction = Direction.S;
+            }
+            else {
+                const dX = bella.targetOffsetX;
+                const dY = bella.targetOffsetY;
+                const dR = Math.sqrt(dX * dX + dY * dY);
+                if (dR < bella.size / 2) {
+                    changeBellaAction(BellaAction.DIGGING);
+                    bella.direction = dX > 0 ? Direction.E : Direction.W;
+                }
+                else if (dR < 100) {
+                    changeBellaAction(BellaAction.WALKING);
+                    bella.x += (dX / dR) * bella.walkingSpeed;
+                    bella.y += (dY / dR) * bella.walkingSpeed;
+                }
+                else {
+                    changeBellaAction(BellaAction.RUNNING);
+                    bella.x += (dX / dR) * bella.runningSpeed;
+                    bella.y += (dY / dR) * bella.runningSpeed;
+                }
+                if (bella.action === BellaAction.WALKING || bella.action === BellaAction.RUNNING) {
+                    const factor = 2;
+                    if (Math.abs(dX) > Math.abs(dY) * factor) {  // more horizontal movement than vertical
+                        bella.direction = dX > 0 ? Direction.E : Direction.W;
+                    } else if (Math.abs(dY) > Math.abs(dX) * factor) {  // more vertical movement than horizontal
+                        bella.direction = dY > 0 ? Direction.S : Direction.N;
+                    } else {  // diagonal movement
+                        if (dX > 0 && dY > 0) bella.direction = Direction.SE;
+                        if (dX < 0 && dY > 0) bella.direction = Direction.SW;
+                        if (dX > 0 && dY < 0) bella.direction = Direction.NE;
+                        if (dX < 0 && dY < 0) bella.direction = Direction.NW;
+                    }
+                }
+            }
+
+            // sniff meter
+            let closestItemIndex = -1;
+            let closestDistance = Infinity;
+            buriedItems.forEach((item, index) => {
+                const dx = item.x - bella.x;
+                const dy = item.y - bella.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                if (distance < closestDistance) {
+                    closestItemIndex = index;
+                    closestDistance = distance;
+                }
+            });
+            const sniffRadius = 300;
+            bella.sniffMeter = Math.max(sniffRadius - closestDistance, 0) / sniffRadius;
+
+            // dig for treasure
+            if (bella.action === BellaAction.DIGGING) {
+                if (bella.sniffMeter >= 0.99 && frameN === animation.nFrames - 1) {
+                    const item = buriedItems.splice(closestItemIndex, 1)[0];
+                    foundItems.push(item);
+                }
+            }
+
+            // clear and draw canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = bella.color;
+            ctx.fillRect(bella.displayX, bella.displayY, bella.size, bella.size);
+            ctx.fillStyle = 'white';
+            ctx.font = '10px Arial';
+            ctx.fillText(bella.action, bella.displayX + 5, bella.displayY + bella.size / 2 - 10);
+            ctx.fillText(frameN, bella.displayX + 5, bella.displayY + bella.size / 2);
+            ctx.fillText(bella.direction, bella.displayX + 5, bella.displayY + bella.size / 2 + 10);
+            ctx.fillStyle = 'black';
+            ctx.fillText(`${bella.x.toFixed(2)}, ${bella.y.toFixed(2)}`, 5, 12);
+            ctx.fillText(`Sniff meter: ${bella.sniffMeter.toFixed(2)}`, 5, 22);
+            ctx.fillText("Found items:", 5, 32);
+            foundItems.forEach((item, index) => {
+                ctx.fillText(`${item.name}`, 5, 42 + index * 10);
+            })
+
+            // call the game loop every frame
+            requestAnimationFrame(gameLoop);
+        }
+        gameLoop();
+    </script>
+</body>
+
+</html>
