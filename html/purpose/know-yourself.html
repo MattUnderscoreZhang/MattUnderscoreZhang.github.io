@@ -1,0 +1,66 @@
+<style>
+    #examine-content {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        color: var(--color-dark);
+    }
+    #computer {
+        position: absolute;
+        top: 33%;
+        left: 20%;
+        width: 70%;
+        height: 30%;
+        background-color: var(--color-light);
+        border-radius: 50px;
+        border: 10px solid var(--color-dark);
+    }
+    #phone {
+        position: absolute;
+        top: 48%;
+        left: 10%;
+        width: 20%;
+        height: 20%;
+        background-color: var(--color-light);
+        border-radius: 50px;
+        border: 10px solid var(--color-dark);
+    }
+    #tagline {
+        z-index: 1;
+        position: absolute;
+        top: 20%;
+        left: 10%;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+    }
+    #purpose-functions {
+        z-index: 1;
+        position: absolute;
+        top: 70%;
+        right: 10%;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+    }
+    #purpose-function {
+        position: relative;
+        opacity: 1;
+        transition: opacity 1s;
+        text-align: right;
+    }
+</style>
+<div id="examine-content">
+    <div id="computer"></div>
+    <div id="phone"></div>
+    <div id="tagline">
+        <h1>Know Yourself</h1>
+        <p>Track whatever information is useful for you.</p>
+    </div>
+    <div id="purpose-functions">
+        <h1 class="logo">Purpose</h1>
+        <p id="purpose-function"></p>
+    </div>
+</div>

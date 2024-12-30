@@ -104,12 +104,12 @@ const phrases = [
     "What will make me proud of my life?",
 ];
 
-function createScrollingTextbar(top, fontsize) {
+function createScrollingTextbar(left, top, fontsize) {
     const scrollingTextbar = document.createElement("div");
     scrollingTextbar.classList.add("scrolling-textbar");
     scrollingTextbar.style.fontSize = `${fontsize}px`;
     scrollingTextbar.style.top = `${top}px`;
-    scrollingTextbar.style.left = "0px";
+    scrollingTextbar.style.left = `${left}px`;
     const homeContent = document.getElementById("home-content");
     homeContent.appendChild(scrollingTextbar);
     return scrollingTextbar;
@@ -148,10 +148,7 @@ function createScrollingText(scrollingTextbar, displacement, speed, delay) {
     return [scrollingText, createTimeout];
 }
 
-function fillWithScrollingText(scrollingTextbar) {
-    const speed = 100;
-    const gap = 50;
-    const delay = gap / speed;
+function fillWithScrollingText(scrollingTextbar, speed, gap, delay) {
     let displacement = -Math.random() * scrollingTextbar.clientWidth;
     while (displacement < scrollingTextbar.clientWidth) {
         const [scrollingText, createTimeout] = createScrollingText(scrollingTextbar, displacement, speed, delay);
@@ -163,9 +160,12 @@ function fillWithScrollingText(scrollingTextbar) {
     }
 }
 
+const speed = 100;
+const gap = 50;
+const delay = gap / speed;
 let offset = 0;
 for (let size = 80; size >= 5; size *= 0.95) {
-    const textbar = createScrollingTextbar(offset, Math.floor(size));
-    fillWithScrollingText(textbar);
+    const textbar = createScrollingTextbar(-gap, offset, Math.floor(size));
+    fillWithScrollingText(textbar, speed, gap, delay);
     offset += size * 2;
 }

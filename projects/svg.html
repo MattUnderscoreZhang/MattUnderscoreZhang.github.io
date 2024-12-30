@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Svg</title>
+    <meta name="author" content="Matt Zhang">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">  <!--Secular One font-->
+    <meta name="description" content="Matt Zhang's Portfolio Website">
+
+    <style>
+        svg {
+            width: 300px;
+            display: block;
+            position: absolute;
+        }
+        @keyframes dash {
+            from {
+                stroke-dashoffset: 320;
+            }
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+        svg .path {
+            stroke-dasharray: 320;
+            stroke-dashoffset: 0;
+            animation: dash 1s linear;
+        }
+    </style>
+</head>
+
+<body>
+    <svg width="300px" height="175px" version="1.1">
+        <path fill="transparent" stroke="#000000" stroke-width="4" d="M10 80 Q 77.5 10, 145 80 T 280 80" class="path"></path>
+    </svg>
+</body>
+
+</html>

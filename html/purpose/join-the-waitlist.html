@@ -1,2 +1,43 @@
-<h1>Join the Waitlist</h1>
-$20 a month, $200 a year, 1 month trial - half off for life for alpha customers
+<style>
+    #waitlist-container {
+        text-align: center;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 300px;
+    }
+    input[type="email"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+</style>
+<div id="waitlist-container">
+    <h1>Be the First to Know</h1>
+    <p>Join the waitlist and get half off for life</p>
+    <!--$20 a month, $200 a year, 1 month trial - half off for life for alpha customers-->
+    <form id="waitlist-form">
+        <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            required
+        />
+        <button type="submit">Join Waitlist</button>
+    </form>
+    <p id="confirmation" style="display: none;">Thank you! You're on the list.</p>
+</div>
