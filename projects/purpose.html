@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!--CSS-->
-    <link rel="stylesheet" href="/css/purpose/main.css">
+    <link rel="stylesheet" href="/css/purpose/purpose.css">
 </head>
 
 <body>
@@ -26,9 +26,7 @@
     </noscript>
 
     <!--build HTML with JS-->
-    <ul id="nav-menu">
-        <li class="logo" style="font-size:2rem">Purpose</li>
-    </ul>
+    <ul id="nav-menu"></ul>
     <div id="slides"></div>
     <script>
         const xhr = new XMLHttpRequest();
@@ -51,6 +49,11 @@
             const slideLink = document.createElement("a");
             slideLink.setAttribute("href", "#slide-" + sectionId);
             slideLink.textContent = navMenuText;
+            if (navMenuText === "Purpose") {
+                slideLink.classList.add("logo");
+                slideLink.style.fontSize = "2rem";
+                slideLink.style.color = "var(--color-dark)";
+            }
             const navMenuItem = document.createElement("li");
             navMenuItem.setAttribute("class", "nav-menu-item");
             navMenuItem.appendChild(slideLink);
@@ -68,21 +71,17 @@
             const slides = document.getElementById("slides");
             slides.appendChild(slide);
         }
-        createSlide("home", "Home");
-        createSlide("know-yourself", "Know Yourself");
-        createSlide("find-your-purpose", "Find Your Purpose");
-        createSlide("change-your-habits", "Change Your Habits");
-        createSlide("choose-your-tools", "Choose Your Tools");
-        createSlide("control-your-data", "Control Your Data");
-        createSlide("join-the-waitlist", "Join the Waitlist");
+        createSlide("home", "Purpose");
+        createSlide("about", "Hack Your Life");
+        createSlide("tools", "Choose Your Tools");
+        createSlide("data", "Control Your Data");
+        createSlide("waitlist", "Join the Waitlist");
     </script>
     <script src="/js/purpose/home.js"></script>
-    <script src="/js/purpose/know-yourself.js"></script>
-    <script src="/js/purpose/find-your-purpose.js"></script>
-    <script src="/js/purpose/change-your-habits.js"></script>
-    <script src="/js/purpose/choose-your-tools.js"></script>
-    <script src="/js/purpose/control-your-data.js"></script>
-    <script src="/js/purpose/join-the-waitlist.js"></script>
+    <script src="/js/purpose/about.js"></script>
+    <script src="/js/purpose/tools.js"></script>
+    <script src="/js/purpose/data.js"></script>
+    <script src="/js/purpose/waitlist.js"></script>
     <script src="/js/purpose/nav-menu-highlighting.js"></script>
 </body>
 

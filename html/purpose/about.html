@@ -1,0 +1,76 @@
+<style>
+    #examine-content {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        color: var(--color-dark);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    #purpose-functions {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+    }
+    #purpose-function {
+        position: relative;
+        opacity: 1;
+        transition: opacity 1s;
+        text-align: right;
+    }
+    #system-diagram {
+        width: 100%;
+        margin-block: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+    }
+    #system-inputs, #system-outputs {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+    #system-inputs li, #system-outputs li {
+        list-style: none;
+        width: 80px;
+        height: 80px;
+        overflow: hidden;
+        border: 1px solid var(--color-dark);
+    }
+    #system-control-panel {
+        width: 600px;
+        height: 400px;
+        border: 1px solid var(--color-dark);
+    }
+    #about-message {
+        width: 80%;
+        text-align: right;
+    }
+</style>
+<div id="examine-content">
+    <div id="purpose-functions">
+        <h1 class="logo">Purpose</h1>
+        <p id="purpose-function"></p>
+    </div>
+    <div id="system-diagram">
+        <ul id="system-inputs">
+            <li>Journal Entries</li>
+            <li>Plans</li>
+            <li>Check-Ins</li>
+        </ul>
+        <div id="system-control-panel">Control Panel</div>
+        <ul id="system-outputs">
+            <li>Alerts</li>
+            <li>Reports</li>
+            <li>Interactive Feedback</li>
+        </ul>
+    </div>
+    <div id="about-message">
+        <p>Purpose is a control panel for your life.</p>
+        <p>Track what matters to you, and Purpose will guide you toward your goals.</p>
+    </div>
+</div>

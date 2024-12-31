@@ -63,15 +63,12 @@ body {
 }
 .logo {
     font-family: 'ambery-garden', sans-serif;
-    font-size: 8rem;
+    font-size: 3rem;
     color: var(--color-dark);
 }
 
 @media (max-width: 920px) {
     #nav-menu {
         display: none;
-    }
-    .logo {
-        font-size: 3rem;
     }
 }

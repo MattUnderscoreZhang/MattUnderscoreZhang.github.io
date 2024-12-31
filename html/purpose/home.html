@@ -8,7 +8,7 @@
         color: var(--color-dark);
         overflow: hidden;
     }
-    #message {
+    #home-message {
         z-index: 1;
         position: absolute;
         bottom: 10%;
@@ -17,7 +17,10 @@
         flex-direction: column;
         align-items: end;
     }
-    .shadow-text {
+    .home-logo {
+        font-size: 8rem;
+    }
+    #shadow-text {
         position: absolute;
         top: 0;
         left: 0;
@@ -53,19 +56,22 @@
         #home-content {
             font-size: 1rem;
         }
-        #message {
+        #home-message {
             bottom: 15%;
+        }
+        .home-logo {
+            font-size: 3rem;
         }
     }
 </style>
 <div id="home-content">
     <canvas id="scrolling-canvas"></canvas>
-    <div id="message">
-        <div class="shadow-text">
+    <div id="home-message">
+        <div id="shadow-text">
             <p>Your life needs</p>
-            <h1 class="logo">Purpose</h1>
+            <h1 class="logo home-logo">Purpose</h1>
         </div>
         <p>Your life needs</p>
-        <h1 class="logo">Purpose</h1>
+        <h1 class="logo home-logo">Purpose</h1>
     </div>
 </div>

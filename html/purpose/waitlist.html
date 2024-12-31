@@ -3,33 +3,40 @@
         text-align: center;
         padding: 20px;
         border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        background-color: var(--color-light);
+        color: var(--color-dark);
+        box-shadow: 0 4px 6px var(--color-dark);
         width: 300px;
+    }
+    #waitlist-container p {
+        padding-block: 8px;
+        font-weight: normal;
     }
     input[type="email"] {
         width: 100%;
         padding: 10px;
         margin: 10px 0;
-        border: 1px solid #ddd;
+        border: 1px solid var(--color-light);
         border-radius: 4px;
     }
     button {
         width: 100%;
         padding: 10px;
-        background-color: #007bff;
-        color: white;
+        background-color: var(--color-dark);
+        color: var(--color-light);
         border: none;
         border-radius: 4px;
         cursor: pointer;
+        transition: color 0.3s, background-color 0.3s;
     }
     button:hover {
-        background-color: #0056b3;
+        background-color: var(--color-pale);
+        color: var(--color-dark);
     }
 </style>
 <div id="waitlist-container">
-    <h1>Be the First to Know</h1>
-    <p>Join the waitlist and get half off for life</p>
-    <!--$20 a month, $200 a year, 1 month trial - half off for life for alpha customers-->
+    <h1>Join the Waitlist</h1>
+    <p>And get 50% off for life!</p>
     <form id="waitlist-form">
         <input
             type="email"

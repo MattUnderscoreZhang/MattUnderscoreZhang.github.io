@@ -1,0 +1,86 @@
+<style>
+    #data-content {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    #data-private, #data-cloud {
+        height: 35%;
+        width: 30%;
+        padding: 30px;
+        border-radius: 12px;
+        background-color: var(--color-light);
+        color: var(--color-dark);
+        box-shadow: 0 6px 12px var(--color-dark);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    #data-private h1, #data-cloud h1 {
+        font-size: 1.75rem;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    #data-private p, #data-cloud p {
+        margin-bottom: 25px;
+        font-weight: normal;
+        text-align: center;
+    }
+    #data-private ul, #data-cloud ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        color: var(--color-dark);
+    }
+
+    #data-private ul li, #data-cloud ul li {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    /* Add icons or checkmarks next to list items */
+    #data-private ul li::before, #data-cloud ul li::before {
+        content: "✔️"; /* Checkmark */
+        margin-right: 10px;
+    }
+
+    /* Media query for responsiveness */
+    @media (max-width: 768px) {
+        #data-content {
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        #data-private, #data-cloud {
+            width: 80%; /* Adjust width for smaller screens */
+        }
+    }
+</style>
+<div id="data-content">
+    <div id="data-private">
+        <h1>Private Version</h1>
+        <p>- for maximum privacy -</p>
+        <ul>
+            <li>Ships with local LLM</li>
+            <li>Data stays on your device</li>
+            <li>Communication between devices happens only via Bluetooth</li>
+            <li>Requires personal GPU</li>
+        </ul>
+    </div>
+    <div id="data-cloud">
+        <h1>Cloud Version</h1>
+        <p>- for maximum convenience -</p>
+        <ul>
+            <li>Save and sync data across devices</li>
+            <li>Stronger language models</li>
+            <li>Download your data in plain text at any time</li>
+            <li>We will never access or use your data for any reason</li>
+        </ul>
+    </div>
+</div>
