@@ -51,7 +51,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2rem;
+    font-size: 1rem;
     font-weight: bold;
     overflow: hidden;
 }
@@ -70,9 +70,6 @@ body {
 @media (max-width: 920px) {
     #nav-menu {
         display: none;
-    }
-    .slide {
-        font-size: 1rem;
     }
     .logo {
         font-size: 3rem;

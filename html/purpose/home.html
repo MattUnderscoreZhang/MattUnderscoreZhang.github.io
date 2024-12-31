@@ -4,6 +4,7 @@
         height: 100%;
         width: 100%;
         background-color: var(--color-pale);
+        font-size: 2rem;
         color: var(--color-dark);
         overflow: hidden;
     }
@@ -46,6 +47,15 @@
         width: 100%;
         height: 100%;
         will-change: transform;
+    }
+
+    @media (max-width: 920px) {
+        #home-content {
+            font-size: 1rem;
+        }
+        #message {
+            bottom: 15%;
+        }
     }
 </style>
 <div id="home-content">
