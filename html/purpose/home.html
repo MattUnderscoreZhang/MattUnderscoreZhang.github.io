@@ -7,41 +7,6 @@
         color: var(--color-dark);
         overflow: hidden;
     }
-    .scrolling-textbar {
-        position: absolute;
-        width: 120%;
-        /*border: 1px solid var(--color-primary);*/
-        color: var(--color-primary);
-        white-space: nowrap;
-        transform: rotate(-30deg);
-        transform-origin: left bottom;
-        display: block;
-    }
-    .scrolling-text {
-        position: absolute;
-    }
-    /*#gradient {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(150deg, var(--color-pale) 0%, var(--color-light) 100%);
-    }
-    #spotlight {
-        position: absolute;
-        bottom: 10%;
-        right: 10%;
-        width: 300px;
-        height: 300px;
-        background: radial-gradient(
-            circle, 
-            rgba(255, 200, 150, 0.8) 0%, 
-            rgba(255, 100, 150, 0.4) 50%, 
-            rgba(0, 0, 0, 0) 100%,
-        );
-        filter: url(#grainy-filter);
-    }*/
     #message {
         z-index: 1;
         position: absolute;
@@ -51,17 +16,45 @@
         flex-direction: column;
         align-items: end;
     }
+    .shadow-text {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        color: transparent;
+        pointer-events: none;
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        text-shadow:
+            0 0 5px var(--color-light),
+            0 0 10px var(--color-light),
+            0 0 20px var(--color-light),
+            0 0 30px var(--color-light),
+            0 0 40px var(--color-light),
+            0 0 50px var(--color-light),
+            0 0 60px var(--color-light),
+            0 0 70px var(--color-light),
+            0 0 80px var(--color-light),
+            0 0 90px var(--color-light),
+            0 0 100px var(--color-light);
+    }
+    #scrolling-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        will-change: transform;
+    }
 </style>
-<!--<svg style="position: absolute; width: 0; height: 0;">-->
-    <!--<filter id="grainy-filter">-->
-        <!--<feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" result="noise" />-->
-        <!--<feBlend in="SourceGraphic" in2="noise" mode="multiply" />-->
-    <!--</filter>-->
-<!--</svg>-->
 <div id="home-content">
-    <!--<div id="gradient"></div>-->
-    <div id="spotlight"></div>
+    <canvas id="scrolling-canvas"></canvas>
     <div id="message">
+        <div class="shadow-text">
+            <p>Your life needs</p>
+            <h1 class="logo">Purpose</h1>
+        </div>
         <p>Your life needs</p>
         <h1 class="logo">Purpose</h1>
     </div>

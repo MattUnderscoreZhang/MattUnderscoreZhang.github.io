@@ -102,70 +102,210 @@ const phrases = [
     "Why do I keep avoiding things?",
     "I need to believe in myself.",
     "What will make me proud of my life?",
-];
+    "Why can’t I move past this?",
+    "I’m scared of change.",
+    "How do I find purpose?",
+    "What if I’m not capable?",
+    "I feel like I’m losing control.",
+    "I don’t know what I want anymore.",
+    "Why do I feel so disconnected from others?",
+    "I don’t know where to go next.",
+    "What am I running from?",
+    "I can’t stop feeling anxious.",
+    "How do I find peace?",
+    "I’m afraid to fail.",
+    "What does happiness look like?",
+    "I’m not sure who I am.",
+    "I feel stuck in a loop.",
+    "What’s wrong with me?",
+    "Why am I always second-guessing myself?",
+    "How do I stop feeling overwhelmed?",
+    "I don’t know how to move forward.",
+    "What do I really need?",
+    "Why am I always doubting myself?",
+    "I feel like I’ve lost my spark.",
+    "How do I find clarity?",
+    "Why does life feel like it’s slipping away?",
+    "I need something to change.",
+    "I feel like I’m running out of time.",
+    "What if I’m not good enough?",
+    "How do I stop feeling stuck?",
+    "Why do I keep pushing people away?",
+    "What do I want out of life?",
+    "How do I stop procrastinating?",
+    "Why do I keep avoiding things?",
+    "I feel like I’m not making any progress.",
+    "What is the point of all of this?",
+    "I need to take control of my life.",
+    "How do I stay focused?",
+    "I feel lost in the chaos.",
+    "I don’t know how to get out of this rut.",
+    "What do I need to let go of?",
+    "I’m scared I won’t reach my potential.",
+    "How do I take the first step?",
+    "Why do I feel so empty?",
+    "I keep making the same mistakes.",
+    "How do I find my direction?",
+    "I don’t feel like I belong.",
+    "I need to stop comparing myself.",
+    "Why is everything so difficult?",
+    "I can’t shake this feeling of doubt.",
+    "I feel like I’m not enough.",
+    "How do I stop feeling lost?",
+    "What is my purpose?",
+    "I don’t know what I’m doing.",
+    "Why does everything feel like a struggle?",
+    "I feel disconnected from myself.",
+    "How do I stay motivated?",
+    "I can’t find the motivation I need.",
+    "I’m afraid I’ll never be happy.",
+    "How do I get past my fears?",
+    "I feel like I’m missing something important.",
+    "Why can’t I be happy with what I have?",
+    "What do I really need in my life?",
+    "I feel like I’m drifting away from my goals.",
+    "How do I break free from this cycle?",
+    "I feel like I’m just going through the motions.",
+    "Why am I so indecisive?",
+    "I keep wondering what I’m doing wrong.",
+    "How do I learn to trust myself?",
+    "Why do I feel like I’m running in circles?",
+    "I can’t seem to get out of my head.",
+    "How do I change my mindset?",
+    "What’s stopping me from being my true self?",
+    "I need a fresh perspective.",
+    "I feel like I’ve lost my way.",
+    "How do I stay grounded?",
+    "What will make me happy?",
+    "I can’t stop worrying.",
+    "Why do I keep making excuses?",
+    "I feel like I’ve failed myself.",
+    "How do I get rid of this constant pressure?",
+    "I don’t feel like I’m making a difference.",
+    "What’s the next step?",
+    "I keep wondering if I’m on the right path.",
+    "I feel like I’m not living up to my potential.",
+    "Why does everything feel so overwhelming?",
+    "I can’t find peace in my thoughts.",
+    "How do I stop feeling stuck in my own head?",
+    "What do I need to do to move forward?",
+    "I feel like I’m wasting my life.",
+    "I need to focus on what really matters.",
+    "How do I stop being afraid of change?",
+    "Why do I keep sabotaging myself?",
+    "I need to believe in myself more.",
+    "How do I find inner peace?",
+    "Why do I feel like I’m always running late?",
+    "I feel like I’m not in control.",
+    "I keep worrying about what others think.",
+    "I don’t know how to get started.",
+    "How do I stop being afraid of failure?",
+    "I feel like I’m never enough.",
+    "How do I make meaningful changes in my life?"
+];;
 
-function createScrollingTextbar(left, top, fontsize) {
-    const scrollingTextbar = document.createElement("div");
-    scrollingTextbar.classList.add("scrolling-textbar");
-    scrollingTextbar.style.fontSize = `${fontsize}px`;
-    scrollingTextbar.style.top = `${top}px`;
-    scrollingTextbar.style.left = `${left}px`;
-    const homeContent = document.getElementById("home-content");
-    homeContent.appendChild(scrollingTextbar);
-    return scrollingTextbar;
+const scrollSpeed = 50;
+const scrollAngle = -30 * Math.PI / 180;
+const rowSizeRatio = 0.95;
+const nRows = 80;
+const gap = 20;
+
+const primaryColor = getComputedStyle(document.body).getPropertyValue('--color-primary').trim();
+const regex = /oklch\((\d+(\.\d+)?)%\s+(\d+(\.\d+)?)\s+(\d+(\.\d+)?)/;
+const match = primaryColor.match(regex);
+const colorL = parseInt(match[1]);
+const colorC = match[3];
+const colorH = match[5];
+
+let textRows = [];
+const bodyFont = getComputedStyle(document.body).getPropertyValue('font-family').trim();
+
+const canvas = document.getElementById("scrolling-canvas");
+const ctx = canvas.getContext("2d");
+function setupCanvas() {
+    const canvasRect = canvas.getBoundingClientRect();
+    canvas.width = canvasRect.width;
+    canvas.height = canvasRect.height;
+}
+setupCanvas();
+window.addEventListener("resize", setupCanvas);
+
+function getRandomPhrase(x) {
+    const phrase = phrases[Math.floor(Math.random() * phrases.length)];
+    return {
+        content: phrase,
+        x: x,
+        color: `oklch(${colorL - Math.random() * 20}% ${colorC} ${colorH})`,
+    };
 }
 
-function createScrollingText(scrollingTextbar, displacement, speed, delay) {
-    const scrollingText = document.createElement("div");
-    scrollingText.classList.add("scrolling-text");
-    randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
-    scrollingText.textContent = randomPhrase;
-    scrollingTextbar.appendChild(scrollingText);
+function populateText() {
+    textRows = [];
+    const totalSizeUnits = (1 - rowSizeRatio ** nRows) / (1 - rowSizeRatio);
+    let rowSize = (canvas.height - canvas.width * Math.tan(scrollAngle)) / totalSizeUnits;
+    let offsetY = 0;
 
-    // text starts off-screen and scrolls off-screen in the other direction
-    // measure text size after it's attached to the DOM
-    if (displacement === null)
-        displacement = -scrollingText.clientWidth;
-    scrollingText.style.left = `${displacement}px`;
-    const duration = (scrollingTextbar.clientWidth - displacement) / speed;
-    scrollingText.style.transition = `left ${duration}s linear`;
-    scrollingText.style.left = "100%";
-
-    // when this finishes appearing, create a new text element
-    let createTimeout = null;
-    if (displacement < 0) {
-        const appearanceTime = -displacement / speed;
-        createTimeout = setTimeout(() => {
-            createScrollingText(scrollingTextbar, null, speed, delay);
-        }, (appearanceTime + delay) * 1000);
-    }
-
-    // when this finishes, delete the element
-    scrollingText.addEventListener("transitionend", () => {
-        scrollingText.remove();
-    });
-
-    return [scrollingText, createTimeout];
-}
-
-function fillWithScrollingText(scrollingTextbar, speed, gap, delay) {
-    let displacement = -Math.random() * scrollingTextbar.clientWidth;
-    while (displacement < scrollingTextbar.clientWidth) {
-        const [scrollingText, createTimeout] = createScrollingText(scrollingTextbar, displacement, speed, delay);
-        displacement += scrollingText.clientWidth + gap;
-        if (displacement < 0) {
-            scrollingText.remove();
-            clearTimeout(createTimeout);
+    for (let i = 0; i < nRows; i++) {
+        const texts = [];
+        const firstPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+        const fontSize = rowSize * 0.8;
+        ctx.font = `${fontSize}px ${bodyFont}`;
+        const offsetX = -Math.random() * ctx.measureText(firstPhrase).width;
+        let totalX = offsetX;
+        while (totalX < canvas.width) {
+            const randomPhrase = getRandomPhrase(totalX);
+            texts.push(randomPhrase);
+            const widthMeasure = ctx.measureText(randomPhrase.content).width;
+            totalX += widthMeasure + gap;
         }
+        textRows.push({
+            fontSize: fontSize,
+            texts: texts,
+            y: offsetY,
+        });
+        offsetY += rowSize;
+        rowSize *= rowSizeRatio;
     }
 }
+populateText();
+window.addEventListener("resize", populateText);
 
-const speed = 100;
-const gap = 50;
-const delay = gap / speed;
-let offset = 0;
-for (let size = 80; size >= 5; size *= 0.95) {
-    const textbar = createScrollingTextbar(-gap, offset, Math.floor(size));
-    fillWithScrollingText(textbar, speed, gap, delay);
-    offset += size * 2;
+function drawRotatedTexts(texts, y) {
+    const xOffset = Math.tan(scrollAngle) * y;
+    texts.forEach(text => {
+        ctx.fillStyle = text.color;
+        ctx.fillText(text.content, text.x + xOffset, y);
+    });
 }
+
+function drawFrame(timestamp) {
+    ctx.clearRect(-canvas.width, 0, 2 * canvas.width, 2 * canvas.height);
+
+    const dT = (timestamp - (drawFrame.lastTimestamp || timestamp)) / 1000;
+    drawFrame.lastTimestamp = timestamp;
+    const dX = scrollSpeed * dT;
+
+    ctx.save();
+    ctx.rotate(scrollAngle);
+    textRows.forEach(row => {
+        ctx.font = `${row.fontSize}px ${bodyFont}`;
+        row.texts.forEach(text => {
+            text.x -= dX;
+        });
+        row.texts = row.texts.filter(text => text.x + ctx.measureText(text.content).width > 0);
+        const lastText = row.texts[row.texts.length - 1];
+        const rowWidth = lastText.x + ctx.measureText(lastText.content).width + gap;
+        if (rowWidth < (canvas.width + row.fontSize) / Math.cos(scrollAngle))
+            row.texts.push(getRandomPhrase(rowWidth));
+        drawRotatedTexts(row.texts, row.y);
+    });
+    ctx.restore();
+
+    requestAnimationFrame(drawFrame);
+}
+requestAnimationFrame(drawFrame);
+document.addEventListener("visibilitychange", function() {
+    if (document.hidden) {
+        drawFrame.lastTimestamp = undefined;
+    }
+});

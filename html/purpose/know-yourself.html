@@ -4,42 +4,66 @@
         height: 100%;
         width: 100%;
         color: var(--color-dark);
-    }
-    #computer {
-        position: absolute;
-        top: 33%;
-        left: 20%;
-        width: 70%;
-        height: 30%;
-        background-color: var(--color-light);
-        border-radius: 50px;
-        border: 10px solid var(--color-dark);
-    }
-    #phone {
-        position: absolute;
-        top: 48%;
-        left: 10%;
-        width: 20%;
-        height: 20%;
-        background-color: var(--color-light);
-        border-radius: 50px;
-        border: 10px solid var(--color-dark);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
     #tagline {
         z-index: 1;
-        position: absolute;
-        top: 20%;
-        left: 10%;
         width: 80%;
         display: flex;
         flex-direction: column;
         align-items: start;
     }
+    #screens {
+        position: relative;
+        aspect-ratio: 11 / 8;
+        margin-top: 80px;
+        margin-bottom: 20px;
+        overflow: hidden;
+    }
+    @media (max-aspect-ratio: 11 / 8) {
+        #screens {
+            width: 80%;
+        }
+    }
+    @media (min-aspect-ratio: 11 / 8) {
+        #screens {
+            height: 30%;
+        }
+    }
+    #computer-screen {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 80%;
+        aspect-ratio: 4 / 3;
+        background-color: var(--color-light);
+        border-radius: 50px;
+        border: 10px solid var(--color-dark);
+        overflow: hidden;
+    }
+    #phone-screen {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 30%;
+        aspect-ratio: 9 / 16;
+        background-color: var(--color-light);
+        border-radius: 50px;
+        border: 10px solid var(--color-dark);
+        overflow: hidden;
+    }
+    .computer-screen-content, .phone-screen-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
     #purpose-functions {
         z-index: 1;
-        position: absolute;
-        top: 70%;
-        right: 10%;
         width: 80%;
         display: flex;
         flex-direction: column;
@@ -53,11 +77,16 @@
     }
 </style>
 <div id="examine-content">
-    <div id="computer"></div>
-    <div id="phone"></div>
     <div id="tagline">
         <h1>Know Yourself</h1>
-        <p>Track whatever information is useful for you.</p>
+    </div>
+    <div id="screens">
+        <div id="computer-screen">
+            <div class="computer-screen-content"></div>
+        </div>
+        <div id="phone-screen">
+            <div class="phone-screen-content"></div>
+        </div>
     </div>
     <div id="purpose-functions">
         <h1 class="logo">Purpose</h1>
