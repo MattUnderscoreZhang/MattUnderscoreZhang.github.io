@@ -19,7 +19,7 @@
         position: relative;
         opacity: 1;
         transition: opacity 1s;
-        text-align: right;
+        text-align: left;
     }
     #system-diagram {
         width: 100%;
@@ -41,14 +41,49 @@
         overflow: hidden;
         border: 1px solid var(--color-dark);
     }
+    #system-inputs li::after {
+        width: 10px;
+        height: 2px;
+        background-color: var(--color-dark);
+    }
     #system-control-panel {
-        width: 600px;
-        height: 400px;
+        width: 50%;
+        aspect-ratio: 3 / 2;
         border: 1px solid var(--color-dark);
     }
     #about-message {
         width: 80%;
         text-align: right;
+    }
+
+    @media (max-width: 768px) {
+        #purpose-functions, #about-message {
+            font-size: 0.8rem;
+        }
+        #system-diagram {
+            width: 80%;
+            flex-direction: column;
+            margin-block: 20px;
+        }
+        #system-inputs, #system-outputs {
+            width: 100%;
+            flex-direction: row;
+        }
+        #system-inputs {
+            justify-content: start;
+        }
+        #system-outputs {
+            justify-content: end;
+        }
+        #system-control-panel {
+            width: 100%;
+        }
+    }
+    @media (max-width: 480px) {
+        #system-inputs li, #system-outputs li {
+            width: 50px;
+            height: 50px;
+        }
     }
 </style>
 <div id="examine-content">
@@ -58,7 +93,7 @@
     </div>
     <div id="system-diagram">
         <ul id="system-inputs">
-            <li>Journal Entries</li>
+            <li>Journals</li>
             <li>Plans</li>
             <li>Check-Ins</li>
         </ul>

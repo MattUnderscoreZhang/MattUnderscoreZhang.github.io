@@ -52,6 +52,30 @@
         height: 100%;
         will-change: transform;
     }
+    #home-scroll-message {
+        z-index: 1;
+        position: absolute;
+        bottom: calc(15% + 5px);
+        left: 10%;
+        color: var(--color-light);
+        padding: 5px;
+        border-radius: 5px;
+        background-color: var(--color-dark);
+        font-size: 0.5rem;
+        animation: pulse 1s infinite ease-in-out;
+        opacity: 0;
+    }
+    @keyframes pulse {
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-5px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
 
     @media (max-width: 920px) {
         #home-content {
@@ -62,6 +86,9 @@
         }
         .home-logo {
             font-size: 3rem;
+        }
+        #home-scroll-message {
+            opacity: 1;
         }
     }
 </style>
@@ -75,4 +102,5 @@
         <p>Your life needs</p>
         <h1 class="logo home-logo">Purpose</h1>
     </div>
+    <p id="home-scroll-message">vv Scroll vv</p>
 </div>

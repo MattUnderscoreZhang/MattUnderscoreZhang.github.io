@@ -69,6 +69,23 @@ body {
 }
 
 @media (max-width: 920px) {
+    body {
+        flex-direction: column;
+    }
+    #nav-menu {
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        height: 60px;
+    }
+    .nav-menu-item.highlighted a::before {
+        content: none;
+    }
+    .nav-menu-item.highlighted a {
+        text-decoration: underline;
+    }
+}
+@media (max-width: 800px) {
     #nav-menu {
         display: none;
     }
