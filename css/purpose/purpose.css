@@ -32,10 +32,11 @@ body {
 }
 .nav-menu-item a {
     text-decoration: none;
-    color: var(--color-primary);
+    color: var(--color-dark);
 }
-.nav-menu-item.highlighted a {
-    font-weight: 700;
+.nav-menu-item.highlighted a::before {
+    content: '>';
+    margin-right: 8px;
 }
 #slides {
     width: 100%;
@@ -47,7 +48,7 @@ body {
 }
 .slide {
     scroll-snap-align: start;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -1,4 +1,4 @@
-document.getElementById("waitlist-form").addEventListener("submit", async function (e) {
+async function submitForm (e) {
     e.preventDefault();  // prevent form from refreshing the page
 
     const emailInput = document.getElementById("email");
@@ -21,4 +21,5 @@ document.getElementById("waitlist-form").addEventListener("submit", async functi
     } else {
         alert("Something went wrong. Please try again.");
     }
-});
+}
+document.getElementById("waitlist-form").addEventListener("submit", submitForm);

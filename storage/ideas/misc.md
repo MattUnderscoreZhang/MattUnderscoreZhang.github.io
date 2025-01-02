@@ -1,0 +1,1 @@
+Timeline system - each item can count at its lowest time granularity or above - quarter of day, day, week, month, quarter, year - items are divided into finer granularity buckets only if there’s five or more items at that granularity or finer in an existing bucket - buckets are llm summarized
